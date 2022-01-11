@@ -1,7 +1,12 @@
 {
   "name": "brainfuck",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A Brainfuck to JavaScript transpiler\"",
+  "homepage": "https://github.com/synthetic-borealis/brainfuck.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synthetic-borealis/brainfuck.js.git"
+  },
   "files": [
     "index.js",
     "es",
