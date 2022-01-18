@@ -7,13 +7,13 @@
     "type": "git",
     "url": "git+https://github.com/synthetic-borealis/hirnfick.js.git"
   },
-  "main": "./index.js",
+  "main": "index.js",
   "files": [
-    "./index.js",
-    "./lib/index.js",
-    "./README.md",
-    "./browser/hirnfick.js",
-    "./browser/hirnfick.min.js"
+    "index.js",
+    "lib/index.js",
+    "README.md",
+    "browser/hirnfick.js",
+    "browser/hirnfick.min.js"
   ],
   "keywords": [
     "brainfuck"
@@ -25,6 +25,7 @@
     "minify": "uglifyjs ./browser/hirnfick.js -o ./browser/hirnfick.min.js --compress --mangle --comments /Copyright/",
     "build-browser": "node --require @babel/register build-browser && npm run minify",
     "clean": "rimraf browser",
+    "prepare": "npm run clean && npm run build-browser",
     "test": "jest"
   },
   "author": "Elhanan Flesch",
