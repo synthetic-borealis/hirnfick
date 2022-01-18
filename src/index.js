@@ -3,7 +3,7 @@ function hasErrors(source) {
   const numOfLoopStarts = sourceArray.reduce((previousVal, currentVal) => (currentVal === '[' ? previousVal + 1 : previousVal), 0);
   const numOfLoopEnds = sourceArray.reduce((previousVal, currentVal) => (currentVal === ']' ? previousVal + 1 : previousVal), 0);
 
-  return numOfLoopStarts != numOfLoopEnds;
+  return numOfLoopStarts !== numOfLoopEnds;
 }
 
 function genIndent(depth, size, char = ' ') {
@@ -23,44 +23,57 @@ function transpileToJS(source, funcName = 'run', indentSize = 2) {
   let currentDepth = 0;
 
   sourceArray.forEach((command) => {
-
     switch (command) {
       case '>':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}if (position + 1 === cells.length) cells.push(0);`);
-        outputCodeArray.push(`${indent}++position;`);
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}if (position + 1 === cells.length) cells.push(0);`);
+          outputCodeArray.push(`${indent}++position;`);
+        }
         break;
 
       case '<':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}if (position > 0) --position;`);
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}if (position > 0) --position;`);
+        }
         break;
 
       case '+':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}if (cells[position] < 255) ++cells[position];`);
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}if (cells[position] < 255) ++cells[position];`);
+        }
         break;
 
       case '-':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}if (cells[position] > 0) --cells[position];`);
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}if (cells[position] > 0) --cells[position];`);
+        }
         break;
 
       case '.':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}output = output.concat(String.fromCharCode(cells[position]));`);
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}output = output.concat(String.fromCharCode(cells[position]));`);
+        }
         break;
 
       case '[':
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}while (cells[position] > 0) {`);
-        ++currentDepth;
+        {
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}while (cells[position] > 0) {`);
+          currentDepth += 1;
+        }
         break;
 
       case ']':
-        currentDepth = currentDepth > 0 ? currentDepth - 1 : 0;
-        const indent = genIndent(currentDepth + 1, indentSize);
-        outputCodeArray.push(`${indent}}`);
+        {
+          currentDepth = currentDepth > 0 ? currentDepth - 1 : 0;
+          const indent = genIndent(currentDepth + 1, indentSize);
+          outputCodeArray.push(`${indent}}`);
+        }
         break;
 
       default:
