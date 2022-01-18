@@ -1,19 +1,19 @@
 {
-  "name": "brainfuck",
+  "name": "hirnfick",
   "version": "0.1.0",
-  "description": "A Brainfuck to JavaScript transpiler\"",
-  "homepage": "https://github.com/synthetic-borealis/brainfuck.js",
+  "description": "A Brainfuck transpilation library",
+  "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/synthetic-borealis/brainfuck.js.git"
+    "url": "git+https://github.com/synthetic-borealis/hirnfick.js.git"
   },
   "files": [
     "index.js",
     "es",
     "lib",
     "README.md",
-    "brainfuck.js",
-    "brainfuck.min.js"
+    "hirnfick.js",
+    "hirnfick.min.js"
   ],
   "keywords": [
     "brainfuck"
@@ -24,9 +24,9 @@
     "lint:fix": "eslint --fix src",
     "clean:node": " rimraf index.js lib",
     "clean:es": "rimraf es",
-    "clean:browser": "rimraf brainfuck*.js",
+    "clean:browser": "rimraf hirnfick*.js",
     "clean": "run-p clean:*",
-    "minify": "uglifyjs brainfuck.js -o brainfuck.min.js --compress --mangle --comments /Copyright/",
+    "minify": "uglifyjs hirnfick.js -o hirnfick.min.js --compress --mangle --comments /Copyright/",
     "build:browser": "node --require @babel/register build-browser && npm run minify",
     "build:es": "babel src -d es --env-name=es",
     "build:node": "babel src -d .",
@@ -35,7 +35,7 @@
     "test": "jest"
   },
   "author": "Elhanan Flesch",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",

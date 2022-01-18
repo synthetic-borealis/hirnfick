@@ -21,7 +21,7 @@ rollup({
 })
   .then((bundle) =>
     bundle.write({
-      file: "brainfuck.js",
+      file: "hirnfick.js",
       format: "umd",
       name: pkg.name,
       banner: `/*!\n${String(fs.readFileSync("./LICENSE"))
