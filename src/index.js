@@ -1,13 +1,13 @@
-function hasErrors(source) {
+function genIndent(depth, size, char = ' ') {
+  return Array(depth * size + 1).join(char);
+}
+
+function isValidProgram(source) {
   const sourceArray = Array.from(source);
   const numOfLoopStarts = sourceArray.reduce((previousVal, currentVal) => (currentVal === '[' ? previousVal + 1 : previousVal), 0);
   const numOfLoopEnds = sourceArray.reduce((previousVal, currentVal) => (currentVal === ']' ? previousVal + 1 : previousVal), 0);
 
-  return numOfLoopStarts !== numOfLoopEnds;
-}
-
-function genIndent(depth, size, char = ' ') {
-  return Array(depth * size + 1).join(char);
+  return numOfLoopStarts === numOfLoopEnds;
 }
 
 function transpileToJS(source, funcName = 'run', indentSize = 2) {
@@ -17,7 +17,8 @@ function transpileToJS(source, funcName = 'run', indentSize = 2) {
     `function ${funcName}() {`,
     `${genIndent(1, indentSize)}var cells = [0];`,
     `${genIndent(1, indentSize)}var position = 0;`,
-    `${genIndent(1, indentSize)}var output = ``;\n`,
+    `${genIndent(1, indentSize)}var output = "";`,
+    '',
   ];
 
   let currentDepth = 0;
@@ -56,7 +57,7 @@ function transpileToJS(source, funcName = 'run', indentSize = 2) {
       case '.':
         {
           const indent = genIndent(currentDepth + 1, indentSize);
-          outputCodeArray.push(`${indent}output = output.concat(String.fromCharCode(cells[position]));`);
+          outputCodeArray.push(`${indent}output += String.fromCharCode(cells[position]);`);
         }
         break;
 
@@ -81,10 +82,10 @@ function transpileToJS(source, funcName = 'run', indentSize = 2) {
   });
 
   outputCodeArray.push('');
-  outputCodeArray.push(`${genIndent(1, indentSize)}return output;`);
-  outputCodeArray.push('}');
+  outputCodeArray.push(`${genIndent(1, indentSize)}return {cells, output};`);
+  outputCodeArray.push('}\n');
 
   return outputCodeArray.join('\n');
 }
 
-export default { hasErrors, transpileToJS };
+export default { isValidProgram, transpileToJS };
