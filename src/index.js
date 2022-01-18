@@ -1,64 +1,77 @@
-function transpile(source) {
-  const sourceArray = source.split('');
+function hasErrors(source) {
+  const sourceArray = Array.from(source);
   const numOfLoopStarts = sourceArray.reduce((previousVal, currentVal) => (currentVal === '[' ? previousVal + 1 : previousVal), 0);
   const numOfLoopEnds = sourceArray.reduce((previousVal, currentVal) => (currentVal === ']' ? previousVal + 1 : previousVal), 0);
 
-  if (numOfLoopStarts !== numOfLoopEnds) {
-    return {
-      status: 'Error',
-      message: 'Bracket number mismatch',
-      run: undefined,
-    };
-  }
+  return numOfLoopStarts != numOfLoopEnds;
+}
+
+function genIndent(depth, size, char = ' ') {
+  return Array(depth * size + 1).join(char);
+}
+
+function transpileToJS(source, funcName = 'run', indentSize = 2) {
+  const sourceArray = Array.from(source);
 
   const outputCodeArray = [
-    'var cells = [0];',
-    'var position = 0;',
-    'var output = ``;',
+    `function ${funcName}() {`,
+    `${genIndent(1, indentSize)}var cells = [0];`,
+    `${genIndent(1, indentSize)}var position = 0;`,
+    `${genIndent(1, indentSize)}var output = ``;\n`,
   ];
 
+  let currentDepth = 0;
+
   sourceArray.forEach((command) => {
+
     switch (command) {
       case '>':
-        outputCodeArray.push('if (position + 1 === cells.length) cells.push(0);');
-        outputCodeArray.push('++position;');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}if (position + 1 === cells.length) cells.push(0);`);
+        outputCodeArray.push(`${indent}++position;`);
         break;
 
       case '<':
-        outputCodeArray.push('if (position > 0) --position;');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}if (position > 0) --position;`);
         break;
 
       case '+':
-        outputCodeArray.push('if (cells[position] < 255) ++cells[position];');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}if (cells[position] < 255) ++cells[position];`);
         break;
 
       case '-':
-        outputCodeArray.push('if (cells[position] > 0) --cells[position];');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}if (cells[position] > 0) --cells[position];`);
         break;
 
       case '.':
-        outputCodeArray.push('output = output.concat(String.fromCharCode(cells[position]));');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}output = output.concat(String.fromCharCode(cells[position]));`);
         break;
 
       case '[':
-        outputCodeArray.push('while (cells[position] > 0) {');
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}while (cells[position] > 0) {`);
+        ++currentDepth;
         break;
 
       case ']':
-        outputCodeArray.push('}');
+        currentDepth = currentDepth > 0 ? currentDepth - 1 : 0;
+        const indent = genIndent(currentDepth + 1, indentSize);
+        outputCodeArray.push(`${indent}}`);
         break;
 
       default:
     }
   });
-  outputCodeArray.push('return output;');
 
-  const outputCode = outputCodeArray.join('\n');
-  return {
-    status: 'Success',
-    message: '',
-    run: new Function(outputCode),
-  };
+  outputCodeArray.push('');
+  outputCodeArray.push(`${genIndent(1, indentSize)}return output;`);
+  outputCodeArray.push('}');
+
+  return outputCodeArray.join('\n');
 }
 
-export default { transpile };
+export default { hasErrors, transpileToJS };
