@@ -11,7 +11,7 @@ import babelPresetEnv from "@babel/preset-env";
 import pkg from "./package.json";
 
 rollup({
-  input: "src/index.js",
+  input: "index.js",
   plugins: [
     babel({
       presets: [[babelPresetEnv, { modules: false }]],
@@ -21,7 +21,7 @@ rollup({
 })
   .then((bundle) =>
     bundle.write({
-      file: "hirnfick.js",
+      file: "./browser/hirnfick.js",
       format: "umd",
       name: pkg.name,
       banner: `/*!\n${String(fs.readFileSync("./LICENSE"))
