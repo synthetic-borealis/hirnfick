@@ -1,41 +1,35 @@
 {
-  "name": "brainfuck",
-  "version": "0.1.0",
-  "description": "A Brainfuck to JavaScript transpiler\"",
-  "homepage": "https://github.com/synthetic-borealis/brainfuck.js",
+  "name": "hirnfick",
+  "version": "1.0.0",
+  "description": "A Brainfuck transpilation library",
+  "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/synthetic-borealis/brainfuck.js.git"
+    "url": "git+https://github.com/synthetic-borealis/hirnfick.js.git"
   },
+  "main": "index.js",
   "files": [
     "index.js",
-    "es",
-    "lib",
+    "lib/index.js",
     "README.md",
-    "brainfuck.js",
-    "brainfuck.min.js"
+    "browser/hirnfick.js",
+    "browser/hirnfick.min.js"
   ],
   "keywords": [
     "brainfuck"
   ],
   "scripts": {
-    "lint": "eslint src",
-    "lint:log": "eslint src > lint.log",
-    "lint:fix": "eslint --fix src",
-    "clean:node": " rimraf index.js lib",
-    "clean:es": "rimraf es",
-    "clean:browser": "rimraf brainfuck*.js",
-    "clean": "run-p clean:*",
-    "minify": "uglifyjs brainfuck.js -o brainfuck.min.js --compress --mangle --comments /Copyright/",
-    "build:browser": "node --require @babel/register build-browser && npm run minify",
-    "build:es": "babel src -d es --env-name=es",
-    "build:node": "babel src -d .",
-    "build": "run-p build:*",
-    "pretest": "npm run build",
+    "lint": "eslint lib",
+    "lint:log": "eslint lib > lint.log",
+    "lint:fix": "eslint --fix lib",
+    "minify": "uglifyjs ./browser/hirnfick.js -o ./browser/hirnfick.min.js --compress --mangle --comments /Copyright/",
+    "build-browser": "node --require @babel/register build-browser && npm run minify",
+    "clean": "rimraf browser",
+    "prepare": "npm run clean && npm run build-browser",
     "test": "jest"
   },
   "author": "Elhanan Flesch",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
@@ -47,6 +41,7 @@
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.4.7",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "rollup": "^2.63.0",
