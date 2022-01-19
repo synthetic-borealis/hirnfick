@@ -10,7 +10,9 @@
   "main": "index.js",
   "files": [
     "index.js",
+    "index.d.ts",
     "lib/index.js",
+    "lib/index.d.ts",
     "README.md",
     "browser/hirnfick.js",
     "browser/hirnfick.min.js"
