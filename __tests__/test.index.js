@@ -47,7 +47,7 @@ describe('Transpilers tests', () => {
       });
     });
     describe('Generated Python code', () => {
-      it('Generates valid Python code', (done) => {
+      it('Returns correct output', (done) => {
         PythonShell.runString(outputCode, null, (err, results) => {
           if (err) return done(err);
           results.should.be.an.Array().and.have.lengthOf(1);
