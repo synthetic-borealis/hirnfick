@@ -30,7 +30,7 @@
     "lint:log": "eslint lib > lint.log",
     "lint:fix": "eslint --fix lib",
     "minify": "uglifyjs ./browser/hirnfick.js -o ./browser/hirnfick.min.js --compress --mangle --comments /Copyright/",
-    "build-browser": "node --require @babel/register build-browser && npm run minify",
+    "build-browser": "npm run clean && node --require @babel/register build-browser && npm run minify",
     "generate-ts": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "clean": "rimraf browser",
     "prepare": "npm run clean && npm run build-browser",
