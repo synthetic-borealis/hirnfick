@@ -1,4 +1,7 @@
-# Hirnfick.js
+# Hirnfick
+[![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
+[![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
+
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
 
 ## Supported Output Languages
