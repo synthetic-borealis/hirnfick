@@ -5,7 +5,7 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
 - JavaScript.
 
 ## Installation
-Run `npm i synthetic-borealis/hirnfick.js`
+Run `npm i hirnfick`
 
 ## Usage
 
