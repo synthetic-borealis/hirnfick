@@ -1,8 +1,13 @@
-# Hirnfick.js
+# Hirnfick
+[![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
+![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
+[![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
+
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
 
 ## Supported Output Languages
-- JavaScript.
+- JavaScript (no support for reading keyboard input).
+- Python (no support for reading keyboard input).
 
 ## Installation
 Run `npm i hirnfick`
@@ -10,7 +15,7 @@ Run `npm i hirnfick`
 ## Usage
 
 - Use ```isValidProgram``` to validate your Brainfuck program and then ```transpileToJS``` to convert it to JavaScript.
-- Generated JavaScript functions return an object containing two members:
+- Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
 

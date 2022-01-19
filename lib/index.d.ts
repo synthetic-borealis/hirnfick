@@ -15,3 +15,10 @@ export function isValidProgram(source: string): boolean;
  * @returns {string} The generated function (in source form).
  */
 export function transpileToJS(source: string, funcName?: string, indentSize?: number, indentChar?: string): string;
+/**
+ * Converts a Brainfuck program to a Python script.
+ *
+ * @param {string} source Brainfuck source-code to convert.
+ * @returns {string} The generated Python code.
+ */
+export function transpileToPython(source: string): string;

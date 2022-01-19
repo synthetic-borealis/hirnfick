@@ -1,12 +1,5 @@
 node_modules
 *.log
-#/es
-#/lib
-#/index.js
-#brainfuck.js
-#brainfuck.min.js
-#/dist
-# package-lock.json
 coverage
 coverage.lcov
 .DS_Store

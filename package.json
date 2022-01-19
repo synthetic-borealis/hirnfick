@@ -1,5 +1,7 @@
 {
   "name": "hirnfick",
+  "author": "Elhanan Flesch",
+  "license": "MIT",
   "version": "1.0.0",
   "description": "A Brainfuck transpilation library",
   "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
@@ -7,6 +9,12 @@
     "type": "git",
     "url": "git+https://github.com/synthetic-borealis/hirnfick.js.git"
   },
+  "bugs": {
+    "url": "https://github.com/synthetic-borealis/hirnfick.js/issues"
+  },
+  "keywords": [
+    "brainfuck"
+  ],
   "main": "index.js",
   "files": [
     "index.js",
@@ -17,21 +25,17 @@
     "browser/hirnfick.js",
     "browser/hirnfick.min.js"
   ],
-  "keywords": [
-    "brainfuck"
-  ],
   "scripts": {
     "lint": "eslint lib",
     "lint:log": "eslint lib > lint.log",
     "lint:fix": "eslint --fix lib",
     "minify": "uglifyjs ./browser/hirnfick.js -o ./browser/hirnfick.min.js --compress --mangle --comments /Copyright/",
-    "build-browser": "node --require @babel/register build-browser && npm run minify",
+    "build-browser": "npm run clean && node --require @babel/register build-browser && npm run minify",
+    "generate-ts": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "clean": "rimraf browser",
     "prepare": "npm run clean && npm run build-browser",
     "test": "jest"
   },
-  "author": "Elhanan Flesch",
-  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
@@ -45,8 +49,10 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
     "npm-run-all": "^4.1.5",
+    "python-shell": "^3.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.63.0",
+    "should": "^13.2.3",
     "uglify-js": "^3.14.5"
   }
 }
