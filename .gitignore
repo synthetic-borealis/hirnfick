@@ -6,7 +6,7 @@ node_modules
 #brainfuck.js
 #brainfuck.min.js
 #/dist
-package-lock.json
+# package-lock.json
 coverage
 coverage.lcov
 .DS_Store
