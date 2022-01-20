@@ -4,7 +4,8 @@ const cppUtils = require('cpp-utils');
 const should = require('should');
 const fs = require('fs/promises');
 const process = require('process');
-const exec = require('child_process').exec;
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
@@ -78,18 +79,14 @@ describe('Transpilers tests', () => {
 
     describe('Generated C code', () => {
       it('Has correct output', (done) => {
-        exec(executableFile, (error, stdout, stderr) => {
-          console.log(`Error: ${error}`);
-          console.log(`stdout: ${stdout}`);
-          console.log(`stderr: ${stderr}`);
-          if (error) {
-            done(error);
-          }
-          console.log(stdout.split());
-          if (stdout.trim() === 'Hello World!') {
-            done();
-          }
-        });
+        exec(executableFile)
+          .then(({stdout, stderr}) => {
+            console.log(stdout.trim());
+            if (stdout.trim() === 'Hello World!') {
+              done();
+            }
+          })
+          .catch(done);
       });
     });
 
