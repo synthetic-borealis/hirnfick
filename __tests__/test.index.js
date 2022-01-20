@@ -76,20 +76,22 @@ describe('Transpilers tests', () => {
       return expect(cppUtils.compileWithGcc(sourceFile, executableFile, true)).resolves.toBeDefined();
     });
 
-    // describe('Generated C code', () => {
-    //   it('Has correct output', (done) => {
-    //     exec(executableFile, (error, stdout) => {
-    //       if (error) {
-    //         console.log(error);
-    //         done(error);
-    //       }
-    //       console.log(stdout.split());
-    //       if (stdout.trim() === 'Hello World!') {
-    //         done();
-    //       }
-    //     });
-    //   });
-    // });
+    describe('Generated C code', () => {
+      it('Has correct output', (done) => {
+        exec(executableFile, (error, stdout, stderr) => {
+          console.log(`Error: ${error}`);
+          console.log(`stdout: ${stdout}`);
+          console.log(`stderr: ${stderr}`);
+          if (error) {
+            done(error);
+          }
+          console.log(stdout.split());
+          if (stdout.trim() === 'Hello World!') {
+            done();
+          }
+        });
+      });
+    });
 
     afterAll(() => {
       return Promise.all([fs.unlink(sourceFile), fs.unlink(executableFile)]);
