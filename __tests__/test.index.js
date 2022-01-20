@@ -1,6 +1,10 @@
 const brainfuck = require('../index');
 const {PythonShell} = require('python-shell');
+const cppUtils = require('cpp-utils');
 const should = require('should');
+const fs = require('fs/promises');
+const process = require('process');
+const exec = require('child_process').exec;
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
@@ -47,7 +51,7 @@ describe('Transpilers tests', () => {
       });
     });
     describe('Generated Python code', () => {
-      it('Returns correct output', (done) => {
+      it('Has correct output', (done) => {
         PythonShell.runString(outputCode, null, (err, results) => {
           if (err) return done(err);
           results.should.be.an.Array().and.have.lengthOf(1);
@@ -55,6 +59,39 @@ describe('Transpilers tests', () => {
           done();
         });
       });
+    });
+  });
+
+  describe('transpileToC tests', () => {
+    const outputCode = brainfuck.transpileToC(helloWorldCode);
+    const exeExtension = process.platform === 'win32' ? '.exe' : '';
+    const executableFile = `test${exeExtension}`;
+    const sourceFile = 'test.c';
+
+    beforeAll(() => {
+      return fs.writeFile(sourceFile, outputCode);
+    });
+
+    it('Generates valid C code', () => {
+      return expect(cppUtils.compileWithGcc(sourceFile, executableFile, true)).resolves.toBeDefined();
+    });
+
+    describe('Generated C code', () => {
+      it('Has correct output', (done) => {
+        exec(executableFile, (error, stdout) => {
+          if (error) {
+            done(error);
+          }
+          console.log(stdout.split());
+          if (stdout.trim() === 'Hello World!') {
+            done();
+          }
+        });
+      });
+    });
+
+    afterAll(() => {
+      return Promise.all([fs.unlink(sourceFile), fs.unlink(executableFile)]);
     });
   });
 });
