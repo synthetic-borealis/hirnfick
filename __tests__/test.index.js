@@ -80,6 +80,7 @@ describe('Transpilers tests', () => {
       it('Has correct output', (done) => {
         exec(executableFile, (error, stdout) => {
           if (error) {
+            console.log(error);
             done(error);
           }
           console.log(stdout.split());
