@@ -79,14 +79,18 @@ describe('Transpilers tests', () => {
 
     describe('Generated C code', () => {
       it('Has correct output', (done) => {
-        exec(executableFile)
+        const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
+        exec(commandToRun)
           .then(({stdout, stderr}) => {
             console.log(stdout.trim());
             if (stdout.trim() === 'Hello World!') {
               done();
             }
           })
-          .catch(done);
+          .catch((err) => {
+            console.log(err.message);
+            done(err);
+          });
       });
     });
 
