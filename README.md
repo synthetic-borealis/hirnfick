@@ -8,6 +8,8 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
 ## Supported Output Languages
 - JavaScript (no support for reading keyboard input).
 - Python (no support for reading keyboard input).
+- C.
+- C++.
 
 ## Installation
 Run `npm i hirnfick`
