@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A Brainfuck transpilation library",
   "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
   "repository": {
