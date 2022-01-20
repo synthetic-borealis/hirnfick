@@ -22,3 +22,17 @@ export function transpileToJS(source: string, funcName?: string, indentSize?: nu
  * @returns {string} The generated Python code.
  */
 export function transpileToPython(source: string): string;
+/**
+ * Converts a Brainfuck program to C code.
+ *
+ * @param {string} source Brainfuck source-code to convert.
+ * @returns {string} The generated C code.
+ */
+export function transpileToC(source: string): string;
+/**
+ * Converts a Brainfuck program to C++ code.
+ *
+ * @param {string} source Brainfuck source-code to convert.
+ * @returns {string} The generated C code.
+ */
+export function transpileToCpp(source: string): string;
