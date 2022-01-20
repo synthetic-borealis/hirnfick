@@ -21,39 +21,22 @@
     "index.d.ts",
     "lib/index.js",
     "lib/index.d.ts",
-    "README.md",
-    "browser/hirnfick.js",
-    "browser/hirnfick.min.js"
+    "README.md"
   ],
   "scripts": {
     "lint": "eslint lib",
     "lint:log": "eslint lib > lint.log",
     "lint:fix": "eslint --fix lib",
-    "minify": "uglifyjs ./browser/hirnfick.js -o ./browser/hirnfick.min.js --compress --mangle --comments /Copyright/",
-    "build-browser": "npm run clean && node --require @babel/register build-browser && npm run minify",
     "generate-ts": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
-    "clean": "rimraf browser",
-    "prepare": "npm run clean && npm run build-browser",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.8",
-    "@babel/register": "^7.16.8",
-    "@rollup/plugin-babel": "^5.3.0",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-add-module-exports": "^1.0.4",
     "cpp-utils": "^1.0.1",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
-    "npm-run-all": "^4.1.5",
     "python-shell": "^3.0.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.63.0",
-    "should": "^13.2.3",
-    "uglify-js": "^3.14.5"
+    "should": "^13.2.3"
   }
 }
