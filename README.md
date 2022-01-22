@@ -47,3 +47,40 @@ if (hirnfick.isValidProgram(helloWorldBF)) {
     console.log(helloWorld().output);
 }
 ```
+
+### Web
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Hirnfick</title>
+  <script src="https://unpkg.com/hirnfick@1.2.1/dist/hirnfick.js"></script>
+</head>
+
+<body>
+  <p>
+    <textarea id="output-box" readonly rows="8" style="width: 90%;"></textarea>
+  </p>
+  <button id="run-button">Run</button>
+
+  <script type="module">
+    const runButton = document.getElementById('run-button');
+    const outputBox = document.getElementById('output-box');
+    const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+
+    outputBox.value = '';
+    runButton.addEventListener('click', () => {
+      const helloWorldProgram = hirnfick.transpileToJS(helloWorldCode);
+      const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
+
+      outputBox.value += helloWorld();
+    });
+  </script>
+</body>
+
+</html>
+```

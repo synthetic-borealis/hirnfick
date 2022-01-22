@@ -19,24 +19,37 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "lib/index.js",
-    "lib/index.d.ts",
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "dist/hirnfick.js",
     "README.md"
   ],
   "scripts": {
     "lint": "eslint lib",
     "lint:log": "eslint lib > lint.log",
     "lint:fix": "eslint --fix lib",
-    "generate-ts": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
+    "clean:ts-def": "del-cli **/*.d.ts !node_modules/**/*.d.ts",
+    "clean:browser": "rimraf dist",
+    "build:ts-def": "npm run clean:ts-def && npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
+    "build:browser": "npm run clean:browser && node build-browser.js",
+    "prepack": "npm run build:ts-def && npm run build:browser",
+    "postpack": "npm run clean:ts-def && npm run clean:browser",
+    "prepublish": "npm run build:ts-def && npm run build:browser",
+    "postpublish": "npm run clean:ts-def && npm run clean:browser",
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
     "cpp-utils": "^1.0.1",
+    "del-cli": "^4.0.1",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
     "python-shell": "^3.0.1",
-    "should": "^13.2.3"
+    "rimraf": "^3.0.2",
+    "should": "^13.2.3",
+    "webpack": "^5.67.0"
   }
 }
