@@ -3,3 +3,7 @@ node_modules
 coverage
 coverage.lcov
 .DS_Store
+dist
+*.d.ts
+*.tgz
+*.tar.gz
