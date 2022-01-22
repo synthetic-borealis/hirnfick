@@ -10,17 +10,6 @@ const exec = util.promisify(require('child_process').exec);
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-describe('Utility function tests', () => {
-  describe('isValidProgram tests', () => {
-    it('Accepts valid programs', () => {
-      expect(brainfuck.isValidProgram(helloWorldCode)).toBeTruthy();
-    });
-    it('Rejects invalid programs', () => {
-      expect(brainfuck.isValidProgram(invalidCode)).toBeFalsy();
-    });
-  });
-});
-
 describe('Transpilers tests', () => {
   describe('transpileToJS tests', () => {
     const outputCode = brainfuck.transpileToJS(helloWorldCode);

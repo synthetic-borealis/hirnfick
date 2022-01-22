@@ -2,6 +2,9 @@ name: Tests
 
 on:
   push:
+    paths:
+      - 'lib/**.js'
+      - '__tests__/**.js'
     branches: [ main, develop ]
   pull_request:
     branches: [ main ]
