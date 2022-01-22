@@ -19,19 +19,21 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "lib/index.js",
-    "lib/index.d.ts",
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
     "README.md"
   ],
   "scripts": {
     "lint": "eslint lib",
     "lint:log": "eslint lib > lint.log",
     "lint:fix": "eslint --fix lib",
-    "generate-ts": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
+    "clean:ts-def": "del-cli -d **/*.d.ts !node_modules/**/*.d.ts",
+    "build:ts-def": "npm run clean:ts-def && npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "test": "jest"
   },
   "devDependencies": {
     "cpp-utils": "^1.0.1",
+    "del-cli": "^4.0.1",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
