@@ -67,7 +67,7 @@ if (hirnfick.isValidProgram(helloWorldBF)) {
   </p>
   <button id="run-button">Run</button>
 
-  <script type="module">
+  <script>
     const runButton = document.getElementById('run-button');
     const outputBox = document.getElementById('output-box');
     const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
