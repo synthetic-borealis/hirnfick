@@ -1,4 +1,4 @@
-const brainfuck = require('../index');
+const hirnfick = require('../index');
 const {PythonShell} = require('python-shell');
 const cppUtils = require('cpp-utils');
 const should = require('should');
@@ -12,16 +12,26 @@ const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++
 
 describe('Transpilers tests', () => {
   describe('transpileToJavaScript tests', () => {
-    const outputCode = brainfuck.transpileToJavaScript(helloWorldCode);
+    const outputCode = hirnfick.transpileToJavaScript(helloWorldCode);
     const helloWorld = new Function(`${outputCode}return run();`);
+
+    it('Throws an error when input has incorrect type', () => {
+      expect(() => hirnfick.transpileToJavaScript([2, 9, 15, 7])).toThrow();
+    });
+
+    it('Throws an error when input is an invalid program', () => {
+      expect(() => hirnfick.transpileToJavaScript(invalidCode)).toThrow();
+    });
 
     it('Generates valid JavaScript code', () => {
       expect(helloWorld).not.toThrow();
     });
+
     describe('Generated function', () => {
       it('Returns correct output string', () => {
         expect(helloWorld().output).toBe('Hello World!\n');
       });
+
       it('Returns cells array', () => {
         expect(Array.isArray(helloWorld().cells)).toBeTruthy();
       });
@@ -29,7 +39,7 @@ describe('Transpilers tests', () => {
   });
 
   describe('transpileToPython tests', () => {
-    const outputCode = brainfuck.transpileToPython(helloWorldCode);
+    const outputCode = hirnfick.transpileToPython(helloWorldCode);
 
     it('Generates valid Python code', (done) => {
       PythonShell.runString(outputCode, null, (err) => {
@@ -40,6 +50,7 @@ describe('Transpilers tests', () => {
         }
       });
     });
+
     describe('Generated Python code', () => {
       it('Has correct output', (done) => {
         PythonShell.runString(outputCode, null, (err, results) => {
@@ -53,7 +64,7 @@ describe('Transpilers tests', () => {
   });
 
   describe('transpileToC tests', () => {
-    const outputCode = brainfuck.transpileToC(helloWorldCode);
+    const outputCode = hirnfick.transpileToC(helloWorldCode);
     const exeExtension = process.platform === 'win32' ? '.exe' : '';
     const executableFile = `test${exeExtension}`;
     const sourceFile = 'test.c';
@@ -87,7 +98,7 @@ describe('Transpilers tests', () => {
   });
 
   describe('transpileToCpp tests', () => {
-    const outputCode = brainfuck.transpileToCpp(helloWorldCode);
+    const outputCode = hirnfick.transpileToCpp(helloWorldCode);
     const exeExtension = process.platform === 'win32' ? '.exe' : '';
     const executableFile = `test${exeExtension}`;
     const sourceFile = 'test.cpp';
