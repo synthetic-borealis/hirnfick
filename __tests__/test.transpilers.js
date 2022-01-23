@@ -11,8 +11,8 @@ const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 describe('Transpilers tests', () => {
-  describe('transpileToJS tests', () => {
-    const outputCode = brainfuck.transpileToJS(helloWorldCode);
+  describe('transpileToJavaScript tests', () => {
+    const outputCode = brainfuck.transpileToJavaScript(helloWorldCode);
     const helloWorld = new Function(`${outputCode}return run();`);
 
     it('Generates valid JavaScript code', () => {

@@ -1,14 +1,16 @@
 const { isValidProgram } = require('./lib/validation');
-const transpileToJS = require('./lib/transpilers/JavaScript');
+const transpileToJavaScript = require('./lib/transpilers/JavaScript');
 const transpileToPython = require('./lib/transpilers/Python');
 const transpileToC = require('./lib/transpilers/C');
 const transpileToCpp = require('./lib/transpilers/CPP');
+const transpileToUwu = require('./lib/transpilers/Uwu');
 
 
 module.exports = {
   isValidProgram,
-  transpileToJS,
+  transpileToJavaScript,
   transpileToPython,
   transpileToC,
   transpileToCpp,
+  transpileToUwu,
 };
