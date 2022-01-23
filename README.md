@@ -53,12 +53,12 @@ try {
   const helloWorld = new Function(`${helloWorldJS} return run();`);
   console.log(helloWorld().output);
 } catch (err) {
-  console.error(`Error: ${err.message}`);;
+  console.error(`Error: ${err.message}`);
 }
 ```
 ### ES6
 ```javascript
-import * as hirnfick from 'hirnfick';
+const hirnfick = require('hirnfick');
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
@@ -67,7 +67,7 @@ try {
   const helloWorld = new Function(`${helloWorldJS} return run();`);
   console.log(helloWorld().output);
 } catch (err) {
-  console.error(`Error: ${err.message}`);;
+  console.error(`Error: ${err.message}`);
 }
 ```
 
@@ -98,9 +98,10 @@ try {
     outputBox.value = '';
     runButton.addEventListener('click', () => {
       try {
-        const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-        const helloWorld = new Function(`${helloWorldJS} return run();`);
-        outputBox.value += helloWorld().output;
+        const helloWorldProgram = hirnfick.transpileToJavaScript(helloWorldCode);
+        const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
+
+        outputBox.value += helloWorld();
       } catch (err) {
         outputBox.value += `Error: ${err.message}`;
       }
