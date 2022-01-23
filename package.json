@@ -22,6 +22,7 @@
     "lib/**/*.js",
     "lib/**/*.d.ts",
     "dist/hirnfick.js",
+    "docs/API.md",
     "README.md"
   ],
   "scripts": {
@@ -30,6 +31,7 @@
     "lint:fix": "eslint --fix lib",
     "clean:ts-def": "del-cli **/*.d.ts !node_modules/**/*.d.ts",
     "clean:browser": "rimraf dist",
+    "docs": "jsdoc2md index.js lib/**/*.js > docs/API.md",
     "build:ts-def": "npm run clean:ts-def && npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "build:browser": "npm run clean:browser && node build-browser.js",
     "prepack": "npm run build:ts-def && npm run build:browser",
@@ -47,6 +49,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.4.7",
+    "jsdoc-to-markdown": "^7.1.0",
     "python-shell": "^3.0.1",
     "rimraf": "^3.0.2",
     "should": "^13.2.3",
