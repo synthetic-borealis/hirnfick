@@ -16,7 +16,7 @@ Run `npm i hirnfick`
 
 ## Usage
 
-- Use ```isValidProgram``` to validate your Brainfuck program and then ```transpileTo[OUTPUT-LANGUAGE]``` (e.g. ```transpileToJS```) to convert it to JavaScript.
+- Use ```isValidProgram``` to validate your Brainfuck program and then ```transpileTo[LANGUAGE]``` (e.g. ```transpileToJS```) to convert it to JavaScript.
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
