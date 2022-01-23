@@ -5,21 +5,40 @@
 
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
 
-## Supported Output Languages
-- JavaScript (no support for reading keyboard input).
-- Python (no support for reading keyboard input).
-- C.
-- C++.
+## Contants
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Supported Output Languages](#supported-output-languages)
+4. [Examples](#examples)
 
 ## Installation
 Run `npm i hirnfick`
 
 ## Usage
 
-- Use ```isValidProgram``` to validate your Brainfuck program and then ```transpileTo[OUTPUT-LANGUAGE]``` (e.g. ```transpileToJS```) to convert it to JavaScript.
+- Use ```isValidProgram``` to validate your Brainfuck program and then ```transpileTo[LANGUAGE]``` (e.g. ```transpileToJS```) to convert it to JavaScript.
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
+- For more information see the [documentation](docs/API.md).
+
+## Supported Output Languages
+
+- JavaScript (no support for reading keyboard input).
+- Python (no support for reading keyboard input).
+- C.
+- C++.
+- [UwU](https://github.com/KiraDotRose/UwU).
+
+### Table 1: Supported Commands by Output Language
+
+| Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |
+| :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
+| JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; |
+| Python     | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; |
+| C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
+| C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
+| UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 
 ## Examples
 
@@ -29,22 +48,26 @@ const hirnfick = require('hirnfick');
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-if (hirnfick.isValidProgram(helloWorldBF)) {
-    const helloWorldJS = hirnfick.transpileToJS(helloWorldBF);
-    const helloWorld = new Function(`${helloWorldJS} return run();`);
-    console.log(helloWorld().output);
+try {
+  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS} return run();`);
+  console.log(helloWorld().output);
+} catch (err) {
+  console.error(`Error: ${err.message}`);
 }
 ```
 ### ES6
 ```javascript
-import * as hirnfick from 'hirnfick';
+const hirnfick = require('hirnfick');
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-if (hirnfick.isValidProgram(helloWorldBF)) {
-    const helloWorldJS = hirnfick.transpileToJS(helloWorldBF);
-    const helloWorld = new Function(`${helloWorldJS} return run();`);
-    console.log(helloWorld().output);
+try {
+  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS} return run();`);
+  console.log(helloWorld().output);
+} catch (err) {
+  console.error(`Error: ${err.message}`);
 }
 ```
 
@@ -58,7 +81,7 @@ if (hirnfick.isValidProgram(helloWorldBF)) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@1.2.3/dist/hirnfick.js"></script>
+  <script src="https://unpkg.com/hirnfick@2.0.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
@@ -74,10 +97,14 @@ if (hirnfick.isValidProgram(helloWorldBF)) {
 
     outputBox.value = '';
     runButton.addEventListener('click', () => {
-      const helloWorldProgram = hirnfick.transpileToJS(helloWorldCode);
-      const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
+      try {
+        const helloWorldProgram = hirnfick.transpileToJavaScript(helloWorldCode);
+        const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
 
-      outputBox.value += helloWorld();
+        outputBox.value += helloWorld();
+      } catch (err) {
+        outputBox.value += `Error: ${err.message}`;
+      }
     });
   </script>
 </body>
