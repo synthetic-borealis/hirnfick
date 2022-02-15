@@ -33,6 +33,7 @@ Run `npm i hirnfick`
 - C.
 - C++.
 - QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0 and QuickBASIC 4.5).
+- Pascal (tested with Free Pascal 3.2.2 and Borland Pascal 7.0).
 - [UwU](https://github.com/KiraDotRose/UwU).
 
 ### Table 1: Supported Commands by Output Language
@@ -44,6 +45,7 @@ Run `npm i hirnfick`
 | C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
 | C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
 | QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
+| Pascal     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
 | UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
 
 ## Examples
@@ -87,7 +89,7 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@2.2.0/dist/hirnfick.js"></script>
+  <script src="https://unpkg.com/hirnfick@2.3.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
