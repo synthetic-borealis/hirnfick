@@ -25,7 +25,7 @@ Run `npm i hirnfick`
 ## Supported Output Languages
 
 - JavaScript (no support for reading keyboard input).
-- Python (no support for reading keyboard input).
+- Python.
 - C.
 - C++.
 - [UwU](https://github.com/KiraDotRose/UwU).
@@ -35,7 +35,7 @@ Run `npm i hirnfick`
 | Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |
 | :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; |
-| Python     | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; |
+| Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
