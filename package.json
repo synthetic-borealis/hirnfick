@@ -32,6 +32,7 @@
     "lint:fix": "eslint --fix lib/** utils/**",
     "clean:ts-def": "del-cli **/*.d.ts !node_modules/**/*.d.ts",
     "clean:browser": "rimraf dist",
+    "clean:qb": "del-cli *.bas *.exe",
     "docs": "jsdoc2md index.js lib/**/*.js > docs/API.md",
     "build:ts-def": "npm run clean:ts-def && npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "build:browser": "npm run clean:browser && node build-browser.js",
@@ -39,7 +40,7 @@
     "postpack": "npm run clean:ts-def && npm run clean:browser",
     "prepublish": "npm run build:ts-def && npm run build:browser",
     "postpublish": "npm run clean:ts-def && npm run clean:browser",
-    "test:freebasic": "node utils/freebasic-test.js",
+    "test:qb": "node utils/qb-test.js",
     "test": "jest"
   },
   "devDependencies": {
