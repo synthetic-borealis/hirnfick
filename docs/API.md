@@ -151,7 +151,7 @@ Converts a Brainfuck program to QBasic (dynamic cells array).
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is tab). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
 
 <a name="transpileToQBasicFixed"></a>
 
@@ -170,7 +170,7 @@ Converts a Brainfuck program to QBasic (fixed cells array).
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is tab). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
 
 <a name="transpileToUwu"></a>
 
