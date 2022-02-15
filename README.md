@@ -38,6 +38,7 @@ Run `npm i hirnfick`
 | Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
+| QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 | UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
 
 ## Examples

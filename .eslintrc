@@ -2,5 +2,13 @@
     "extends": "airbnb-base",
     "rules": {
       "no-new-func": 0
-    }
+    },
+    "overrides": [
+      {
+        "files": ["utils/**/*.*js"],
+        "rules": {
+          "no-console": "off"
+        }
+      }
+    ]
 }
