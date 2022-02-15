@@ -11,7 +11,7 @@ const transpileToPython = require('./lib/transpilers/Python');
 const transpileToC = require('./lib/transpilers/C');
 const transpileToCpp = require('./lib/transpilers/CPP');
 const transpileToUwu = require('./lib/transpilers/Uwu');
-
+const transpileToQBasic = require('./lib/transpilers/QBasic');
 
 module.exports = {
   BracketMismatchError,
@@ -22,4 +22,5 @@ module.exports = {
   transpileToC,
   transpileToCpp,
   transpileToUwu,
+  transpileToQBasic,
 };
