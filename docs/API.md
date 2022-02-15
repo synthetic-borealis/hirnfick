@@ -22,8 +22,11 @@
 <dt><a href="#transpileToPython">transpileToPython(source)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to a Python.</p>
 </dd>
-<dt><a href="#transpileToQBasic">transpileToQBasic(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to QBasic.</p>
+<dt><a href="#transpileToQBasicDynamic">transpileToQBasicDynamic(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to QBasic (dynamic cells array).</p>
+</dd>
+<dt><a href="#transpileToQBasicFixed">transpileToQBasicFixed(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to QBasic (fixed cells array).</p>
 </dd>
 <dt><a href="#transpileToUwu">transpileToUwu(source)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to UwU.</p>
@@ -131,10 +134,29 @@ Converts a Brainfuck program to a Python.
 | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | Brainfuck source to convert. |
 
-<a name="transpileToQBasic"></a>
+<a name="transpileToQBasicDynamic"></a>
 
-## transpileToQBasic(source, indentSize, indentChar) ⇒ <code>string</code>
-Converts a Brainfuck program to QBasic.
+## transpileToQBasicDynamic(source, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to QBasic (dynamic cells array).
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Generated QBasic code.  
+**Throws**:
+
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 1). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is tab). |
+
+<a name="transpileToQBasicFixed"></a>
+
+## transpileToQBasicFixed(source, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to QBasic (fixed cells array).
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated QBasic code.  
