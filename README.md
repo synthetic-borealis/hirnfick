@@ -16,10 +16,14 @@ Run `npm i hirnfick`
 
 ## Usage
 
-- Use ```transpileTo[LANGUAGE]()``` where ```[LANGUAGE]``` is a supported output language (e.g. ```transpileToJavaScript()```).
+- Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is a the output language/variant (e.g. ```transpileToJavaScript()```).
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
+- There are two QBasic transpiler variants:
+  1. ```transpileToQBasicFixed``` outputs programs with a fixed-size cells array.
+  2. ```transpileToQBasicDynamic``` outputs programs with a dynamic cells array (requires PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile).
+- ```transpileToQBasic``` is an alias for ```transpileToQBasicFixed```.
 - For more information see the [documentation](docs/API.md).
 
 ## Supported Output Languages
@@ -33,14 +37,14 @@ Run `npm i hirnfick`
 
 ### Table 1: Supported Commands by Output Language
 
-| Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |
-| :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
-| JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; |
-| Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
-| C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
-| C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
-| QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
-| UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |
+| Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
+| :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
+| JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
+| Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
+| C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
+| UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
 
 ## Examples
 
@@ -83,7 +87,7 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@2.1.0/dist/hirnfick.js"></script>
+  <script src="https://unpkg.com/hirnfick@2.2.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
