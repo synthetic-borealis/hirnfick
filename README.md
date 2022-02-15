@@ -28,7 +28,7 @@ Run `npm i hirnfick`
 - Python.
 - C.
 - C++.
-- QBasic (manually tested with FreeBASIC 1.09.0 and QuickBASIC 4.5).
+- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0 and QuickBASIC 4.5).
 - [UwU](https://github.com/KiraDotRose/UwU).
 
 ### Table 1: Supported Commands by Output Language
