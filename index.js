@@ -13,6 +13,7 @@ const transpileToCpp = require('./lib/transpilers/CPP');
 const transpileToUwu = require('./lib/transpilers/Uwu');
 const transpileToQBasicFixed = require('./lib/transpilers/QBasicFixed');
 const transpileToQBasicDynamic = require('./lib/transpilers/QBasicDynamic');
+const transpileToPascal = require('./lib/transpilers/Pascal');
 
 module.exports = {
   BracketMismatchError,
@@ -26,4 +27,5 @@ module.exports = {
   transpileToQBasic: transpileToQBasicFixed, // Ensure backward compatibility
   transpileToQBasicFixed,
   transpileToQBasicDynamic,
+  transpileToPascal
 };
