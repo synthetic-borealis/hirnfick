@@ -11,3 +11,5 @@ dist
 *.c
 *.cpp
 *.bas
+*.pas
+*.o
