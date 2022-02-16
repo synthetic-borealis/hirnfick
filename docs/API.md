@@ -137,8 +137,8 @@ Converts a Brainfuck program to Pascal.
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
 | programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. program programName;). |
-| indentSize | <code>number</code> | <code>1</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character (default is tab). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
 
 <a name="transpileToPython"></a>
 
