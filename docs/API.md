@@ -19,6 +19,9 @@
 <dt><a href="#transpileToJavaScript">transpileToJavaScript(source, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to a JavaScript function.</p>
 </dd>
+<dt><a href="#transpileToPascal">transpileToPascal(source, programName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to Pascal.</p>
+</dd>
 <dt><a href="#transpileToPython">transpileToPython(source)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to a Python.</p>
 </dd>
@@ -114,6 +117,26 @@ Converts a Brainfuck program to a JavaScript function.
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
 | funcName | <code>string</code> | <code>&quot;run&quot;</code> | Output function name (default = 'run'). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+
+<a name="transpileToPascal"></a>
+
+## transpileToPascal(source, programName, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to Pascal.
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Generated Pascal code.  
+**Throws**:
+
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. program programName;). |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
 
