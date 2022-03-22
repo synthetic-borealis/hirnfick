@@ -11,16 +11,16 @@ const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 describe('Transpilers tests', () => {
-  describe('transpileToJavaScript tests', () => {
-    const outputCode = hirnfick.transpileToJavaScript(helloWorldCode);
+  describe('transpileToJSWeb tests', () => {
+    const outputCode = hirnfick.transpileToJSWeb(helloWorldCode);
     const helloWorld = new Function(`${outputCode}return run();`);
 
     it('Throws an error when input has incorrect type', () => {
-      expect(() => hirnfick.transpileToJavaScript([2, 9, 15, 7])).toThrow();
+      expect(() => hirnfick.transpileToJSWeb([2, 9, 15, 7])).toThrow();
     });
 
     it('Throws an error when input is an invalid program', () => {
-      expect(() => hirnfick.transpileToJavaScript(invalidCode)).toThrow();
+      expect(() => hirnfick.transpileToJSWeb(invalidCode)).toThrow();
     });
 
     it('Generates valid JavaScript code', () => {
