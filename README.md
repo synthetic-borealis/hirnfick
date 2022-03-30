@@ -3,7 +3,7 @@
 ![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
 
-A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler and transpilation library.
+A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler.
 
 ## Contants
 1. [Installation](#installation)
