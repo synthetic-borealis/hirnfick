@@ -5,7 +5,7 @@
     },
     "overrides": [
       {
-        "files": ["utils/**/*.*js"],
+        "files": ["utils/**/*.*js", "bin/**/*.*js"],
         "rules": {
           "no-console": "off"
         }
