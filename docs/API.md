@@ -16,8 +16,11 @@
 <dt><a href="#transpileToCpp">transpileToCpp(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to C++.</p>
 </dd>
-<dt><a href="#transpileToJavaScript">transpileToJavaScript(source, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to a JavaScript function.</p>
+<dt><a href="#transpileToJsCli">transpileToJsCli(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to JavaScript (CLI).</p>
+</dd>
+<dt><a href="#transpileToJsWeb">transpileToJsWeb(source, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to JavaScript (Web).</p>
 </dd>
 <dt><a href="#transpileToPascal">transpileToPascal(source, programName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to Pascal.</p>
@@ -100,10 +103,29 @@ Converts a Brainfuck program to C++.
 | indentSize | <code>number</code> | <code>1</code> | Indentation size (default = 1). |
 | indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character (default is tab). |
 
-<a name="transpileToJavaScript"></a>
+<a name="transpileToJsCli"></a>
 
-## transpileToJavaScript(source, funcName, indentSize, indentChar) ⇒ <code>string</code>
-Converts a Brainfuck program to a JavaScript function.
+## transpileToJsCli(source, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to JavaScript (CLI).
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Generated JavaScript code.  
+**Throws**:
+
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+
+<a name="transpileToJsWeb"></a>
+
+## transpileToJsWeb(source, funcName, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to JavaScript (Web).
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated JavaScript function source.  
