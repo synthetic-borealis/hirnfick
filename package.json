@@ -13,22 +13,27 @@
     "url": "https://github.com/synthetic-borealis/hirnfick.js/issues"
   },
   "keywords": [
-    "brainfuck"
+    "brainfuck",
+    "language",
+    "compiler"
   ],
   "main": "index.js",
+  "bin": {
+    "hirnfick": "bin/hirnfick.js"
+  },
   "files": [
     "index.js",
     "index.d.ts",
-    "lib/**/*.js",
-    "lib/**/*.d.ts",
-    "dist/hirnfick.js",
-    "examples/*",
-    "docs/API.md",
+    "lib/",
+    "dist/",
+    "bin/",
+    "examples/",
+    "docs/",
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint lib/** utils/**",
-    "lint:log": "eslint lib/** utils/** > lint.log",
+    "lint": "eslint lib/** utils/** bin/**",
+    "lint:log": "eslint lib/** utils/** bin/** > lint.log",
     "lint:fix": "eslint --fix lib/** utils/**",
     "clean:ts-def": "del-cli **/*.d.ts !node_modules/**/*.d.ts",
     "clean:browser": "rimraf dist",
@@ -60,5 +65,8 @@
     "rimraf": "^3.0.2",
     "should": "^13.2.3",
     "webpack": "^5.70.0"
+  },
+  "dependencies": {
+    "yargs": "^17.4.0"
   }
 }

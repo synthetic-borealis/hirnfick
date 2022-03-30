@@ -3,19 +3,30 @@
 ![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
 
-A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) transpilation library.
+A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler and transpilation library.
 
 ## Contants
 1. [Installation](#installation)
 2. [Usage](#usage)
+    1. [Compiler](#compiler)
+    2. [Library](#library)
 3. [Supported Output Languages](#supported-output-languages)
 4. [Examples](#examples)
 
 ## Installation
-Run `npm i hirnfick`
+Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a single project.
 
 ## Usage
+### Compiler
+<pre>
+  hirnfick -i [input file] -o [output file] <i>options</i>
+</pre>
+Options:
+- `--lang [language]` - Output language (default=js-cli).
+  - Supported options: js-web, js-cli, python, c, cpp, qbasic, pascal, uwu.
+- `--array-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
+### Library
 - Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is a the output language/variant (e.g. ```transpileToJsWeb()```).
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
@@ -86,8 +97,8 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://unpkg.com/hirnfick@3.0.0/dist/hirnfick.js"></script>
+  <title>Hello Hirnfick</title>
+  <script src="https://unpkg.com/hirnfick@3.1.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
