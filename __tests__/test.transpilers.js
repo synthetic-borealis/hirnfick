@@ -13,7 +13,7 @@ const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++
 describe('Transpilers tests', () => {
   describe('transpileToJsWeb tests', () => {
     const outputCode = hirnfick.transpileToJsWeb(helloWorldCode);
-    const helloWorld = new Function(`${outputCode}return run();`);
+    const helloWorld = new Function(`${outputCode}return main();`);
 
     it('Throws an error when input has incorrect type', () => {
       expect(() => hirnfick.transpileToJsWeb([2, 9, 15, 7])).toThrow();
