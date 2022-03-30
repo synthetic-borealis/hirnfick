@@ -81,8 +81,8 @@ Converts a Brainfuck program to C.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>1</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character (default is tab). |
+| indentSize | <code>number</code> | <code>1</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
 
 <a name="transpileToCpp"></a>
 
@@ -100,8 +100,8 @@ Converts a Brainfuck program to C++.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>1</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character (default is tab). |
+| indentSize | <code>number</code> | <code>1</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
 
 <a name="transpileToJsCli"></a>
 
@@ -119,8 +119,8 @@ Converts a Brainfuck program to JavaScript (CLI).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToJsWeb"></a>
 
@@ -138,9 +138,9 @@ Converts a Brainfuck program to JavaScript (Web).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| funcName | <code>string</code> | <code>&quot;run&quot;</code> | Output function name (default = 'run'). |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+| funcName | <code>string</code> | <code>&quot;main&quot;</code> | Output function name. |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToPascal"></a>
 
@@ -159,8 +159,8 @@ Converts a Brainfuck program to Pascal.
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
 | programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. program programName;). |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 2). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToPython"></a>
 
@@ -195,8 +195,8 @@ Converts a Brainfuck program to QBasic (dynamic cells array).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToQBasicFixed"></a>
 
@@ -214,8 +214,8 @@ Converts a Brainfuck program to QBasic (fixed cells array).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size (default = 1). |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character (default is space). |
+| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToUwu"></a>
 
