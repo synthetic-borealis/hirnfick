@@ -1,11 +1,11 @@
-import * as hirnfick from '../index.js';
+import * as hirnfick from 'hirnfick';
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-  const helloWorld = new Function(`${helloWorldJS} return run();`);
-  console.log(helloWorld().output);
+  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS}`);
+  helloWorld();
 } catch (err) {
   console.error(`Error: ${err.message}`);
 }

@@ -16,14 +16,11 @@ Run `npm i hirnfick`
 
 ## Usage
 
-- Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is a the output language/variant (e.g. ```transpileToJavaScript()```).
+- Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is a the output language/variant (e.g. ```transpileToJsWeb()```).
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
-- There are two QBasic transpiler variants:
-  1. ```transpileToQBasicFixed``` outputs programs with a fixed-size cells array.
-  2. ```transpileToQBasicDynamic``` outputs programs with a dynamic cells array (requires PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile).
-- ```transpileToQBasic``` is an alias for ```transpileToQBasicFixed```.
+- QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile.
 - For more information see the [documentation](docs/API.md).
 
 ## Supported Output Languages
@@ -32,21 +29,22 @@ Run `npm i hirnfick`
 - Python.
 - C.
 - C++.
-- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0 and QuickBASIC 4.5).
+- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0, QuickBASIC 4.5 and PDS 7.1).
 - Pascal (tested with Free Pascal 3.2.2 and Borland Pascal 7.0).
 - [UwU](https://github.com/KiraDotRose/UwU).
 
 ### Table 1: Supported Commands by Output Language
 
-| Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
-| :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
-| JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
-| Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
-| C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
-| QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| Pascal     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
+| Language         |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
+| :--------------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
+| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
+| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
+| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
+| Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
+| UwU              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
 
 ## Examples
 
@@ -57,23 +55,23 @@ const hirnfick = require('hirnfick');
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-  const helloWorld = new Function(`${helloWorldJS} return run();`);
-  console.log(helloWorld().output);
+  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS}`);
+  helloWorld();
 } catch (err) {
   console.error(`Error: ${err.message}`);
 }
 ```
 ### ES6
 ```javascript
-const hirnfick = require('hirnfick');
+import * as hirnfick from 'hirnfick';
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-  const helloWorld = new Function(`${helloWorldJS} return run();`);
-  console.log(helloWorld().output);
+  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS}`);
+  helloWorld();
 } catch (err) {
   console.error(`Error: ${err.message}`);
 }
@@ -88,8 +86,8 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@2.3.0/dist/hirnfick.js"></script>
+  <title>Document</title>
+  <script src="https://unpkg.com/hirnfick@3.0.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
@@ -106,7 +104,7 @@ try {
     outputBox.value = '';
     runButton.addEventListener('click', () => {
       try {
-        const helloWorldProgram = hirnfick.transpileToJavaScript(helloWorldCode);
+        const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
         const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
 
         outputBox.value += helloWorld();

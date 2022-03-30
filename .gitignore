@@ -13,3 +13,4 @@ dist
 *.bas
 *.pas
 *.o
+tmp/

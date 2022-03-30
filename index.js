@@ -6,7 +6,8 @@ const WrongInputTypeError = require('./lib/errors/wrongInputType');
 const { isValidProgram } = require('./lib/validation');
 
 // Transpilers
-const transpileToJavaScript = require('./lib/transpilers/JavaScript');
+const transpileToJsWeb = require('./lib/transpilers/JavaScriptWeb');
+const transpileToJsCli = require('./lib/transpilers/JavaScriptCLI');
 const transpileToPython = require('./lib/transpilers/Python');
 const transpileToC = require('./lib/transpilers/C');
 const transpileToCpp = require('./lib/transpilers/CPP');
@@ -19,12 +20,12 @@ module.exports = {
   BracketMismatchError,
   WrongInputTypeError,
   isValidProgram,
-  transpileToJavaScript,
+  transpileToJsWeb,
+  transpileToJsCli,
   transpileToPython,
   transpileToC,
   transpileToCpp,
   transpileToUwu,
-  transpileToQBasic: transpileToQBasicFixed, // Ensure backward compatibility
   transpileToQBasicFixed,
   transpileToQBasicDynamic,
   transpileToPascal
