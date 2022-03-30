@@ -13,7 +13,9 @@
     "url": "https://github.com/synthetic-borealis/hirnfick.js/issues"
   },
   "keywords": [
-    "brainfuck"
+    "brainfuck",
+    "language",
+    "compiler"
   ],
   "main": "index.js",
   "bin": {
