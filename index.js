@@ -7,6 +7,7 @@ const { isValidProgram } = require('./lib/validation');
 
 // Transpilers
 const transpileToJSWeb = require('./lib/transpilers/JavaScriptWeb');
+const transpileToJSCLI = require('./lib/transpilers/JavaScriptCLI');
 const transpileToPython = require('./lib/transpilers/Python');
 const transpileToC = require('./lib/transpilers/C');
 const transpileToCpp = require('./lib/transpilers/CPP');
@@ -20,6 +21,7 @@ module.exports = {
   WrongInputTypeError,
   isValidProgram,
   transpileToJSWeb,
+  transpileToJSCLI,
   transpileToPython,
   transpileToC,
   transpileToCpp,
