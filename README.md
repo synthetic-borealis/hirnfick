@@ -23,15 +23,7 @@ Run `npm i hirnfick`
 </pre>
 Options:
 - `--lang [language]` - Output language (default=js-cli).
-  - Supported languages:
-    * js-web.
-    * js-cli.
-    * python.
-    * c.
-    * cpp.
-    * qbasic.
-    * pascal.
-    * uwu.
+  - Supported options: js-web, js-cli, python, c, cpp, qbasic, pascal, uwu.
 - `--array-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library
