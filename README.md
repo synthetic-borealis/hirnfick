@@ -55,23 +55,23 @@ const hirnfick = require('hirnfick');
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-  const helloWorld = new Function(`${helloWorldJS} return run();`);
-  console.log(helloWorld().output);
+  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS}`);
+  helloWorld();
 } catch (err) {
   console.error(`Error: ${err.message}`);
 }
 ```
 ### ES6
 ```javascript
-const hirnfick = require('hirnfick');
+import * as hirnfick from 'hirnfick';
 
 const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJavaScript(helloWorldBF);
-  const helloWorld = new Function(`${helloWorldJS} return run();`);
-  console.log(helloWorld().output);
+  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorld = new Function(`${helloWorldJS}`);
+  helloWorld();
 } catch (err) {
   console.error(`Error: ${err.message}`);
 }
@@ -86,8 +86,8 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@2.3.0/dist/hirnfick.js"></script>
+  <title>Document</title>
+  <script src="https://unpkg.com/hirnfick@3.0.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
@@ -104,7 +104,7 @@ try {
     outputBox.value = '';
     runButton.addEventListener('click', () => {
       try {
-        const helloWorldProgram = hirnfick.transpileToJavaScript(helloWorldCode);
+        const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
         const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
 
         outputBox.value += helloWorld();
