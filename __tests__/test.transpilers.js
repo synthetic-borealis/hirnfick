@@ -38,6 +38,41 @@ describe('Transpilers tests', () => {
     });
   });
 
+  describe('transpileToJSCLI tests', () => {
+    const outputCode = hirnfick.transpileToJSCLI(helloWorldCode);
+    const sourceFile = 'test.js';
+
+    beforeAll(() => {
+      return fs.writeFile(sourceFile, outputCode);
+    });
+
+    it('Generates valid JavaScript', (done) => {
+      exec(`node ${sourceFile}`)
+        .then(() => {
+          done();
+        })
+        .catch((err) => done(err));
+    });
+
+    describe('Generated JavaScript code', () => {
+      it('Has correct output', (done) => {
+        exec(`node ${sourceFile}`)
+        .then(({stdout}) => {
+          if (stdout.trim() === 'Hello World!') {
+            done();
+          } else {
+            done(new Error('Incorrect output'));
+          }
+        })
+        .catch((err) => done(err));
+      });
+    });
+
+    afterAll(() => {
+      return fs.unlink(sourceFile);
+    });
+  });
+
   describe('transpileToPython tests', () => {
     const outputCode = hirnfick.transpileToPython(helloWorldCode);
 
@@ -84,6 +119,8 @@ describe('Transpilers tests', () => {
           .then(({stdout, stderr}) => {
             if (stdout.trim() === 'Hello World!') {
               done();
+            } else {
+              done(new Error('Incorrect output'));
             }
           })
           .catch((err) => {
@@ -119,6 +156,8 @@ describe('Transpilers tests', () => {
           .then(({stdout, stderr}) => {
             if (stdout.trim() === 'Hello World!') {
               done();
+            } else {
+              done(new Error('Incorrect output'));
             }
           })
           .catch((err) => {
