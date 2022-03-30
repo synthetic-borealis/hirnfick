@@ -38,15 +38,16 @@ Run `npm i hirnfick`
 
 ### Table 1: Supported Commands by Output Language
 
-| Language   |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
-| :--------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
-| JavaScript | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
-| Python     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
-| C          | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| C++        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
-| QBasic     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| Pascal     | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| UwU        | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
+| Language         |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
+| :--------------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
+| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
+| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
+| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
+| Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
+| UwU              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
 
 ## Examples
 

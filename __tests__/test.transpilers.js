@@ -11,16 +11,16 @@ const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 describe('Transpilers tests', () => {
-  describe('transpileToJSWeb tests', () => {
-    const outputCode = hirnfick.transpileToJSWeb(helloWorldCode);
+  describe('transpileToJsWeb tests', () => {
+    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode);
     const helloWorld = new Function(`${outputCode}return run();`);
 
     it('Throws an error when input has incorrect type', () => {
-      expect(() => hirnfick.transpileToJSWeb([2, 9, 15, 7])).toThrow();
+      expect(() => hirnfick.transpileToJsWeb([2, 9, 15, 7])).toThrow();
     });
 
     it('Throws an error when input is an invalid program', () => {
-      expect(() => hirnfick.transpileToJSWeb(invalidCode)).toThrow();
+      expect(() => hirnfick.transpileToJsWeb(invalidCode)).toThrow();
     });
 
     it('Generates valid JavaScript code', () => {
@@ -38,8 +38,8 @@ describe('Transpilers tests', () => {
     });
   });
 
-  describe('transpileToJSCLI tests', () => {
-    const outputCode = hirnfick.transpileToJSCLI(helloWorldCode);
+  describe('transpileToJsCli tests', () => {
+    const outputCode = hirnfick.transpileToJsCli(helloWorldCode);
     const sourceFile = 'test.js';
 
     beforeAll(() => {
