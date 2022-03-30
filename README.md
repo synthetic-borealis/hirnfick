@@ -20,10 +20,7 @@ Run `npm i hirnfick`
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
-- There are two QBasic transpiler variants:
-  1. ```transpileToQBasicFixed``` outputs programs with a fixed-size cells array.
-  2. ```transpileToQBasicDynamic``` outputs programs with a dynamic cells array (requires PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile).
-- ```transpileToQBasic``` is an alias for ```transpileToQBasicFixed```.
+- QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile.
 - For more information see the [documentation](docs/API.md).
 
 ## Supported Output Languages
@@ -32,7 +29,7 @@ Run `npm i hirnfick`
 - Python.
 - C.
 - C++.
-- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0 and QuickBASIC 4.5).
+- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0, QuickBASIC 4.5 and PDS 7.1).
 - Pascal (tested with Free Pascal 3.2.2 and Borland Pascal 7.0).
 - [UwU](https://github.com/KiraDotRose/UwU).
 

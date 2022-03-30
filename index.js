@@ -26,7 +26,6 @@ module.exports = {
   transpileToC,
   transpileToCpp,
   transpileToUwu,
-  transpileToQBasic: transpileToQBasicFixed, // Ensure backward compatibility
   transpileToQBasicFixed,
   transpileToQBasicDynamic,
   transpileToPascal
