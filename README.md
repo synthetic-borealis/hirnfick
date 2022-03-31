@@ -36,7 +36,7 @@ Options:
 
 ## Supported Output Languages
 
-- JavaScript (no support for reading keyboard input).
+- JavaScript.
 - Python.
 - C.
 - C++.
