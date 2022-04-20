@@ -38,8 +38,43 @@ describe('Transpilers tests', () => {
     });
   });
 
-  describe('transpileToJsCli tests', () => {
-    const outputCode = hirnfick.transpileToJsCli(helloWorldCode);
+  describe('transpileToJsCli tests (dynamic memory)', () => {
+    const outputCode = hirnfick.transpileToJsCli(helloWorldCode, true);
+    const sourceFile = 'test.js';
+
+    beforeAll(() => {
+      return fs.writeFile(sourceFile, outputCode);
+    });
+
+    it('Generates valid JavaScript', (done) => {
+      exec(`node ${sourceFile}`)
+        .then(() => {
+          done();
+        })
+        .catch((err) => done(err));
+    });
+
+    describe('Generated JavaScript code', () => {
+      it('Has correct output', (done) => {
+        exec(`node ${sourceFile}`)
+        .then(({stdout}) => {
+          if (stdout.trim() === 'Hello World!') {
+            done();
+          } else {
+            done(new Error('Incorrect output'));
+          }
+        })
+        .catch((err) => done(err));
+      });
+    });
+
+    afterAll(() => {
+      return fs.unlink(sourceFile);
+    });
+  });
+
+  describe('transpileToJsCli tests (fixed memory)', () => {
+    const outputCode = hirnfick.transpileToJsCli(helloWorldCode, false);
     const sourceFile = 'test.js';
 
     beforeAll(() => {
