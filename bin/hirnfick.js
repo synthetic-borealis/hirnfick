@@ -31,13 +31,13 @@ function showHelp() {
   console.log('Options:');
   console.log(' --lang [language] - Output language (default=js-cli).');
   console.log(`    Supported Options: ${supportedLanguages.join(', ')}.`);
-  console.log(' --array-size [fixed|dynamic] - Type of cells array (default=fixed).');
+  console.log(' --memory-size [fixed|dynamic] - Type of cells array (default=fixed).');
   console.log(' --help - Show help.');
 }
 
 printWelcome();
 
-const isArraySizeArgValid = (!argv['array-size'] || (argv['array-size'] === 'fixed' || argv['array-size'] === 'dynamic'));
+const isArraySizeArgValid = (!argv['memory-size'] || (argv['memory-size'] === 'fixed' || argv['memory-size'] === 'dynamic'));
 const isLangArgValid = (!argv.lang || supportedLanguages.some((lang) => argv.lang === lang));
 
 if (argc === 0 || !argv.i || !argv.o || argv.i === argv.o || argv.help) {
@@ -59,7 +59,7 @@ if (!isLangArgValid) {
 
 const options = {
   lang: 'js-cli',
-  'array-size': 'fixed',
+  'memory-size': 'dynamic',
   ...argv,
 };
 
@@ -77,18 +77,19 @@ try {
 }
 
 let outputCode;
+const useDynamicMemory = options['memory-size'] === 'dynamic';
 try {
   switch (options.lang) {
     case 'js-web':
-      outputCode = hirnfick.transpileToJsWeb(inputCode);
+      outputCode = hirnfick.transpileToJsWeb(inputCode, useDynamicMemory);
       break;
 
     case 'js-cli':
-      outputCode = hirnfick.transpileToJsCli(inputCode);
+      outputCode = hirnfick.transpileToJsCli(inputCode, useDynamicMemory);
       break;
 
     case 'python':
-      outputCode = hirnfick.transpileToPython(inputCode);
+      outputCode = hirnfick.transpileToPython(inputCode, useDynamicMemory);
       break;
 
     case 'c':
@@ -96,15 +97,11 @@ try {
       break;
 
     case 'cpp':
-      outputCode = hirnfick.transpileToCpp(inputCode);
+      outputCode = hirnfick.transpileToCpp(inputCode, useDynamicMemory);
       break;
 
     case 'qbasic':
-      if (options['array-size'] === 'dynamic') {
-        outputCode = hirnfick.transpileToQBasicDynamic(inputCode);
-      } else {
-        outputCode = hirnfick.transpileToQBasicFixed(inputCode);
-      }
+      outputCode = hirnfick.transpileToQBasic(inputCode, useDynamicMemory);
       break;
 
     case 'pascal':
