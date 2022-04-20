@@ -24,7 +24,7 @@ Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a
 Options:
 - `--lang [language]` - Output language (default=js-cli).
   - Supported options: js-web, js-cli, python, c, cpp, qbasic, pascal, uwu.
-- `--array-size [fixed|dynamic]` - Type of cells array (default=fixed).
+- `--memory-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library
 - Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is a the output language/variant (e.g. ```transpileToJsWeb()```).
@@ -32,6 +32,7 @@ Options:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
 - QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile.
+- Single-line C/C++/JS style comments are supported.
 - For more information see the [documentation](docs/API.md).
 
 ## Supported Output Languages
@@ -46,13 +47,13 @@ Options:
 
 ### Table 1: Supported Commands by Output Language
 
-| Language         |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |   Cells Array Size   |
+| Language         |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |     Memory Size      |
 | :--------------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
-| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | Dynamic              |
-| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
-| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | 30,000/Dynamic       |
+| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
+| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
 | C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Dynamic              |
+| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
 | QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
 | Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
 | UwU              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
@@ -98,7 +99,7 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@3.1.0/dist/hirnfick.js"></script>
+  <script src="https://unpkg.com/hirnfick@4.0.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
