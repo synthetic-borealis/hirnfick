@@ -3,10 +3,10 @@ const hirnfick = require('../index');
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const userInputCode = ',.';
-const helloOutputCodeFixed = hirnfick.transpileToQBasicFixed(helloWorldCode);
-const helloOutputCodeDynamic = hirnfick.transpileToQBasicDynamic(helloWorldCode);
-const userInputOutputCodeFixed = hirnfick.transpileToQBasicFixed(userInputCode);
-const userInputOutputCodeDynamic = hirnfick.transpileToQBasicDynamic(userInputCode);
+const helloOutputCodeFixed = hirnfick.transpileToQBasic(helloWorldCode, false);
+const helloOutputCodeDynamic = hirnfick.transpileToQBasic(helloWorldCode, true);
+const userInputOutputCodeFixed = hirnfick.transpileToQBasic(userInputCode, false);
+const userInputOutputCodeDynamic = hirnfick.transpileToQBasic(userInputCode, true);
 const helloSourceFileFixed = 'hello_f.bas';
 const helloSourceFileDynamic = 'hello_d.bas';
 const userInputSourceFileFixed = 'userinput_f.bas';

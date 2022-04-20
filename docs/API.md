@@ -13,26 +13,23 @@
 <dt><a href="#transpileToC">transpileToC(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to C.</p>
 </dd>
-<dt><a href="#transpileToCpp">transpileToCpp(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dt><a href="#transpileToCpp">transpileToCpp(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to C++.</p>
 </dd>
-<dt><a href="#transpileToJsCli">transpileToJsCli(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dt><a href="#transpileToJsCli">transpileToJsCli(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to JavaScript (CLI).</p>
 </dd>
-<dt><a href="#transpileToJsWeb">transpileToJsWeb(source, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dt><a href="#transpileToJsWeb">transpileToJsWeb(source, useDynamicMemory, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to JavaScript (Web).</p>
 </dd>
 <dt><a href="#transpileToPascal">transpileToPascal(source, programName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to Pascal.</p>
 </dd>
-<dt><a href="#transpileToPython">transpileToPython(source)</a> ⇒ <code>string</code></dt>
+<dt><a href="#transpileToPython">transpileToPython(source, useDynamicMemory)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to a Python.</p>
 </dd>
-<dt><a href="#transpileToQBasicDynamic">transpileToQBasicDynamic(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to QBasic (dynamic cells array).</p>
-</dd>
-<dt><a href="#transpileToQBasicFixed">transpileToQBasicFixed(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to QBasic (fixed cells array).</p>
+<dt><a href="#transpileToQBasic">transpileToQBasic(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to QBasic.</p>
 </dd>
 <dt><a href="#transpileToUwu">transpileToUwu(source)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to UwU.</p>
@@ -74,70 +71,73 @@ Converts a Brainfuck program to C.
 **Returns**: <code>string</code> - Generated C code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
 | indentSize | <code>number</code> | <code>1</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
 
 <a name="transpileToCpp"></a>
 
-## transpileToCpp(source, indentSize, indentChar) ⇒ <code>string</code>
+## transpileToCpp(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
 Converts a Brainfuck program to C++.
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated C++ code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
 | indentSize | <code>number</code> | <code>1</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
 
 <a name="transpileToJsCli"></a>
 
-## transpileToJsCli(source, indentSize, indentChar) ⇒ <code>string</code>
+## transpileToJsCli(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
 Converts a Brainfuck program to JavaScript (CLI).
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated JavaScript code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToJsWeb"></a>
 
-## transpileToJsWeb(source, funcName, indentSize, indentChar) ⇒ <code>string</code>
+## transpileToJsWeb(source, useDynamicMemory, funcName, indentSize, indentChar) ⇒ <code>string</code>
 Converts a Brainfuck program to JavaScript (Web).
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated JavaScript function source.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
 | funcName | <code>string</code> | <code>&quot;main&quot;</code> | Output function name. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
@@ -151,69 +151,52 @@ Converts a Brainfuck program to Pascal.
 **Returns**: <code>string</code> - Generated Pascal code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
 | programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. program programName;). |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToPython"></a>
 
-## transpileToPython(source) ⇒ <code>string</code>
+## transpileToPython(source, useDynamicMemory) ⇒ <code>string</code>
 Converts a Brainfuck program to a Python.
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated Python code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | Brainfuck source to convert. |
-
-<a name="transpileToQBasicDynamic"></a>
-
-## transpileToQBasicDynamic(source, indentSize, indentChar) ⇒ <code>string</code>
-Converts a Brainfuck program to QBasic (dynamic cells array).
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated QBasic code.  
-**Throws**:
-
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
 
-<a name="transpileToQBasicFixed"></a>
+<a name="transpileToQBasic"></a>
 
-## transpileToQBasicFixed(source, indentSize, indentChar) ⇒ <code>string</code>
-Converts a Brainfuck program to QBasic (fixed cells array).
+## transpileToQBasic(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to QBasic.
 
 **Kind**: global function  
 **Returns**: <code>string</code> - Generated QBasic code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | Brainfuck source to convert. |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>false</code> | Enable dynamic memory array. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
@@ -226,13 +209,13 @@ Converts a Brainfuck program to UwU.
 **Returns**: <code>string</code> - Generated UwU code.  
 **Throws**:
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string or an array of strings.
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
 - [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | Brainfuck source to convert. |
+| source | <code>string</code> | Brainfuck source to convert. |
 
 <a name="isValidProgram"></a>
 
@@ -244,5 +227,5 @@ Validates a Brainfuck program by looking for umatched loop starts/ends.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| source | <code>string</code> \| <code>Array.&lt;string&gt;</code> | Brainfuck source-code to validate. |
+| source | <code>string</code> | Brainfuck source-code to validate. |
 
