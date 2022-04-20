@@ -3,6 +3,7 @@
 // This is just one of several ways to print Hello World in Brainfuck.
 
 // Do some magic
+LMFAO
 ++++++++
 [
   >++++
