@@ -11,8 +11,8 @@ const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 describe('Transpilers tests', () => {
-  describe('transpileToJsWeb tests', () => {
-    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode);
+  describe('transpileToJsWeb tests (dynamic memory)', () => {
+    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode, true);
     const helloWorld = new Function(`${outputCode}return main();`);
 
     it('Throws an error when input has incorrect type', () => {
@@ -22,6 +22,25 @@ describe('Transpilers tests', () => {
     it('Throws an error when input is an invalid program', () => {
       expect(() => hirnfick.transpileToJsWeb(invalidCode)).toThrow();
     });
+
+    it('Generates valid JavaScript code', () => {
+      expect(helloWorld).not.toThrow();
+    });
+
+    describe('Generated function', () => {
+      it('Returns correct output string', () => {
+        expect(helloWorld().output).toBe('Hello World!\n');
+      });
+
+      it('Returns cells array', () => {
+        expect(Array.isArray(helloWorld().cells)).toBeTruthy();
+      });
+    });
+  });
+
+  describe('transpileToJsWeb tests (fixed memory)', () => {
+    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode, false);
+    const helloWorld = new Function(`${outputCode}return main();`);
 
     it('Generates valid JavaScript code', () => {
       expect(helloWorld).not.toThrow();
