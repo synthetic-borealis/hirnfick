@@ -1,14 +1,33 @@
 {
-    "extends": "airbnb-base",
-    "rules": {
-      "no-new-func": 0
-    },
-    "overrides": [
-      {
-        "files": ["utils/**/*.*js", "bin/**/*.*js"],
-        "rules": {
-          "no-console": "off"
-        }
+  "extends": ["airbnb-base", "plugin:jest/recommended"],
+  "rules": {
+    "no-new-func": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "utils/**/*.*js",
+        "bin/**/*.*js"
+      ],
+      "rules": {
+        "no-console": "off"
       }
-    ]
+    },
+    {
+      "files": [
+        "test-utils/**/*.*js",
+        "__tests__/**/*.*js"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true,
+            "optionalDependencies": true,
+            "peerDependencies": false
+          }
+        ]
+      }
+    }
+  ]
 }
