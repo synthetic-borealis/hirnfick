@@ -12,6 +12,22 @@
       "rules": {
         "no-console": "off"
       }
+    },
+    {
+      "files": [
+        "test-utils/**/*.*js",
+        "__tests__/**/*.*js"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true,
+            "optionalDependencies": true,
+            "peerDependencies": false
+          }
+        ]
+      }
     }
   ]
 }

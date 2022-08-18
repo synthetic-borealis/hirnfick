@@ -26,13 +26,17 @@ function writeGeneratedCode(codeToWrite) {
   beforeAll(() => fs.writeFile(sourceFile, codeToWrite));
 }
 
+function checkCodeValidity() {
+  it('Generates valid C++ code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
+    .then(() => expect(true).toBeTruthy()));
+}
+
 describe('Transpilers tests', () => {
   describe('transpileToCpp tests (dynamic memory)', () => {
     // beforeAll
     writeGeneratedCode(hirnfick.transpileToCpp(helloWorldCode, true));
 
-    it('Generates valid C++ code', () => expect(cppUtils.compileWithGPlus(sourceFile, executableFile, true))
-      .resolves.toBeDefined());
+    checkCodeValidity();
 
     describe('Generated C++ code', () => {
       checkGeneratedProgramOutput();
@@ -45,8 +49,7 @@ describe('Transpilers tests', () => {
     // beforeAll
     writeGeneratedCode(hirnfick.transpileToCpp(helloWorldCode, false));
 
-    it('Generates valid C++ code', () => expect(cppUtils.compileWithGPlus(sourceFile, executableFile, true))
-      .resolves.toBeDefined());
+    checkCodeValidity();
 
     describe('Generated C++ code', () => {
       checkGeneratedProgramOutput();

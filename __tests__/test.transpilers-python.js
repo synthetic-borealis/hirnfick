@@ -1,57 +1,28 @@
-const { PythonShell } = require('python-shell');
-const should = require('should');
+const asyncPyShell = require('../test-utils/async-python-shell');
 const hirnfick = require('../index');
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
+function checkGeneratedCode(code) {
+  it('Generates valid Python code', () => asyncPyShell.runString(code)
+    .then(() => expect(true).toBeTruthy()));
+
+  describe('Generated Python code', () => {
+    it('Has correct output', () => asyncPyShell.runString(code)
+      .then((output) => {
+        expect(output).toEqual(
+          expect.arrayContaining(['Hello World!']),
+        );
+      }));
+  });
+}
+
 describe('Transpilers tests', () => {
   describe('transpileToPython tests (dynamic memory)', () => {
-    const outputCode = hirnfick.transpileToPython(helloWorldCode, true);
-
-    it('Generates valid Python code', (done) => {
-      PythonShell.runString(outputCode, null, (err) => {
-        if (err) {
-          done(err);
-        } else {
-          done();
-        }
-      });
-    });
-
-    describe('Generated Python code', () => {
-      it('Has correct output', (done) => {
-        PythonShell.runString(outputCode, null, (err, results) => {
-          if (err) return done(err);
-          results.should.be.an.Array().and.have.lengthOf(1);
-          results.should.eql(['Hello World!']);
-          done();
-        });
-      });
-    });
+    checkGeneratedCode(hirnfick.transpileToPython(helloWorldCode, true));
   });
 
   describe('transpileToPython tests (fixed memory)', () => {
-    const outputCode = hirnfick.transpileToPython(helloWorldCode, false);
-
-    it('Generates valid Python code', (done) => {
-      PythonShell.runString(outputCode, null, (err) => {
-        if (err) {
-          done(err);
-        } else {
-          done();
-        }
-      });
-    });
-
-    describe('Generated Python code', () => {
-      it('Has correct output', (done) => {
-        PythonShell.runString(outputCode, null, (err, results) => {
-          if (err) return done(err);
-          results.should.be.an.Array().and.have.lengthOf(1);
-          results.should.eql(['Hello World!']);
-          done();
-        });
-      });
-    });
+    checkGeneratedCode(hirnfick.transpileToPython(helloWorldCode, false));
   });
 });
