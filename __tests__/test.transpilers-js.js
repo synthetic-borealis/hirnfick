@@ -1,125 +1,73 @@
-const hirnfick = require('../index');
 const fs = require('fs/promises');
 const util = require('util');
+const hirnfick = require('../index');
 const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-describe('Transpilers tests', () => {
-  describe('transpileToJsWeb tests (dynamic memory)', () => {
-    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode, true);
-    const helloWorld = new Function(`${outputCode}return main();`);
+function checkGeneratedWebCode(codeToTest) {
+  const generatedFunction = new Function(`${codeToTest}return main();`);
 
+  it('Generates valid JavaScript code', () => {
+    expect(generatedFunction).not.toThrow();
+  });
+
+  describe('Generated function', () => {
+    it('Returns correct output string', () => {
+      expect(generatedFunction().output).toBe('Hello World!\n');
+    });
+
+    it('Returns cells array', () => {
+      expect(Array.isArray(generatedFunction().cells)).toBeTruthy();
+    });
+  });
+}
+
+function checkGeneratedCliCode(codeToTest) {
+  const sourceFile = 'test.js';
+
+  beforeAll(() => fs.writeFile(sourceFile, codeToTest));
+
+  it('Generates valid JavaScript', async () => {
+    await expect(exec(`node ${sourceFile}`)).resolves.toBeDefined();
+  });
+
+  describe('Generated JavaScript code', () => {
+    it('Has correct output', () => exec(`node ${sourceFile}`)
+      .then(({ stdout }) => {
+        expect(stdout.trim()).toBe('Hello World!');
+      }));
+  });
+
+  afterAll(() => fs.unlink(sourceFile));
+}
+
+describe('Transpilers tests', () => {
+  describe('transpileToJsWeb error handling tests', () => {
     it('Throws an error when input has incorrect type', () => {
+      // noinspection JSCheckFunctionSignatures
       expect(() => hirnfick.transpileToJsWeb([2, 9, 15, 7])).toThrow();
     });
 
     it('Throws an error when input is an invalid program', () => {
       expect(() => hirnfick.transpileToJsWeb(invalidCode)).toThrow();
     });
+  });
 
-    it('Generates valid JavaScript code', () => {
-      expect(helloWorld).not.toThrow();
-    });
-
-    describe('Generated function', () => {
-      it('Returns correct output string', () => {
-        expect(helloWorld().output).toBe('Hello World!\n');
-      });
-
-      it('Returns cells array', () => {
-        expect(Array.isArray(helloWorld().cells)).toBeTruthy();
-      });
-    });
+  describe('transpileToJsWeb tests (dynamic memory)', () => {
+    checkGeneratedWebCode(hirnfick.transpileToJsWeb(helloWorldCode, true));
   });
 
   describe('transpileToJsWeb tests (fixed memory)', () => {
-    const outputCode = hirnfick.transpileToJsWeb(helloWorldCode, false);
-    const helloWorld = new Function(`${outputCode}return main();`);
-
-    it('Generates valid JavaScript code', () => {
-      expect(helloWorld).not.toThrow();
-    });
-
-    describe('Generated function', () => {
-      it('Returns correct output string', () => {
-        expect(helloWorld().output).toBe('Hello World!\n');
-      });
-
-      it('Returns cells array', () => {
-        expect(Array.isArray(helloWorld().cells)).toBeTruthy();
-      });
-    });
+    checkGeneratedWebCode(hirnfick.transpileToJsWeb(helloWorldCode, false));
   });
 
   describe('transpileToJsCli tests (dynamic memory)', () => {
-    const outputCode = hirnfick.transpileToJsCli(helloWorldCode, true);
-    const sourceFile = 'test.js';
-
-    beforeAll(() => {
-      return fs.writeFile(sourceFile, outputCode);
-    });
-
-    it('Generates valid JavaScript', (done) => {
-      exec(`node ${sourceFile}`)
-        .then(() => {
-          done();
-        })
-        .catch((err) => done(err));
-    });
-
-    describe('Generated JavaScript code', () => {
-      it('Has correct output', (done) => {
-        exec(`node ${sourceFile}`)
-        .then(({stdout}) => {
-          if (stdout.trim() === 'Hello World!') {
-            done();
-          } else {
-            done(new Error('Incorrect output'));
-          }
-        })
-        .catch((err) => done(err));
-      });
-    });
-
-    afterAll(() => {
-      return fs.unlink(sourceFile);
-    });
+    checkGeneratedCliCode(hirnfick.transpileToJsCli(helloWorldCode, true));
   });
 
   describe('transpileToJsCli tests (fixed memory)', () => {
-    const outputCode = hirnfick.transpileToJsCli(helloWorldCode, false);
-    const sourceFile = 'test.js';
-
-    beforeAll(() => {
-      return fs.writeFile(sourceFile, outputCode);
-    });
-
-    it('Generates valid JavaScript', (done) => {
-      exec(`node ${sourceFile}`)
-        .then(() => {
-          done();
-        })
-        .catch((err) => done(err));
-    });
-
-    describe('Generated JavaScript code', () => {
-      it('Has correct output', (done) => {
-        exec(`node ${sourceFile}`)
-        .then(({stdout}) => {
-          if (stdout.trim() === 'Hello World!') {
-            done();
-          } else {
-            done(new Error('Incorrect output'));
-          }
-        })
-        .catch((err) => done(err));
-      });
-    });
-
-    afterAll(() => {
-      return fs.unlink(sourceFile);
-    });
+    checkGeneratedCliCode(hirnfick.transpileToJsCli(helloWorldCode, false));
   });
 });

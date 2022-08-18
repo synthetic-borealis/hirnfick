@@ -1,8 +1,10 @@
-const hirnfick = require('../index');
+// noinspection NpmUsedModulesInstalled
+
 const cppUtils = require('cpp-utils');
 const fs = require('fs/promises');
 const process = require('process');
 const util = require('util');
+const hirnfick = require('../index');
 const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
@@ -14,33 +16,21 @@ describe('Transpilers tests', () => {
     const executableFile = `test${exeExtension}`;
     const sourceFile = 'test.c';
 
-    beforeAll(() => {
-      return fs.writeFile(sourceFile, outputCode);
-    });
+    beforeAll(() => fs.writeFile(sourceFile, outputCode));
 
-    it('Generates valid C code', () => {
-      return expect(cppUtils.compileWithGcc(sourceFile, executableFile, true)).resolves.toBeDefined();
-    });
+    it('Generates valid C code', () => expect(cppUtils.compileWithGcc(sourceFile, executableFile, true))
+      .resolves.toBeDefined());
 
     describe('Generated C code', () => {
-      it('Has correct output', (done) => {
+      it('Has correct output', () => {
         const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
-        exec(commandToRun)
-          .then(({stdout, stderr}) => {
-            if (stdout.trim() === 'Hello World!') {
-              done();
-            } else {
-              done(new Error('Incorrect output'));
-            }
-          })
-          .catch((err) => {
-            done(err);
+        return exec(commandToRun)
+          .then(({ stdout }) => {
+            expect(stdout.trim()).toBe('Hello World!');
           });
       });
     });
 
-    afterAll(() => {
-      return Promise.all([fs.unlink(sourceFile), fs.unlink(executableFile)]);
-    });
+    afterAll(() => Promise.all([fs.unlink(sourceFile), fs.unlink(executableFile)]));
   });
 });

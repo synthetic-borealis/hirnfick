@@ -1,6 +1,6 @@
-const hirnfick = require('../index');
-const {PythonShell} = require('python-shell');
+const { PythonShell } = require('python-shell');
 const should = require('should');
+const hirnfick = require('../index');
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
