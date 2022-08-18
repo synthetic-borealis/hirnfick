@@ -26,5 +26,5 @@ module.exports = {
   transpileToCpp,
   transpileToUwu,
   transpileToQBasic,
-  transpileToPascal
+  transpileToPascal,
 };

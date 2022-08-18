@@ -6,8 +6,18 @@
   "overrides": [
     {
       "files": [
+        "examples/**/*.*js"
+      ],
+      "rules": {
+        "import/no-unresolved": "off"
+      }
+    },
+    {
+      "files": [
         "utils/**/*.*js",
-        "bin/**/*.*js"
+        "bin/**/*.*js",
+        "examples/**/*.*js",
+        "build-browser.js"
       ],
       "rules": {
         "no-console": "off"
@@ -16,7 +26,9 @@
     {
       "files": [
         "test-utils/**/*.*js",
-        "__tests__/**/*.*js"
+        "utils/**/*.*js",
+        "__tests__/**/*.*js",
+        "build-browser.js"
       ],
       "rules": {
         "import/no-extraneous-dependencies": [
