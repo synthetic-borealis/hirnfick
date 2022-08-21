@@ -64,9 +64,9 @@
     "jsdoc-to-markdown": "^7.1.1",
     "python-shell": "^3.0.1",
     "rimraf": "^3.0.2",
-    "webpack": "^5.70.0"
+    "webpack": "^5.74.0"
   },
   "dependencies": {
-    "yargs": "^17.4.0"
+    "minimist": "^1.2.6"
   }
 }
