@@ -130,7 +130,7 @@ try {
   runButton.addEventListener('click', () => {
     try {
       const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
-      const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
+      const helloWorld = new Function(`${helloWorldProgram} return main().output;`);
 
       outputBox.value += helloWorld();
     } catch (err) {
