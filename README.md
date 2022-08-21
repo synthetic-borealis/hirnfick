@@ -21,6 +21,8 @@ Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a
 
 ## Usage
 
+C++ style single-line comments (i.e. ```c++ // I'm a comment```) are supported.
+
 ### Compiler
 
 <pre>
@@ -110,7 +112,7 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@4.0.0/dist/hirnfick.js"></script>
+  <script src="https://unpkg.com/hirnfick@5.0.0/dist/hirnfick.js"></script>
 </head>
 
 <body>
