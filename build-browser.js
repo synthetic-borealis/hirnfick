@@ -11,6 +11,6 @@ compiler.run((err, result) => {
     process.exit(1);
   }
   console.log(result.toString());
-  console.log('Browser pack build successful.')
+  console.log('Browser pack build successful.');
   process.exit(0);
 });

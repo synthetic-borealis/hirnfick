@@ -35,7 +35,7 @@
 <dd><p>Converts a Brainfuck program to UwU.</p>
 </dd>
 <dt><a href="#isValidProgram">isValidProgram(source)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Validates a Brainfuck program by looking for umatched loop starts/ends.</p>
+<dd><p>Validates a Brainfuck program by looking for unmatched loop starts/ends.</p>
 </dd>
 </dl>
 
@@ -158,7 +158,7 @@ Converts a Brainfuck program to Pascal.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> |  | Brainfuck source to convert. |
-| programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. program programName;). |
+| programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. 'program programName;'). |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
@@ -220,7 +220,7 @@ Converts a Brainfuck program to UwU.
 <a name="isValidProgram"></a>
 
 ## isValidProgram(source) ⇒ <code>boolean</code>
-Validates a Brainfuck program by looking for umatched loop starts/ends.
+Validates a Brainfuck program by looking for unmatched loop starts/ends.
 
 **Kind**: global function  
 **Returns**: <code>boolean</code> - True if the program is valid, false if it's not.  
