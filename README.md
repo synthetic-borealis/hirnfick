@@ -1,32 +1,39 @@
 # Hirnfick
+
 [![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
 ![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
 
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler.
 
-## Contants
+## Contents
+
 1. [Installation](#installation)
 2. [Usage](#usage)
-    1. [Compiler](#compiler)
-    2. [Library](#library)
+   1. [Compiler](#compiler)
+   2. [Library](#library)
 3. [Supported Output Languages](#supported-output-languages)
 4. [Examples](#examples)
 
 ## Installation
+
 Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a single project.
 
 ## Usage
+
 ### Compiler
+
 <pre>
   hirnfick -i [input file] -o [output file] <i>options</i>
 </pre>
 Options:
+
 - `--lang [language]` - Output language (default=js-cli).
   - Supported options: js-web, js-cli, python, c, cpp, qbasic, pascal, uwu.
 - `--memory-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library
+
 - Use ```transpileTo[VARIANT]()``` where ```[VARIANT]``` is the output language/variant (e.g. ```transpileToJsWeb()```).
 - Transpilation to JavaScript generates a function that returns an object containing two members:
   1. ```output``` - The output of the program.
@@ -47,20 +54,21 @@ Options:
 
 ### Table 1: Supported Commands by Output Language
 
-| Language         |    \>   |    \<   |    +    |    -    |    .    |    ,    |   \[    |   \]    |     Memory Size      |
-| :--------------- | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: | :------------------: |
-| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | 30,000/Dynamic       |
-| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic       |
-| Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000               |
-| UwU              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable       |
+| Language         |   \>    |   \<    |    +    |    -    |    .    |    ,    |   \[    |   \]    |  Memory Size   |
+|:-----------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:--------------:|
+| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | 30,000/Dynamic |
+| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
+| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
+| UwU              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | Not Applicable |
 
 ## Examples
 
 ### Node.js/CommonJS
+
 ```javascript
 const hirnfick = require('hirnfick');
 
@@ -74,7 +82,9 @@ try {
   console.error(`Error: ${err.message}`);
 }
 ```
+
 ### ES6
+
 ```javascript
 import * as hirnfick from 'hirnfick';
 
@@ -90,6 +100,7 @@ try {
 ```
 
 ### Web
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -103,28 +114,28 @@ try {
 </head>
 
 <body>
-  <p>
-    <textarea id="output-box" readonly rows="8" style="width: 90%;"></textarea>
-  </p>
-  <button id="run-button">Run</button>
+<p>
+  <textarea id="output-box" readonly rows="8" style="width: 90%;"></textarea>
+</p>
+<button id="run-button">Run</button>
 
-  <script>
-    const runButton = document.getElementById('run-button');
-    const outputBox = document.getElementById('output-box');
-    const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+<script>
+  const runButton = document.getElementById('run-button');
+  const outputBox = document.getElementById('output-box');
+  const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-    outputBox.value = '';
-    runButton.addEventListener('click', () => {
-      try {
-        const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
-        const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
+  outputBox.value = '';
+  runButton.addEventListener('click', () => {
+    try {
+      const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
+      const helloWorld = new Function(`${helloWorldProgram} return run().output;`);
 
-        outputBox.value += helloWorld();
-      } catch (err) {
-        outputBox.value += `Error: ${err.message}`;
-      }
-    });
-  </script>
+      outputBox.value += helloWorld();
+    } catch (err) {
+      outputBox.value += `Error: ${err.message}`;
+    }
+  });
+</script>
 </body>
 
 </html>
