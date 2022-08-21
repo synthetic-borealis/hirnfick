@@ -21,7 +21,7 @@ Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a
 
 ## Usage
 
-C++ style single-line comments (i.e. ```c++ // I'm a comment```) are supported.
+C++ style single-line comments (i.e. ```// I'm a comment```) are supported.
 
 ### Compiler
 
