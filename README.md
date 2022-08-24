@@ -1,8 +1,9 @@
 # Hirnfick
 
-[![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
-![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
+[![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
+[![npm downloads](https://img.shields.io/npm/dt/hirnfick)](https://www.npmjs.com/package/hirnfick)
+![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
 
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler.
 
