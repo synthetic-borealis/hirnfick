@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Install Free Pascal
-        run: sudo apt-get install -y fpc
+        run: sudo apt-get install --no-install-recommends -y fpc
       - name: Install dependencies
         run: yarn install --immutable
       - name: Run tests
