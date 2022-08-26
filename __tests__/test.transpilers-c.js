@@ -1,8 +1,6 @@
-// noinspection NpmUsedModulesInstalled
-
 const cppUtils = require('cpp-utils');
 const fs = require('fs/promises');
-const process = require('process');
+const process = require('node:process');
 const util = require('util');
 const hirnfick = require('../index');
 const exec = util.promisify(require('child_process').exec);

@@ -1,0 +1,6 @@
+{
+  "coverageReporters": [
+    "json",
+    "html"
+  ]
+}

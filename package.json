@@ -42,19 +42,18 @@
     "clean:bin": "del-cli *.o *.exe",
     "clean": "run-p clean:*",
     "docs": "jsdoc2md index.js lib/**/*.js > docs/API.md",
-    "build:ts-def": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
+    "build:ts-def": "tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ./",
     "build:browser": "node build-browser.js",
     "build": "run-p build:*",
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean && yarn build",
-    "codegen": "node utils/codegen.js",
-    "test:qb": "node utils/qb-test.js",
-    "test:pascal": "node utils/pascal-test.js",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.4",
     "cpp-utils": "^1.0.1",
@@ -67,8 +66,10 @@
     "jest": "^27.5.1",
     "jsdoc-to-markdown": "^7.1.1",
     "npm-run-all": "^4.1.5",
+    "pascal-utils": "^1.0.0",
     "python-shell": "^3.0.1",
     "rimraf": "^3.0.2",
+    "typescript": "^4.7.4",
     "webpack": "^5.74.0"
   },
   "dependencies": {
