@@ -12,8 +12,8 @@ const exec = util.promisify(require('child_process').exec);
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
-const executableFile = `test${exeExtension}`;
-const sourceFile = 'test.cpp';
+const executableFile = `test_cpp${exeExtension}`;
+const sourceFile = 'test_cpp.cpp';
 const numberArray = [2, 4, 8, 16];
 
 function writeGeneratedCode(codeToWrite) {

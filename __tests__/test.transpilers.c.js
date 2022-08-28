@@ -27,8 +27,8 @@ describe('C transpiler', () => {
   describe('Code generation', () => {
     const outputCode = transpileToC(helloWorldCode);
     const exeExtension = process.platform === 'win32' ? '.exe' : '';
-    const executableFile = `test${exeExtension}`;
-    const sourceFile = 'test.c';
+    const executableFile = `test_c${exeExtension}`;
+    const sourceFile = 'test_c.c';
     beforeAll(() => fs.writeFile(sourceFile, outputCode));
     it('Generates valid code', () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
       .then(() => {

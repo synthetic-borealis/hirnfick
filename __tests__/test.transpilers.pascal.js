@@ -26,9 +26,9 @@ describe('Pascal transpiler', () => {
   describe('Code generation', () => {
     const outputCode = transpileToPascal(helloWorldCode, 'Test');
     const exeExtension = process.platform === 'win32' ? '.exe' : '';
-    const executableFile = `test${exeExtension}`;
-    const sourceFile = 'test.pas';
-    const objectFile = 'test.o';
+    const executableFile = `test_pas${exeExtension}`;
+    const sourceFile = 'test_pas.pas';
+    const objectFile = 'test_pas.o';
     beforeAll(() => fs.writeFile(sourceFile, outputCode));
     it('Generates valid code', () => pascalUtils.compile(sourceFile, executableFile)
       .then(() => {
