@@ -1,16 +1,18 @@
 const fs = require('fs/promises');
 const util = require('util');
+const childProcess = require('child_process');
 const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToJsCli,
 } = require('../lib');
-const exec = util.promisify(require('child_process').exec);
+const exec = util.promisify(childProcess.exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';
+const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
-const sourceFile = 'test.js';
+const sourceFile = 'hf_test.js';
 
 function checkGeneratedCode(codeToCheck) {
   beforeAll(() => fs.writeFile(sourceFile, codeToCheck));
@@ -36,5 +38,29 @@ describe('JavaScript (cli) transpiler', () => {
   });
   describe('Code generation (fixed array)', () => {
     checkGeneratedCode(transpileToJsCli(helloWorldCode, false));
+  });
+  describe('Code generation (with user input)', () => {
+    beforeAll( () => {
+      const outputCode = transpileToJsCli(userInputCode);
+      return fs.writeFile(sourceFile, outputCode);
+    });
+    afterAll(() => fs.unlink(sourceFile));
+    it('Generates valid & correct code', () => {
+      const inputChar = 'a';
+      const getPromise = () => new Promise((resolve, reject) => {
+        const child = childProcess.exec(`node ${sourceFile}`, (_, stdout) => {
+          if (stdout.trim() === inputChar) {
+            resolve(inputChar);
+          }
+          reject(new Error(`Not ${inputChar}`));
+        });
+        process.stdin.pipe(child.stdin);
+        process.stdin.push(`${inputChar}\n`);
+      });
+      return getPromise()
+        .then((out) => {
+          expect(out).toBe(inputChar);
+        });
+    });
   });
 });
