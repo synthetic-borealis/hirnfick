@@ -21,7 +21,7 @@ function writeGeneratedCode(codeToWrite) {
 }
 
 function checkGeneratedCode() {
-  it('Generates valid C++ code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
+  it('Generates valid code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
     .then(() => expect(true).toBeTruthy()));
   it('Generates correct code', () => {
     const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
