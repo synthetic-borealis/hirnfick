@@ -6,7 +6,7 @@ const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToC,
-} = require('..');
+} = require('../lib');
 
 const exec = util.promisify(require('child_process').exec);
 

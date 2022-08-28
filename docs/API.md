@@ -31,9 +31,6 @@
 <dt><a href="#transpileToQBasic">transpileToQBasic(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to QBasic.</p>
 </dd>
-<dt><a href="#transpileToUwu">transpileToUwu(source)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to UwU.</p>
-</dd>
 <dt><a href="#isValidProgram">isValidProgram(source)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Validates a Brainfuck program by looking for unmatched loop starts/ends.</p>
 </dd>
@@ -199,23 +196,6 @@ Converts a Brainfuck program to QBasic.
 | useDynamicMemory | <code>boolean</code> | <code>false</code> | Enable dynamic memory array. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
-
-<a name="transpileToUwu"></a>
-
-## transpileToUwu(source) ⇒ <code>string</code>
-Converts a Brainfuck program to UwU.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated UwU code.  
-**Throws**:
-
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>string</code> | Brainfuck source to convert. |
 
 <a name="isValidProgram"></a>
 

@@ -4,6 +4,7 @@ coverage
 coverage.lcov
 .DS_Store
 dist
+types
 *.d.ts
 *.tgz
 *.tar.gz

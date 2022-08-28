@@ -1,7 +1,7 @@
 const paths = require('path');
 
 module.exports = {
-  entry: require.resolve('./index.js'),
+  entry: require.resolve('./lib/index.js'),
   output: {
     filename: './dist/hirnfick.js',
     path: paths.resolve(__dirname, ''),

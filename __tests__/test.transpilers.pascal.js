@@ -6,7 +6,7 @@ const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToPascal,
-} = require('..');
+} = require('../lib');
 const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';

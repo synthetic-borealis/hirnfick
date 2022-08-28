@@ -2,7 +2,7 @@ const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToJsWeb,
-} = require('..');
+} = require('../lib');
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';

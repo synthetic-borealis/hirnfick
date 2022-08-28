@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const parseArgs = require('minimist');
-const hirnfick = require('../index');
+const hirnfick = require('../lib');
 const packageConfig = require('../package.json');
 
 const supportedLanguages = [
