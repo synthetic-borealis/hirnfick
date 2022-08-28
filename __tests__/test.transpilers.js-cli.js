@@ -1,73 +1,40 @@
 const fs = require('fs/promises');
 const util = require('util');
-const hirnfick = require('../index');
+const {
+  WrongInputTypeError,
+  BracketMismatchError,
+  transpileToJsCli,
+} = require('..');
 const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
-const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const bracketMismatchCode = '>>+++[[<-->]';
+const numberArray = [2, 4, 8, 16];
+const sourceFile = 'test.js';
 
-function checkGeneratedWebCode(codeToTest) {
-  const generatedFunction = new Function(`${codeToTest}return main();`);
-
-  it('Generates valid JavaScript code', () => {
-    expect(generatedFunction).not.toThrow();
-  });
-
-  describe('Generated function', () => {
-    it('Returns correct output string', () => {
-      expect(generatedFunction().output).toBe('Hello World!\n');
-    });
-
-    it('Returns cells array', () => {
-      expect(Array.isArray(generatedFunction().cells)).toBeTruthy();
-    });
-  });
-}
-
-function checkGeneratedCliCode(codeToTest) {
-  const sourceFile = 'test.js';
-
-  beforeAll(() => fs.writeFile(sourceFile, codeToTest));
-
-  it('Generates valid JavaScript', async () => {
-    await expect(exec(`node ${sourceFile}`)).resolves.toBeDefined();
-  });
-
-  describe('Generated JavaScript code', () => {
-    it('Has correct output', () => exec(`node ${sourceFile}`)
-      .then(({ stdout }) => {
-        expect(stdout.trim()).toBe('Hello World!');
-      }));
-  });
-
+function checkGeneratedCode(codeToCheck) {
+  beforeAll(() => fs.writeFile(sourceFile, codeToCheck));
+  it('Generates valid & correct code', () => exec(`node ${sourceFile}`)
+    .then(({ stdout }) => {
+      expect(stdout.trim()).toBe('Hello World!');
+    }));
   afterAll(() => fs.unlink(sourceFile));
 }
 
-describe('Transpilers tests', () => {
-  describe('transpileToJsWeb error handling tests', () => {
-    it('Throws an error when input has incorrect type', () => {
+describe('JavaScript (cli) transpiler', () => {
+  describe('Error handling', () => {
+    it('Throws WrongInputTypeError when given input of wrong type', () => {
       // noinspection JSCheckFunctionSignatures
-      expect(() => hirnfick.transpileToJsWeb([2, 9, 15, 7])).toThrow();
+      expect(() => transpileToJsCli(numberArray)).toThrow(WrongInputTypeError);
     });
-
-    it('Throws an error when input is an invalid program', () => {
-      expect(() => hirnfick.transpileToJsWeb(invalidCode)).toThrow();
+    it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
+      expect(() => transpileToJsCli(bracketMismatchCode)).toThrow(BracketMismatchError);
     });
   });
-
-  describe('transpileToJsWeb tests (dynamic memory)', () => {
-    checkGeneratedWebCode(hirnfick.transpileToJsWeb(helloWorldCode, true));
+  describe('Code generation (dynamic array)', () => {
+    checkGeneratedCode(transpileToJsCli(helloWorldCode));
   });
-
-  describe('transpileToJsWeb tests (fixed memory)', () => {
-    checkGeneratedWebCode(hirnfick.transpileToJsWeb(helloWorldCode, false));
-  });
-
-  describe('transpileToJsCli tests (dynamic memory)', () => {
-    checkGeneratedCliCode(hirnfick.transpileToJsCli(helloWorldCode, true));
-  });
-
-  describe('transpileToJsCli tests (fixed memory)', () => {
-    checkGeneratedCliCode(hirnfick.transpileToJsCli(helloWorldCode, false));
+  describe('Code generation (fixed array)', () => {
+    checkGeneratedCode(transpileToJsCli(helloWorldCode, false));
   });
 });
