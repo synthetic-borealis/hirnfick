@@ -6,17 +6,17 @@ const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToC,
-} = require('../index');
+} = require('..');
 
 const exec = util.promisify(require('child_process').exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';
+const numberArray = [2, 4, 8, 16];
 
 describe('C transpiler', () => {
   describe('Error handling', () => {
     it('Throws WrongInputTypeError when given input of wrong type', () => {
-      const numberArray = [2, 4, 8, 16];
       // noinspection JSCheckFunctionSignatures
       expect(() => transpileToC(numberArray)).toThrow(WrongInputTypeError);
     });
