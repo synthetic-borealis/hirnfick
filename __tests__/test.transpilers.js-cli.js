@@ -55,10 +55,7 @@ describe('JavaScript (cli) transpiler', () => {
           }
           resolve(stdout);
         });
-        process.stdin.resume();
-        process.stdin.pipe(child.stdin);
-        process.stdin.push(`${inputChar}\n`);
-        process.stdin.end();
+        child.stdin.write(`${inputChar}\n`);
       });
       return wrapper()
         .then((out) => {
