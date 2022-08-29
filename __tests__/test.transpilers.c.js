@@ -61,6 +61,7 @@ describe('C transpiler', () => {
       .then(() => {
         expect(true).toBeTruthy();
       }));
+    // noinspection DuplicatedCode
     it('Generates correct code', () => {
       const inputChar = 'a';
       const getPromise = () => new Promise((resolve, reject) => {
