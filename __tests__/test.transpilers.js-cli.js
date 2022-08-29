@@ -49,11 +49,11 @@ describe('JavaScript (cli) transpiler', () => {
     it('Generates valid & correct code', () => {
       const inputChar = 'a';
       const getPromise = () => new Promise((resolve, reject) => {
-        const child = childProcess.exec(`node ${sourceFile}`, (_, stdout) => {
-          if (stdout.trim() === inputChar) {
-            resolve(inputChar);
+        const child = childProcess.exec(`node ${sourceFile}`, (error, stdout) => {
+          if (error) {
+            reject(error);
           }
-          reject(new Error(`Not ${inputChar}`));
+          resolve(stdout.trim());
         });
         process.stdin.pipe(child.stdin);
         process.stdin.push(`${inputChar}\n`);
