@@ -64,17 +64,19 @@ describe('C transpiler', () => {
     // noinspection DuplicatedCode
     it('Generates correct code', () => {
       const inputChar = 'a';
-      const getPromise = () => new Promise((resolve, reject) => {
+      const wrapper = () => new Promise((resolve, reject) => {
         const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
           if (error) {
             reject(error);
           }
-          resolve(stdout.trim());
+          resolve(stdout);
         });
+        process.stdin.resume();
         process.stdin.pipe(child.stdin);
         process.stdin.push(`${inputChar}\n`);
+        process.stdin.end();
       });
-      return getPromise()
+      return wrapper()
         .then((out) => {
           expect(out).toBe(inputChar);
         });

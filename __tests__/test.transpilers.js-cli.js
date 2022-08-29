@@ -13,7 +13,7 @@ const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
-const sourceFile = 'hf_test.js';
+const sourceFile = 'test_js.js';
 
 function checkGeneratedCode(codeToCheck) {
   beforeAll(() => fs.writeFile(sourceFile, codeToCheck));
@@ -48,17 +48,19 @@ describe('JavaScript (cli) transpiler', () => {
     afterAll(() => fs.unlink(sourceFile));
     it('Generates valid & correct code', () => {
       const inputChar = 'a';
-      const getPromise = () => new Promise((resolve, reject) => {
+      const wrapper = () => new Promise((resolve, reject) => {
         const child = childProcess.exec(`node ${sourceFile}`, (error, stdout) => {
           if (error) {
             reject(error);
           }
-          resolve(stdout.trim());
+          resolve(stdout);
         });
+        process.stdin.resume();
         process.stdin.pipe(child.stdin);
         process.stdin.push(`${inputChar}\n`);
+        process.stdin.end();
       });
-      return getPromise()
+      return wrapper()
         .then((out) => {
           expect(out).toBe(inputChar);
         });
