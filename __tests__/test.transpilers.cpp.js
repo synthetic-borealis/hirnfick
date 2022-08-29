@@ -1,39 +1,38 @@
 const cppUtils = require('cpp-utils');
 const fs = require('fs/promises');
-const process = require('node:process');
 const util = require('util');
+const childProcess = require('child_process');
 const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToCpp,
 } = require('../lib');
-const exec = util.promisify(require('child_process').exec);
+
+const exec = util.promisify(childProcess.exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';
+const userInputCode = ',.';
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
 const executableFile = `test_cpp${exeExtension}`;
 const sourceFile = 'test_cpp.cpp';
 const numberArray = [2, 4, 8, 16];
+const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-function writeGeneratedCode(codeToWrite) {
-  beforeAll(() => fs.writeFile(sourceFile, codeToWrite));
-}
-
-function checkGeneratedCode() {
+function checkGeneratedCode(codeToCheck) {
+  beforeAll(() => fs.writeFile(sourceFile, codeToCheck));
+  afterAll(() => Promise.all([
+    fs.unlink(executableFile),
+    fs.unlink(sourceFile),
+  ]));
   it('Generates valid code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
     .then(() => expect(true).toBeTruthy()));
   it('Generates correct code', () => {
-    const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
     return exec(commandToRun)
       .then(({ stdout }) => {
         expect(stdout.trim()).toBe('Hello World!');
       });
   });
-  afterAll(() => Promise.all([
-    fs.unlink(executableFile),
-    fs.unlink(sourceFile),
-  ]));
 }
 
 describe('C++ transpiler', () => {
@@ -47,11 +46,42 @@ describe('C++ transpiler', () => {
     });
   });
   describe('Code generation (dynamic array)', () => {
-    writeGeneratedCode(transpileToCpp(helloWorldCode));
-    checkGeneratedCode();
+    checkGeneratedCode(transpileToCpp(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    writeGeneratedCode(transpileToCpp(helloWorldCode, false));
-    checkGeneratedCode();
+    checkGeneratedCode(transpileToCpp(helloWorldCode, false));
+  });
+  describe('Code generation (with user input)', () => {
+    beforeAll(() => {
+      const outputCode = transpileToCpp(userInputCode);
+      return fs.writeFile(sourceFile, outputCode);
+    });
+    // noinspection DuplicatedCode
+    afterAll(() => Promise.all([
+      fs.unlink(sourceFile),
+      fs.unlink(executableFile),
+    ]));
+    it('Generates valid code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
+      .then(() => {
+        expect(true).toBeTruthy();
+      }));
+    // noinspection DuplicatedCode
+    it('Generates correct code', () => {
+      const inputChar = 'a';
+      const getPromise = () => new Promise((resolve, reject) => {
+        const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
+          if (error) {
+            reject(error);
+          }
+          resolve(stdout.trim());
+        });
+        process.stdin.pipe(child.stdin);
+        process.stdin.push(`${inputChar}\n`);
+      });
+      return getPromise()
+        .then((out) => {
+          expect(out).toBe(inputChar);
+        });
+    });
   });
 });

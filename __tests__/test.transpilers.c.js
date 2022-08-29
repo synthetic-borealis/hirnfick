@@ -42,13 +42,10 @@ describe('C transpiler', () => {
       .then(() => {
         expect(true).toBeTruthy();
       }));
-    it('Generates correct code', () => {
-
-      return exec(commandToRun)
-        .then(({ stdout }) => {
-          expect(stdout.trim()).toBe('Hello World!');
-        });
-    });
+    it('Generates correct code', () => exec(commandToRun)
+      .then(({ stdout }) => {
+        expect(stdout.trim()).toBe('Hello World!');
+      }));
   });
   describe('Code generation (with user input)', () => {
     beforeAll(() => {

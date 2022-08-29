@@ -32,9 +32,8 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint lib/** utils/** bin/**",
-    "lint:log": "eslint lib/** utils/** bin/** > lint.log",
-    "lint:fix": "eslint --fix lib/** utils/**",
+    "lint": "eslint lib/** scripts/** bin/** __tests__/**",
+    "lint:log": "eslint lib/** scripts/** bin/** __tests__/** > lint.log",
     "clean:ts-def": "rimraf types",
     "clean:browser": "rimraf dist",
     "clean:qb": "del-cli *.bas",

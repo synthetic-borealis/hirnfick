@@ -6,6 +6,7 @@ const {
   BracketMismatchError,
   transpileToJsCli,
 } = require('../lib');
+
 const exec = util.promisify(childProcess.exec);
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
@@ -40,7 +41,7 @@ describe('JavaScript (cli) transpiler', () => {
     checkGeneratedCode(transpileToJsCli(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
-    beforeAll( () => {
+    beforeAll(() => {
       const outputCode = transpileToJsCli(userInputCode);
       return fs.writeFile(sourceFile, outputCode);
     });
