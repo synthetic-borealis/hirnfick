@@ -1,7 +1,13 @@
 const webpack = require('webpack');
-const config = require('./webpack.config');
+const fs = require('fs');
+const config = require('../webpack.config');
 
 const compiler = webpack(config);
+
+console.log('Removing previous build...');
+if (fs.existsSync('./dist')) {
+  fs.rmSync('./dist', { recursive: true });
+}
 
 console.log('Starting browser pack build...');
 compiler.run((err, result) => {

@@ -1,0 +1,7 @@
+{
+  "coverageReporters": [
+    "json",
+    "html",
+    "cobertura"
+  ]
+}

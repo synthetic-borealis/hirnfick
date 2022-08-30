@@ -25,8 +25,7 @@
     },
     {
       "files": [
-        "test-utils/**/*.*js",
-        "utils/**/*.*js",
+        "scripts/**/*.*js",
         "__tests__/**/*.*js",
         "build-browser.js"
       ],
