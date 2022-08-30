@@ -1,0 +1,46 @@
+name: Coverage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: mskelton/setup-yarn@v1
+        with:
+          node-version: 'v16.x'
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install Free Pascal
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y fpc
+      - name: Install FreeBasic
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc libncurses5-dev libffi-dev libgl1-mesa-dev libx11-dev libxext-dev libxrender-dev libxrandr-dev libxpm-dev libtinfo5 libgpm-dev
+          wget http://downloads.sourceforge.net/project/fbc/FreeBASIC-1.09.0/Binaries-Linux/ubuntu-20.04/FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
+          tar xzf FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
+          pushd FreeBASIC-1.09.0-ubuntu-20.04-x86_64
+          sudo ./install.sh -i
+          popd
+          fbc --version
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Run tests
+        run: yarn coverage
+      - name: Send coverage info to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/cobertura-coverage.xml
