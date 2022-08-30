@@ -25,11 +25,11 @@ function checkGeneratedCode(codeToCheck) {
     fs.unlink(sourceFile),
     fs.unlink(jarFile),
   ]));
-  it('Generates valid code', () => exec(compileCommand)
-    .then(() => expect(true).toBeTruthy()), 15000);
-  it('Generates correct code', () => exec(runCommand).then(({ stdout }) => {
-    expect(stdout.trim()).toBe('Hello World!');
-  }));
+  it('Generates valid & correct code', () => exec(compileCommand)
+    .then(() => exec(runCommand))
+    .then(({ stdout }) => {
+      expect(stdout.trim()).toBe('Hello World!');
+    }), 35000);
 }
 
 describe('Kotlin transpiler', () => {
