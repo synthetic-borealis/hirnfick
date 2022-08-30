@@ -3,8 +3,10 @@ name: Tests
 on:
   push:
     paths:
-      - 'lib/**.js'
-      - '__tests__/**.js'
+      - 'src/**/*.js'
+      - '__tests__/**/*.js'
+      - 'package.json'
+      - '.github/workflows/test.yml'
     branches: [ main, develop ]
   pull_request:
     branches: [ main ]
