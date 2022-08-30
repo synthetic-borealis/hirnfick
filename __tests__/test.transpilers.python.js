@@ -1,4 +1,5 @@
 const { PythonShell } = require('python-shell');
+const fs = require('fs/promises');
 const {
   WrongInputTypeError,
   BracketMismatchError,
@@ -7,7 +8,9 @@ const {
 
 const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 const bracketMismatchCode = '>>+++[[<-->]';
+const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
+const pyFile = 'test_py.py';
 
 function checkGeneratedCode(codeToCheck) {
   const wrapper = () => new Promise((resolve, reject) => {
@@ -39,5 +42,32 @@ describe('Python transpiler', () => {
   });
   describe('Code generation (fixed array)', () => {
     checkGeneratedCode(transpileToPython(helloWorldCode, false));
+  });
+  describe('Code generation (with user input)', () => {
+    beforeAll(() => {
+      const outputCode = transpileToPython(userInputCode);
+      return fs.writeFile(pyFile, outputCode);
+    });
+    afterAll(() => fs.unlink(pyFile));
+    it('Generates valid & correct code', () => {
+      const inputChar = 'a';
+      const wrapper = () => new Promise((resolve, reject) => {
+        const pyShell = new PythonShell(pyFile);
+        pyShell.on('message', (message) => {
+          resolve(message);
+        });
+        pyShell.on('error', (error) => {
+          reject(error);
+        });
+        pyShell.on('pythonError', (error) => {
+          reject(error);
+        });
+        pyShell.stdin.write(`${inputChar}\n`);
+      });
+      return wrapper()
+        .then((out) => {
+          expect(out).toBe(inputChar);
+        });
+    });
   });
 });
