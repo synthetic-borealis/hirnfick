@@ -1,4 +1,4 @@
-const asyncPyShell = require('../test-utils/async-python-shell');
+const { PythonShell } = require('python-shell');
 const {
   WrongInputTypeError,
   BracketMismatchError,
@@ -10,14 +10,17 @@ const bracketMismatchCode = '>>+++[[<-->]';
 const numberArray = [2, 4, 8, 16];
 
 function checkGeneratedCode(codeToCheck) {
-  it('Generates valid code', () => asyncPyShell.runString(codeToCheck)
-    .then(() => expect(true).toBeTruthy()));
-
-  it('Generates correct code', () => asyncPyShell.runString(codeToCheck)
+  const wrapper = () => new Promise((resolve, reject) => {
+    PythonShell.runString(codeToCheck, null, (err, output) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(output[0]);
+    });
+  });
+  it('Generates  valid & correct code', () => wrapper()
     .then((output) => {
-      expect(output).toEqual(
-        expect.arrayContaining(['Hello World!']),
-      );
+      expect(output).toBe('Hello World!');
     }));
 }
 
