@@ -14,5 +14,6 @@ types
 *.cpp
 *.bas
 *.pas
+./*.py
 *.o
 tmp/
