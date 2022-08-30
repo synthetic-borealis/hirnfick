@@ -40,7 +40,7 @@ jobs:
           wget http://downloads.sourceforge.net/project/fbc/FreeBASIC-1.09.0/Binaries-Linux/ubuntu-20.04/FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
           tar xzf FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
           sudo ./FreeBASIC-1.09.0-ubuntu-20.04-x86_64/install.sh -i
-          fbc --version
+          ls
       - name: Install dependencies
         run: yarn install --immutable
       - name: Run tests
