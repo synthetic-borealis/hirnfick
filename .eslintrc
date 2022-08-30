@@ -1,7 +1,13 @@
 {
   "extends": ["airbnb-base", "plugin:jest/recommended"],
   "rules": {
-    "no-new-func": 0
+    "no-new-func": 0,
+    "default-case": [
+      "error",
+      {
+        "commentPattern": "^skip\\sdefault"
+      }
+    ]
   },
   "overrides": [
     {
