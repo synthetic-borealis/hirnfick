@@ -39,7 +39,9 @@ jobs:
           sudo apt-get install -y gcc libncurses5-dev libffi-dev libgl1-mesa-dev libx11-dev libxext-dev libxrender-dev libxrandr-dev libxpm-dev libtinfo5 libgpm-dev
           wget http://downloads.sourceforge.net/project/fbc/FreeBASIC-1.09.0/Binaries-Linux/ubuntu-20.04/FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
           tar xzf FreeBASIC-1.09.0-ubuntu-20.04-x86_64.tar.gz
-          ./FreeBASIC-1.09.0-ubuntu-20.04-x86_64/install.sh -i ./
+          pushd FreeBASIC-1.09.0-ubuntu-20.04-x86_64
+          sudo ./install.sh -i
+          popd
           fbc --version
       - name: Install dependencies
         run: yarn install --immutable
