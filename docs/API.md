@@ -22,6 +22,9 @@
 <dt><a href="#transpileToJsWeb">transpileToJsWeb(source, useDynamicMemory, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to JavaScript (Web).</p>
 </dd>
+<dt><a href="#transpileToKotlin">transpileToKotlin(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts a Brainfuck program to Kotlin.</p>
+</dd>
 <dt><a href="#transpileToPascal">transpileToPascal(source, programName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts a Brainfuck program to Pascal.</p>
 </dd>
@@ -137,6 +140,26 @@ Converts a Brainfuck program to JavaScript (Web).
 | useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
 | funcName | <code>string</code> | <code>&quot;main&quot;</code> | Output function name. |
 | indentSize | <code>number</code> | <code>2</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+
+<a name="transpileToKotlin"></a>
+
+## transpileToKotlin(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+Converts a Brainfuck program to Kotlin.
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Generated Kotlin code.  
+**Throws**:
+
+- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
+- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| source | <code>string</code> |  | Brainfuck source to convert. |
+| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
+| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
 | indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToPascal"></a>
