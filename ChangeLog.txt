@@ -1,2 +1,3 @@
 v6.0.0
+31/08/2022 - Added Kotlin output support.
 28/08/2022 - Removed UwU output support.

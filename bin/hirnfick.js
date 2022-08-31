@@ -12,7 +12,7 @@ const supportedLanguages = [
   'cpp',
   'qbasic',
   'pascal',
-  'uwu',
+  'kotlin',
 ];
 
 function printWelcome() {
@@ -100,11 +100,11 @@ try {
     case 'pascal':
       outputCode = hirnfick.transpileToPascal(inputCode);
       break;
-    case 'uwu':
-      outputCode = hirnfick.transpileToUwu(inputCode);
+    case 'kotlin':
+      outputCode = hirnfick.transpileToKotlin(inputCode, useDynamicMemory);
       break;
-    default:
-      break;
+
+    // skip default case
   }
 } catch (err) {
   console.error(`Error: ${err.message}`);
