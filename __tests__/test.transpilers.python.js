@@ -1,12 +1,13 @@
 const { PythonShell } = require('python-shell');
-const fs = require('fs/promises');
+const fsPromises = require('fs/promises');
+const fs = require('fs');
 const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToPython,
 } = require('../lib');
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
@@ -46,9 +47,9 @@ describe('Python transpiler', () => {
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
       const outputCode = transpileToPython(userInputCode);
-      return fs.writeFile(pyFile, outputCode);
+      return fsPromises.writeFile(pyFile, outputCode);
     });
-    afterAll(() => fs.unlink(pyFile));
+    afterAll(() => fsPromises.unlink(pyFile));
     it('Generates valid & correct code', () => {
       const inputChar = 'a';
       const wrapper = () => new Promise((resolve, reject) => {

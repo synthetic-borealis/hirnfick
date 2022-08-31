@@ -1,6 +1,7 @@
 const pascalUtils = require('pascal-utils');
 // noinspection DuplicatedCode
-const fs = require('fs/promises');
+const fsPromises = require('fs/promises');
+const fs = require('fs');
 const util = require('util');
 const childProcess = require('child_process');
 const {
@@ -11,7 +12,7 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
@@ -33,11 +34,11 @@ describe('Pascal transpiler', () => {
   });
   describe('Code generation', () => {
     const outputCode = transpileToPascal(helloWorldCode, 'Test');
-    beforeAll(() => fs.writeFile(sourceFile, outputCode));
+    beforeAll(() => fsPromises.writeFile(sourceFile, outputCode));
     afterAll(() => Promise.all([
-      fs.unlink(sourceFile),
-      fs.unlink(objectFile),
-      fs.unlink(executableFile),
+      fsPromises.unlink(sourceFile),
+      fsPromises.unlink(objectFile),
+      fsPromises.unlink(executableFile),
     ]));
     it('Generates valid code', () => pascalUtils.compile(sourceFile, executableFile)
       .then(() => {
@@ -51,12 +52,12 @@ describe('Pascal transpiler', () => {
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
       const outputCode = transpileToPascal(userInputCode, 'Test');
-      return fs.writeFile(sourceFile, outputCode);
+      return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => Promise.all([
-      fs.unlink(sourceFile),
-      fs.unlink(objectFile),
-      fs.unlink(executableFile),
+      fsPromises.unlink(sourceFile),
+      fsPromises.unlink(objectFile),
+      fsPromises.unlink(executableFile),
     ]));
     it('Generates valid code', () => pascalUtils.compile(sourceFile, executableFile)
       .then(() => {

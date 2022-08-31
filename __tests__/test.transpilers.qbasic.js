@@ -1,5 +1,6 @@
 const util = require('util');
-const fs = require('fs/promises');
+const fsPromises = require('fs/promises');
+const fs = require('fs');
 const childProcess = require('child_process');
 const {
   WrongInputTypeError,
@@ -9,7 +10,7 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
@@ -19,10 +20,10 @@ const sourceFile = 'test_bas.bas';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
 function checkGeneratedCode(codeToCheck) {
-  beforeAll(() => fs.writeFile(sourceFile, codeToCheck));
+  beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   afterAll(() => Promise.all([
-    fs.unlink(executableFile),
-    fs.unlink(sourceFile),
+    fsPromises.unlink(executableFile),
+    fsPromises.unlink(sourceFile),
   ]));
   it('Generates valid code', () => exec(`fbc ${sourceFile} -x ${executableFile}`)
     .then(() => expect(true).toBeTruthy()));
@@ -51,11 +52,11 @@ describe('QBasic transpiler', () => {
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
       const generatedCode = transpileToQBasic(userInputCode);
-      return fs.writeFile(sourceFile, generatedCode);
+      return fsPromises.writeFile(sourceFile, generatedCode);
     });
     afterAll(() => Promise.all([
-      fs.unlink(executableFile),
-      fs.unlink(sourceFile),
+      fsPromises.unlink(executableFile),
+      fsPromises.unlink(sourceFile),
     ]));
     it('Generates valid code', () => exec(`fbc ${sourceFile} -x ${executableFile}`)
       .then(() => expect(true).toBeTruthy()));

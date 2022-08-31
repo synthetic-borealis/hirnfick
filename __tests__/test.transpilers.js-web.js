@@ -1,10 +1,11 @@
+const fs = require('fs');
 const {
   WrongInputTypeError,
   BracketMismatchError,
   transpileToJsWeb,
 } = require('../lib');
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const numberArray = [2, 4, 8, 16];
 

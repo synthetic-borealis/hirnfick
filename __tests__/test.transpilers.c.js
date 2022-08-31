@@ -1,5 +1,6 @@
 const cppUtils = require('cpp-utils');
-const fs = require('fs/promises');
+const fsPromises = require('fs/promises');
+const fs = require('fs');
 const util = require('util');
 const childProcess = require('child_process');
 const {
@@ -10,7 +11,7 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
@@ -32,11 +33,11 @@ describe('C transpiler', () => {
   describe('Code generation', () => {
     beforeAll(() => {
       const outputCode = transpileToC(helloWorldCode);
-      return fs.writeFile(sourceFile, outputCode);
+      return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => Promise.all([
-      fs.unlink(sourceFile),
-      fs.unlink(executableFile),
+      fsPromises.unlink(sourceFile),
+      fsPromises.unlink(executableFile),
     ]));
     it('Generates valid code', () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
       .then(() => {
@@ -50,12 +51,12 @@ describe('C transpiler', () => {
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
       const outputCode = transpileToC(userInputCode);
-      return fs.writeFile(sourceFile, outputCode);
+      return fsPromises.writeFile(sourceFile, outputCode);
     });
     // noinspection DuplicatedCode
     afterAll(() => Promise.all([
-      fs.unlink(sourceFile),
-      fs.unlink(executableFile),
+      fsPromises.unlink(sourceFile),
+      fsPromises.unlink(executableFile),
     ]));
     it('Generates valid code', () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
       .then(() => {
