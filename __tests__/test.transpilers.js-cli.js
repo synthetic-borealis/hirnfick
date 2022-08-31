@@ -10,7 +10,8 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
+  .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
@@ -20,7 +21,8 @@ function checkGeneratedCode(codeToCheck) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   it('Generates valid & correct code', () => exec(`node ${sourceFile}`)
     .then(({ stdout }) => {
-      expect(stdout.trim()).toBe('Hello World!');
+      expect(stdout.trim())
+        .toBe('Hello World!');
     }));
   afterAll(() => fsPromises.unlink(sourceFile));
 }
@@ -29,10 +31,12 @@ describe('JavaScript (cli) transpiler', () => {
   describe('Error handling', () => {
     it('Throws WrongInputTypeError when given input of wrong type', () => {
       // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToJsCli(numberArray)).toThrow(WrongInputTypeError);
+      expect(() => transpileToJsCli(numberArray))
+        .toThrow(WrongInputTypeError);
     });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToJsCli(bracketMismatchCode)).toThrow(BracketMismatchError);
+      expect(() => transpileToJsCli(bracketMismatchCode))
+        .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
@@ -60,7 +64,8 @@ describe('JavaScript (cli) transpiler', () => {
       });
       return wrapper()
         .then((out) => {
-          expect(out).toBe(inputChar);
+          expect(out)
+            .toBe(inputChar);
         });
     });
   });

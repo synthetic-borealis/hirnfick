@@ -12,7 +12,8 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
+  .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
@@ -26,10 +27,12 @@ describe('Pascal transpiler', () => {
     it('Throws WrongInputTypeError when given input of wrong type', () => {
       const numberArray = [2, 4, 8, 16];
       // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToPascal(numberArray)).toThrow(WrongInputTypeError);
+      expect(() => transpileToPascal(numberArray))
+        .toThrow(WrongInputTypeError);
     });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToPascal(bracketMismatchCode)).toThrow(BracketMismatchError);
+      expect(() => transpileToPascal(bracketMismatchCode))
+        .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation', () => {
@@ -40,16 +43,24 @@ describe('Pascal transpiler', () => {
       fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid code', () => pascalUtils.compile(sourceFile, executableFile)
-      .then(() => {
-        expect(true).toBeTruthy();
-      }));
-    it('Generates correct code', () => exec(commandToRun)
+    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
+      .then(() => exec(commandToRun))
       .then(({ stdout }) => {
-        expect(stdout.trim()).toBe('Hello World!');
+        expect(stdout.trim())
+          .toBe('Hello World!');
       }));
   });
   describe('Code generation (with user input)', () => {
+    const inputChar = 'a';
+    const wrapper = () => new Promise((resolve, reject) => {
+      const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(stdout);
+      });
+      child.stdin.write(`${inputChar}\n`);
+    });
     beforeAll(() => {
       const outputCode = transpileToPascal(userInputCode, 'Test');
       return fsPromises.writeFile(sourceFile, outputCode);
@@ -59,26 +70,9 @@ describe('Pascal transpiler', () => {
       fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid code', () => pascalUtils.compile(sourceFile, executableFile)
-      .then(() => {
-        expect(true).toBeTruthy();
-      }));
-    // noinspection DuplicatedCode
-    it('Generates correct code', () => {
-      const inputChar = 'a';
-      const wrapper = () => new Promise((resolve, reject) => {
-        const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
-          if (error) {
-            reject(error);
-          }
-          resolve(stdout);
-        });
-        child.stdin.write(`${inputChar}\n`);
-      });
-      return wrapper()
-        .then((out) => {
-          expect(out).toBe(inputChar);
-        });
-    });
+    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
+      .then(() => wrapper())
+      .then((out) => expect(out)
+        .toBe(inputChar)));
   });
 });

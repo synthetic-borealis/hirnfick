@@ -11,6 +11,7 @@ describe('Cleanup tests', () => {
   });
 
   it('Cleans Brainfuck code correctly', () => {
-    expect(() => cleanup.cleanCode(helloWorldCode) === helloWorldCleanCode).toBeTruthy();
+    expect(() => cleanup.cleanCode(helloWorldCode) === helloWorldCleanCode)
+      .toBeTruthy();
   });
 });

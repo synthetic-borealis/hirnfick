@@ -11,7 +11,8 @@ const {
 
 const exec = util.promisify(childProcess.exec);
 
-const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
+  .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const jarFile = 'test_kotlin.jar';

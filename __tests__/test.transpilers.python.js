@@ -7,7 +7,8 @@ const {
   transpileToPython,
 } = require('../lib');
 
-const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf').toString();
+const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
+  .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const numberArray = [2, 4, 8, 16];
@@ -24,7 +25,8 @@ function checkGeneratedCode(codeToCheck) {
   });
   it('Generates  valid & correct code', () => wrapper()
     .then((output) => {
-      expect(output).toBe('Hello World!');
+      expect(output)
+        .toBe('Hello World!');
     }));
 }
 
@@ -32,10 +34,12 @@ describe('Python transpiler', () => {
   describe('Error handling', () => {
     it('Throws WrongInputTypeError when given input of wrong type', () => {
       // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToPython(numberArray)).toThrow(WrongInputTypeError);
+      expect(() => transpileToPython(numberArray))
+        .toThrow(WrongInputTypeError);
     });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToPython(bracketMismatchCode)).toThrow(BracketMismatchError);
+      expect(() => transpileToPython(bracketMismatchCode))
+        .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
@@ -67,7 +71,8 @@ describe('Python transpiler', () => {
       });
       return wrapper()
         .then((out) => {
-          expect(out).toBe(inputChar);
+          expect(out)
+            .toBe(inputChar);
         });
     });
   });

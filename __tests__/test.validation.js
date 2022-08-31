@@ -6,10 +6,12 @@ const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++
 describe('Utility function tests', () => {
   describe('isValidProgram tests', () => {
     it('Accepts valid programs', () => {
-      expect(isValidProgram(helloWorldCode)).toBeTruthy();
+      expect(isValidProgram(helloWorldCode))
+        .toBeTruthy();
     });
     it('Rejects invalid programs', () => {
-      expect(isValidProgram(invalidCode)).toBeFalsy();
+      expect(isValidProgram(invalidCode))
+        .toBeFalsy();
     });
   });
 });
