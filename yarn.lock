@@ -2139,10 +2139,10 @@ core-js-compat@^3.21.0, core-js-compat@^3.22.1:
     browserslist "^4.21.3"
     semver "7.0.0"
 
-cpp-utils@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/cpp-utils/-/cpp-utils-1.0.2.tgz#b15a0846b6a8eae8a7974b252b314fa0673ba6b2"
-  integrity sha512-IEsYufKGazSveLrI+7Lcd5qQVUHLJ+iH7JGqkt0T4XKotXfYthecjGFEic0k8khkWv/BCCHKJDS53Bbny1wIpQ==
+cpp-utils@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cpp-utils/-/cpp-utils-2.0.0.tgz#ac5fe8a69d1d427aa8ad9f72c7dd686d1aa2ccd2"
+  integrity sha512-L1PuPrTiM4Baq102jT9AAt/ASouCLgPkx1eqGBOy0+dgAb77eROjYwrKqosAxc+OKcANwDP/WEc03tNaxd0Img==
 
 cross-spawn@^6.0.5:
   version "6.0.5"
@@ -4194,10 +4194,10 @@ parse-json@^5.2.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
-pascal-utils@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/pascal-utils/-/pascal-utils-1.0.0.tgz#9b9148a9a97b1f181cc6c239b73119f55998687c"
-  integrity sha512-DnwEMrgGA+IX1ADQqZRirly1SdPJYA4l0NQYLvxl1i+evl00s/ToQQymJ5uA6TjDz74SwwXo8xr28AJEL1I0Sw==
+pascal-utils@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pascal-utils/-/pascal-utils-1.0.1.tgz#9cc15f1be37d988d74f1aa44dc93bbd75a6c09d0"
+  integrity sha512-BRHB3ixjTJlqDfMoxj8XA68u8hbnxOv05rxOczFP54jkA3chj9HxQUwuOxE1psSCCIU4SQMuMMUSHsubFG2dJQ==
 
 path-exists@^4.0.0:
   version "4.0.0"
