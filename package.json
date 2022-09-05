@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "A Brainfuck source to source compiler",
   "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
   "repository": {
@@ -49,8 +49,6 @@
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean && yarn build",
     "test": "jest",
-    "test:pascal": "jest __tests__/test.transpilers.pascal.js",
-    "test:c": "jest __tests__/test.transpilers.c.js",
     "coverage": "jest --coverage"
   },
   "devDependencies": {
