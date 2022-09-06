@@ -78,8 +78,8 @@ Converts a Brainfuck program to C.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | source | <code>string</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>1</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
+| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToCpp"></a>
 
@@ -98,8 +98,8 @@ Converts a Brainfuck program to C++.
 | --- | --- | --- | --- |
 | source | <code>string</code> |  | Brainfuck source to convert. |
 | useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
-| indentSize | <code>number</code> | <code>1</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot;\t&quot;</code> | Indentation character. |
+| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
+| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
 
 <a name="transpileToJsCli"></a>
 
