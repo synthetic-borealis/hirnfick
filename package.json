@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "A Brainfuck source to source compiler",
   "homepage": "https://github.com/synthetic-borealis/hirnfick.js",
   "repository": {
