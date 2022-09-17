@@ -9,8 +9,6 @@ function filterCode(source: string) {
   return source.replace(notBrainfuckRegex, '');
 }
 
-function cleanCode(source: string): string {
+export default function cleanCode(source: string): string {
   return filterCode(stripComments(source));
 }
-
-export default { cleanCode };

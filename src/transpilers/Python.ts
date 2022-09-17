@@ -1,7 +1,7 @@
 import BracketMismatchError from '../errors/bracketMismatch';
-import { isValidProgram } from '../validation';
-import { genIndent } from '../utils';
-import { cleanCode } from '../cleanup';
+import isValidProgram from '../utils/isValidProgram';
+import genIndent from '../utils/genIndent';
+import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to a Python.

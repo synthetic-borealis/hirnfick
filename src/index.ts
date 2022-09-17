@@ -3,7 +3,7 @@ import BracketMismatchError from './errors/bracketMismatch';
 import WrongInputTypeError from './errors/wrongInputType';
 
 // Validation & Utilities
-import { isValidProgram } from './validation';
+import isValidProgram from './utils/isValidProgram';
 
 // Transpilers
 import transpileToJsWeb from './transpilers/JavaScriptWeb';
