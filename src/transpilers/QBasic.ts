@@ -1,8 +1,7 @@
-const WrongInputTypeError = require('../errors/wrongInputType');
-const BracketMismatchError = require('../errors/bracketMismatch');
-const { isValidProgram } = require('../validation');
-const { genIndent } = require('../utils');
-const { cleanCode } = require('../cleanup');
+import BracketMismatchError from '../errors/bracketMismatch';
+import { isValidProgram } from '../validation';
+import { genIndent } from '../utils';
+import { cleanCode } from '../cleanup';
 
 /**
  * Converts a Brainfuck program to QBasic.
@@ -11,13 +10,14 @@ const { cleanCode } = require('../cleanup');
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated QBasic code.
- * @throws {WrongInputTypeError} Input must be a string.
- * @throws {BracketMismatchError} Loop starts must have matching loop ends and vice versa.
+ * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-function transpileToQBasic(source, useDynamicMemory = false, indentSize = 2, indentChar = ' ') {
-  if (typeof source !== 'string') {
-    throw new WrongInputTypeError('Input must be a string');
-  }
+export default function transpileToQBasic(
+  source: string,
+  useDynamicMemory = false,
+  indentSize = 2,
+  indentChar = ' ',
+): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
@@ -94,5 +94,3 @@ function transpileToQBasic(source, useDynamicMemory = false, indentSize = 2, ind
 
   return outputCodeArray.join('\n');
 }
-
-module.exports = transpileToQBasic;

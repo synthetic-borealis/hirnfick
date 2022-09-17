@@ -1,21 +1,16 @@
-const WrongInputTypeError = require('../errors/wrongInputType');
-const BracketMismatchError = require('../errors/bracketMismatch');
-const { isValidProgram } = require('../validation');
-const { genIndent } = require('../utils');
-const { cleanCode } = require('../cleanup');
+import BracketMismatchError from '../errors/bracketMismatch';
+import { isValidProgram } from '../validation';
+import { genIndent } from '../utils';
+import { cleanCode } from '../cleanup';
 
 /**
  * Converts a Brainfuck program to a Python.
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} useDynamicMemory Enable dynamic memory array.
  * @returns {string} Generated Python code.
- * @throws {WrongInputTypeError} Input must be a string.
- * @throws {BracketMismatchError} Loop starts must have matching loop ends and vice versa.
+ * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-function transpileToPython(source, useDynamicMemory = true) {
-  if (typeof source !== 'string') {
-    throw new WrongInputTypeError('Input must be a string');
-  }
+export default function transpileToPython(source: string, useDynamicMemory = true): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
@@ -98,5 +93,3 @@ function transpileToPython(source, useDynamicMemory = true) {
 
   return outputCodeArray.join('\n');
 }
-
-module.exports = transpileToPython;

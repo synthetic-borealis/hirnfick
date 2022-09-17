@@ -1,20 +1,16 @@
 const commentRegex = /\/{2,}[^\r^\n]*/gm;
 const notBrainfuckRegex = /[^><+\-[\],.]*/gm;
 
-function stripComments(source) {
+function stripComments(source: string) {
   return source.replace(commentRegex, '');
 }
 
-function filterCode(source) {
+function filterCode(source: string) {
   return source.replace(notBrainfuckRegex, '');
 }
 
-function cleanCode(source) {
+function cleanCode(source: string): string {
   return filterCode(stripComments(source));
 }
 
-module.exports = {
-  // stripComments,
-  // filterCode,
-  cleanCode,
-};
+export default { cleanCode };

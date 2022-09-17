@@ -32,13 +32,10 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint lib/** scripts/** bin/** __tests__/**",
-    "lint:log": "eslint lib/** scripts/** bin/** __tests__/** > lint.log",
-    "clean:ts-def": "rimraf types",
-    "clean:browser": "rimraf dist",
-    "clean": "run-p clean:*",
+    "lint": "eslint src/**/*.{ts,js}",
+    "clean": "rimraf types/ lib/ dist/",
     "docs": "node scripts/build-docs.js",
-    "build:ts-def": "tsc lib/index.js --declaration --allowJs --emitDeclarationOnly --outDir ./types",
+    "build:node": "tsc",
     "build:browser": "node scripts/build-browser.js",
     "build": "run-p build:*",
     "prepack": "yarn clean && yarn build",

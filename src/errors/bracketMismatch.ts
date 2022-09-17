@@ -1,4 +1,4 @@
-class BracketMismatchError extends Error {
+export default class BracketMismatchError extends Error {
   /**
    * BracketMismatch Error constructor.
    */
@@ -6,5 +6,3 @@ class BracketMismatchError extends Error {
     super('Mismatching brackets detected');
   }
 }
-
-module.exports = BracketMismatchError;
