@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "lint": "eslint src/**/*.{ts,js} __tests__/**/*.{ts,js} scripts/**/*.{ts,js}",
+    "lint:bin": "eslint bin/**/*.{js,cjs,mjs}",
     "clean": "rimraf types/ lib/ dist/",
     "docs": "typedoc",
     "build:node": "tsc",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",
+    "@types/minimist": "^1.2.2",
     "@types/node": "^18.7.18",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",

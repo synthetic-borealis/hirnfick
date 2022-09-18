@@ -17,6 +17,13 @@
         "import/no-extraneous-dependencies": ["error", {"devDependencies":  true}],
         "no-console": "off"
       }
+    },
+    {
+      "files": "bin/**/*.{js,cjs,mjs}",
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-console": "off"
+      }
     }
   ],
   "parser": "@typescript-eslint/parser",
