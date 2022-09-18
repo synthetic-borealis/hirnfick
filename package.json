@@ -4,13 +4,13 @@
   "license": "MIT",
   "version": "6.0.3",
   "description": "A Brainfuck source to source compiler",
-  "homepage": "https://synthetic-borealis.github.io/hirnfick.js/",
+  "homepage": "https://synthetic-borealis.github.io/hirnfick/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/synthetic-borealis/hirnfick.js.git"
+    "url": "git+https://github.com/synthetic-borealis/hirnfick.git"
   },
   "bugs": {
-    "url": "https://github.com/synthetic-borealis/hirnfick.js/issues"
+    "url": "https://github.com/synthetic-borealis/hirnfick/issues"
   },
   "keywords": [
     "brainfuck",
