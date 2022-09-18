@@ -1,16 +1,12 @@
-const fs = require('fs');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToJsWeb,
-} = require('../lib');
+import fs from 'fs';
+import { BracketMismatchError, transpileToJsWeb } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
-const numberArray = [2, 4, 8, 16];
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
   const generatedFunction = new Function(`${codeToCheck} return main().output;`);
   it('Generates valid code', () => {
     expect(generatedFunction)
@@ -26,11 +22,6 @@ function checkGeneratedCode(codeToCheck) {
 
 describe('JavaScript (Web) transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToJsWeb(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToJsWeb(bracketMismatchCode))
         .toThrow(BracketMismatchError);

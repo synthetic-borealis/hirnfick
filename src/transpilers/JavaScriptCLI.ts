@@ -1,23 +1,23 @@
-const WrongInputTypeError = require('../errors/wrongInputType');
-const BracketMismatchError = require('../errors/bracketMismatch');
-const { isValidProgram } = require('../validation');
-const { genIndent } = require('../utils');
-const { cleanCode } = require('../cleanup');
+import BracketMismatchError from '../errors/bracketMismatch';
+import isValidProgram from '../utils/isValidProgram';
+import genIndent from '../utils/genIndent';
+import cleanCode from '../utils/cleanCode';
 
 /**
- * Converts a Brainfuck program to C++.
+ * Converts a Brainfuck program to JavaScript (CLI).
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} useDynamicMemory Enable dynamic memory array.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
- * @returns {string} Generated C++ code.
- * @throws {WrongInputTypeError} Input must be a string.
- * @throws {BracketMismatchError} Loop starts must have matching loop ends and vice versa.
+ * @returns {string} Generated JavaScript code.
+ * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentChar = ' ') {
-  if (typeof source !== 'string') {
-    throw new WrongInputTypeError('Input must be a string');
-  }
+export default function transpileToJsCli(
+  source: string,
+  useDynamicMemory = true,
+  indentSize = 2,
+  indentChar = ' ',
+): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
@@ -27,20 +27,37 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
 
   let indent = genIndent(1, indentSize, indentChar);
 
-  const outputCodeArray = [
-    '#include <iostream>',
-    '#include <cstdio>',
-    '#include <vector>',
-    '',
-    'auto main() -> int',
-    '{',
-    `${indent}int position = 0;`,
+  const getchar = [
+    'const fs = require(\'fs\');\n',
+    'function getchar() {',
+    `${indent}const buffer = Buffer.alloc(1);`,
+    `${indent}fs.readSync(process.stdin.fd, buffer, 0, 1);`,
+    `${indent}return buffer[0];`,
+    '}\n',
   ];
 
+  const putchar = [
+    'function putchar(char) {',
+    `${indent}process.stdout.write(char[0]);`,
+    '}\n',
+  ];
+
+  const outputCodeArray = [];
+
+  if (sourceArray.includes(',')) {
+    outputCodeArray.push(...getchar);
+  }
+  outputCodeArray.push(...putchar);
+
+  outputCodeArray.push(
+    'function main() {',
+    `${indent}let position = 0;`,
+  );
+
   if (useDynamicMemory) {
-    outputCodeArray.push(`${indent}std::vector<char> cells { 0 };\n`);
+    outputCodeArray.push(`${indent}let cells = [0];\n`);
   } else {
-    outputCodeArray.push(`${indent}std::vector<char> cells { std::vector<char>(30000) };\n`);
+    outputCodeArray.push(`${indent}let cells = Array(30000).fill(0);\n`);
   }
 
   let currentDepth = 0;
@@ -50,16 +67,14 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
     switch (command) {
       case '>':
         if (useDynamicMemory) {
-          outputCodeArray.push(`${indent}if (position + 1 == cells.size())`);
-          outputCodeArray.push(`${indent}{`);
+          outputCodeArray.push(`${indent}if (position + 1 === cells.length) {`);
           indent += genIndent(1, indentSize, indentChar);
-          outputCodeArray.push(`${indent}cells.push_back(0);`);
+          outputCodeArray.push(`${indent}cells.push(0);`);
           indent = genIndent(currentDepth + 1, indentSize, indentChar);
           outputCodeArray.push(`${indent}}`);
-          outputCodeArray.push(`${indent}++position;`);
+          outputCodeArray.push(`${indent}++position;\n`);
         } else {
-          outputCodeArray.push(`${indent}if (position + 1 < cells.size())`);
-          outputCodeArray.push(`${indent}{`);
+          outputCodeArray.push(`${indent}if (position + 1 < cells.length) {`);
           indent += genIndent(1, indentSize, indentChar);
           outputCodeArray.push(`${indent}++position;`);
           indent = genIndent(currentDepth + 1, indentSize, indentChar);
@@ -68,8 +83,7 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
         break;
 
       case '<':
-        outputCodeArray.push(`${indent}if (position - 1 >= 0)`);
-        outputCodeArray.push(`${indent}{`);
+        outputCodeArray.push(`${indent}if (position > 0) {`);
         indent += genIndent(1, indentSize, indentChar);
         outputCodeArray.push(`${indent}--position;`);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
@@ -77,8 +91,7 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
         break;
 
       case '+':
-        outputCodeArray.push(`${indent}if (cells[position] < 255)`);
-        outputCodeArray.push(`${indent}{`);
+        outputCodeArray.push(`${indent}if (cells[position] < 255) {`);
         indent += genIndent(1, indentSize, indentChar);
         outputCodeArray.push(`${indent}++cells[position];`);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
@@ -86,8 +99,7 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
         break;
 
       case '-':
-        outputCodeArray.push(`${indent}if (cells[position] > 0)`);
-        outputCodeArray.push(`${indent}{`);
+        outputCodeArray.push(`${indent}if (cells[position] > 0) {`);
         indent += genIndent(1, indentSize, indentChar);
         outputCodeArray.push(`${indent}--cells[position];`);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
@@ -95,16 +107,15 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
         break;
 
       case '.':
-        outputCodeArray.push(`${indent}std::cout << cells[position];`);
+        outputCodeArray.push(`${indent}putchar(String.fromCharCode(cells[position]));`);
         break;
 
       case ',':
-        outputCodeArray.push(`${indent}cells[position] = std::getchar();`);
+        outputCodeArray.push(`${indent}cells[position] = getchar();`);
         break;
 
       case '[':
-        outputCodeArray.push(`${indent}while (cells[position] > 0)`);
-        outputCodeArray.push(`${indent}{`);
+        outputCodeArray.push(`${indent}while (cells[position] > 0) {`);
         currentDepth += 1;
         break;
 
@@ -112,16 +123,13 @@ function transpileToCpp(source, useDynamicMemory = true, indentSize = 4, indentC
         currentDepth = Math.max(currentDepth - 1, 0);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
         outputCodeArray.push(`${indent}}`);
-        outputCodeArray.push('');
         break;
 
       // skip default case
     }
   });
 
-  outputCodeArray.push('\n}\n');
-
+  outputCodeArray.push('}');
+  outputCodeArray.push('main();\n');
   return outputCodeArray.join('\n');
 }
-
-module.exports = transpileToCpp;

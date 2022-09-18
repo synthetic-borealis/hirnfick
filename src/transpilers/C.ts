@@ -1,8 +1,7 @@
-const WrongInputTypeError = require('../errors/wrongInputType');
-const BracketMismatchError = require('../errors/bracketMismatch');
-const { isValidProgram } = require('../validation');
-const { genIndent } = require('../utils');
-const { cleanCode } = require('../cleanup');
+import BracketMismatchError from '../errors/bracketMismatch';
+import isValidProgram from '../utils/isValidProgram';
+import genIndent from '../utils/genIndent';
+import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to C.
@@ -10,13 +9,13 @@ const { cleanCode } = require('../cleanup');
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated C code.
- * @throws {WrongInputTypeError} Input must be a string.
- * @throws {BracketMismatchError} Loop starts must have matching loop ends and vice versa.
+ * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-function transpileToC(source, indentSize = 4, indentChar = ' ') {
-  if (typeof source !== 'string') {
-    throw new WrongInputTypeError('Input must be a string');
-  }
+export default function transpileToC(
+  source: string,
+  indentSize = 4,
+  indentChar = ' ',
+): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
@@ -107,5 +106,3 @@ function transpileToC(source, indentSize = 4, indentChar = ' ') {
 
   return outputCodeArray.join('\n');
 }
-
-module.exports = transpileToC;

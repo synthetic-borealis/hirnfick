@@ -1,13 +1,9 @@
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const childProcess = require('child_process');
-const util = require('util');
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
 
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToKotlin,
-} = require('../lib');
+import { BracketMismatchError, transpileToKotlin } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -17,11 +13,10 @@ const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const jarFile = 'test_kotlin.jar';
 const sourceFile = 'test_kotlin.kt';
-const numberArray = [2, 4, 8, 16];
 const runCommand = `kotlin ${jarFile}`;
 const compileCommand = `kotlinc ${sourceFile} -include-runtime -d ${jarFile}`;
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   afterAll(() => Promise.all([
     fsPromises.unlink(sourceFile),
@@ -37,11 +32,6 @@ function checkGeneratedCode(codeToCheck) {
 
 describe('Kotlin transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToKotlin(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToKotlin(bracketMismatchCode))
         .toThrow(BracketMismatchError);
@@ -69,7 +59,7 @@ describe('Kotlin transpiler', () => {
           }
           resolve(stdout);
         });
-        child.stdin.write(`${inputChar}\n`);
+        child.stdin?.write(`${inputChar}\n`);
       });
       return exec(compileCommand)
         .then(wrapper)

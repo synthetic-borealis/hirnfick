@@ -1,23 +1,25 @@
-const WrongInputTypeError = require('../errors/wrongInputType');
-const BracketMismatchError = require('../errors/bracketMismatch');
-const { isValidProgram } = require('../validation');
-const { genIndent } = require('../utils');
-const { cleanCode } = require('../cleanup');
+import BracketMismatchError from '../errors/bracketMismatch';
+import isValidProgram from '../utils/isValidProgram';
+import genIndent from '../utils/genIndent';
+import cleanCode from '../utils/cleanCode';
 
 /**
- * Converts a Brainfuck program to JavaScript (CLI).
+ * Converts a Brainfuck program to JavaScript (Web).
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} useDynamicMemory Enable dynamic memory array.
+ * @param {string} funcName Output function name.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
- * @returns {string} Generated JavaScript code.
- * @throws {WrongInputTypeError} Input must be a string.
- * @throws {BracketMismatchError} Loop starts must have matching loop ends and vice versa.
+ * @returns {string} Generated JavaScript function source.
+ * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-function transpileToJsCli(source, useDynamicMemory = true, indentSize = 2, indentChar = ' ') {
-  if (typeof source !== 'string') {
-    throw new WrongInputTypeError('Input must be a string');
-  }
+export default function transpileToJsWeb(
+  source: string,
+  useDynamicMemory = true,
+  funcName = 'main',
+  indentSize = 2,
+  indentChar = ' ',
+): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
@@ -27,32 +29,11 @@ function transpileToJsCli(source, useDynamicMemory = true, indentSize = 2, inden
 
   let indent = genIndent(1, indentSize, indentChar);
 
-  const getchar = [
-    'const fs = require(\'fs\');\n',
-    'function getchar() {',
-    `${indent}const buffer = Buffer.alloc(1);`,
-    `${indent}fs.readSync(process.stdin.fd, buffer, 0, 1);`,
-    `${indent}return buffer[0];`,
-    '}\n',
-  ];
-
-  const putchar = [
-    'function putchar(char) {',
-    `${indent}process.stdout.write(char[0]);`,
-    '}\n',
-  ];
-
-  const outputCodeArray = [];
-
-  if (sourceArray.includes(',')) {
-    outputCodeArray.push(...getchar);
-  }
-  outputCodeArray.push(...putchar);
-
-  outputCodeArray.push(
-    'function main() {',
+  const outputCodeArray = [
+    `function ${funcName}() {`,
     `${indent}let position = 0;`,
-  );
+    `${indent}let output = "";`,
+  ];
 
   if (useDynamicMemory) {
     outputCodeArray.push(`${indent}let cells = [0];\n`);
@@ -107,11 +88,7 @@ function transpileToJsCli(source, useDynamicMemory = true, indentSize = 2, inden
         break;
 
       case '.':
-        outputCodeArray.push(`${indent}putchar(String.fromCharCode(cells[position]));`);
-        break;
-
-      case ',':
-        outputCodeArray.push(`${indent}cells[position] = getchar();`);
+        outputCodeArray.push(`${indent}output += String.fromCharCode(cells[position]);`);
         break;
 
       case '[':
@@ -129,9 +106,11 @@ function transpileToJsCli(source, useDynamicMemory = true, indentSize = 2, inden
     }
   });
 
-  outputCodeArray.push('}');
-  outputCodeArray.push('main();\n');
+  indent = genIndent(1, indentSize, indentChar);
+
+  outputCodeArray.push('');
+  outputCodeArray.push(`${indent}return { cells, output };`);
+  outputCodeArray.push('}\n');
+
   return outputCodeArray.join('\n');
 }
-
-module.exports = transpileToJsCli;
