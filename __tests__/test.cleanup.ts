@@ -1,17 +1,17 @@
-const fs = require('fs');
-const cleanup = require('../lib/cleanup');
+import fs from 'fs';
+import cleanCode from '../src/utils/cleanCode';
 
 describe('Cleanup tests', () => {
   const helloWorldFile = 'assets/bf/hello-world.bf';
   const helloWorldCleanCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
-  let helloWorldCode;
+  let helloWorldCode: string;
 
   beforeAll(() => {
-    helloWorldCode = fs.readFileSync(helloWorldFile);
+    helloWorldCode = fs.readFileSync(helloWorldFile).toString();
   });
 
   it('Cleans Brainfuck code correctly', () => {
-    expect(() => cleanup.cleanCode(helloWorldCode) === helloWorldCleanCode)
+    expect(() => cleanCode(helloWorldCode) === helloWorldCleanCode)
       .toBeTruthy();
   });
 });

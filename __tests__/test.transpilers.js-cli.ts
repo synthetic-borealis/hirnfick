@@ -1,12 +1,8 @@
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const util = require('util');
-const childProcess = require('child_process');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToJsCli,
-} = require('../lib');
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
+import { BracketMismatchError, transpileToJsCli } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -14,10 +10,9 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
-const numberArray = [2, 4, 8, 16];
 const sourceFile = 'test_js.js';
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   it('Generates valid & correct code', () => exec(`node ${sourceFile}`)
     .then(({ stdout }) => {
@@ -29,11 +24,6 @@ function checkGeneratedCode(codeToCheck) {
 
 describe('JavaScript (cli) transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToJsCli(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToJsCli(bracketMismatchCode))
         .toThrow(BracketMismatchError);
@@ -60,7 +50,7 @@ describe('JavaScript (cli) transpiler', () => {
           }
           resolve(stdout);
         });
-        child.stdin.write(`${inputChar}\n`);
+        child.stdin?.write(`${inputChar}\n`);
       });
       return wrapper()
         .then((out) => {

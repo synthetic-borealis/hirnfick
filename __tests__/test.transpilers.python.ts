@@ -1,26 +1,21 @@
-const { PythonShell } = require('python-shell');
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToPython,
-} = require('../lib');
+import { PythonShell } from 'python-shell';
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import { BracketMismatchError, transpileToPython } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
-const numberArray = [2, 4, 8, 16];
 const pyFile = 'test_py.py';
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
   const wrapper = () => new Promise((resolve, reject) => {
-    PythonShell.runString(codeToCheck, null, (err, output) => {
+    PythonShell.runString(codeToCheck, undefined, (err, output) => {
       if (err) {
         reject(err);
       }
-      resolve(output[0]);
+      resolve((output as string[])[0]);
     });
   });
   it('Generates  valid & correct code', () => wrapper()
@@ -32,11 +27,6 @@ function checkGeneratedCode(codeToCheck) {
 
 describe('Python transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToPython(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToPython(bracketMismatchCode))
         .toThrow(BracketMismatchError);

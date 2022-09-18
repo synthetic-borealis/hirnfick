@@ -1,13 +1,9 @@
-const cppUtils = require('cpp-utils');
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const util = require('util');
-const childProcess = require('child_process');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToCpp,
-} = require('../lib');
+import * as cppUtils from 'cpp-utils';
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
+import { BracketMismatchError, transpileToCpp } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -18,30 +14,27 @@ const userInputCode = ',.';
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
 const executableFile = `test_cpp${exeExtension}`;
 const sourceFile = 'test_cpp.cpp';
-const numberArray = [2, 4, 8, 16];
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   afterAll(() => Promise.all([
     fsPromises.unlink(executableFile),
     fsPromises.unlink(sourceFile),
   ]));
-  it('Generates valid & correct code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
-    .then(() => exec(commandToRun))
-    .then(({ stdout }) => {
-      expect(stdout.trim())
-        .toBe('Hello World!');
-    }));
+  it(
+    'Generates valid & correct code',
+    () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
+      .then(() => exec(commandToRun))
+      .then(({ stdout }) => {
+        expect(stdout.trim())
+          .toBe('Hello World!');
+      }),
+  );
 }
 
 describe('C++ transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToCpp(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToCpp(bracketMismatchCode))
         .toThrow(BracketMismatchError);
@@ -62,7 +55,7 @@ describe('C++ transpiler', () => {
         }
         resolve(stdout);
       });
-      child.stdin.write(`${inputChar}\n`);
+      child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
       const outputCode = transpileToCpp(userInputCode);

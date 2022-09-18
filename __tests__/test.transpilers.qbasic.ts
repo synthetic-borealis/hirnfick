@@ -1,12 +1,8 @@
-const util = require('util');
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const childProcess = require('child_process');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToQBasic,
-} = require('../lib');
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
+import { BracketMismatchError, transpileToQBasic } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -14,13 +10,12 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
-const numberArray = [2, 4, 8, 16];
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
 const executableFile = `test_bas${exeExtension}`;
 const sourceFile = 'test_bas.bas';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-function checkGeneratedCode(codeToCheck) {
+function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   afterAll(() => Promise.all([
     fsPromises.unlink(executableFile),
@@ -36,11 +31,6 @@ function checkGeneratedCode(codeToCheck) {
 
 describe('QBasic transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToQBasic(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => transpileToQBasic(bracketMismatchCode))
         .toThrow(BracketMismatchError);
@@ -61,7 +51,7 @@ describe('QBasic transpiler', () => {
         }
         resolve(stdout);
       });
-      child.stdin.write(`${inputChar}\n`);
+      child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
       const generatedCode = transpileToQBasic(userInputCode);

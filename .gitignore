@@ -4,6 +4,7 @@ node_modules
 coverage
 coverage.lcov
 .DS_Store
+lib
 dist
 types
 *.d.ts

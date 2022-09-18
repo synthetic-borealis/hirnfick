@@ -1,13 +1,9 @@
-const cppUtils = require('cpp-utils');
-const fsPromises = require('fs/promises');
-const fs = require('fs');
-const util = require('util');
-const childProcess = require('child_process');
-const {
-  WrongInputTypeError,
-  BracketMismatchError,
-  transpileToC,
-} = require('../lib');
+import * as pascalUtils from 'pascal-utils';
+import fsPromises from 'fs/promises';
+import fs from 'fs';
+import util from 'util';
+import childProcess from 'child_process';
+import { BracketMismatchError, transpileToPascal } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -15,34 +11,28 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
-const numberArray = [2, 4, 8, 16];
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
-const executableFile = `test_c${exeExtension}`;
-const sourceFile = 'test_c.c';
+const executableFile = `test_pas${exeExtension}`;
+const sourceFile = 'test_pas.pas';
+const objectFile = 'test_pas.o';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-describe('C transpiler', () => {
+describe('Pascal transpiler', () => {
   describe('Error handling', () => {
-    it('Throws WrongInputTypeError when given input of wrong type', () => {
-      // noinspection JSCheckFunctionSignatures
-      expect(() => transpileToC(numberArray))
-        .toThrow(WrongInputTypeError);
-    });
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToC(bracketMismatchCode))
+      expect(() => transpileToPascal(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation', () => {
-    beforeAll(() => {
-      const outputCode = transpileToC(helloWorldCode);
-      return fsPromises.writeFile(sourceFile, outputCode);
-    });
+    const outputCode = transpileToPascal(helloWorldCode, 'Test');
+    beforeAll(() => fsPromises.writeFile(sourceFile, outputCode));
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
+      fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid & correct code', () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
+    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
       .then(() => exec(commandToRun))
       .then(({ stdout }) => {
         expect(stdout.trim())
@@ -58,18 +48,18 @@ describe('C transpiler', () => {
         }
         resolve(stdout);
       });
-      child.stdin.write(`${inputChar}\n`);
+      child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
-      const outputCode = transpileToC(userInputCode);
+      const outputCode = transpileToPascal(userInputCode, 'Test');
       return fsPromises.writeFile(sourceFile, outputCode);
     });
-    // noinspection DuplicatedCode
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
+      fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid & correct code', () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
+    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
       .then(() => wrapper())
       .then((out) => expect(out)
         .toBe(inputChar)));

@@ -32,7 +32,7 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint src/**/*.{ts,js}",
+    "lint": "eslint src/**/*.{ts,js} __tests__/**/*.{ts,js}",
     "clean": "rimraf types/ lib/ dist/",
     "docs": "node scripts/build-docs.js",
     "build:node": "tsc",
@@ -43,6 +43,7 @@
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean && yarn build",
     "test": "jest",
+    "test:c": "jest __tests__/test.transpilers.c.ts",
     "coverage": "jest --coverage"
   },
   "devDependencies": {
