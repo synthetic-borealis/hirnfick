@@ -32,9 +32,10 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "eslint src/**/*.{ts,js} __tests__/**/*.{ts,js}",
+    "lint": "eslint src/**/*.{ts,js} __tests__/**/*.{ts,js} scripts/**/*.{ts,js}",
     "clean": "rimraf types/ lib/ dist/",
     "build:node": "tsc",
+    "build:browser": "ts-node scripts/bundle.ts",
     "build": "run-p build:*",
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^5.37.0",
     "cpp-utils": "^3.0.0",
     "del-cli": "^5.0.0",
+    "esbuild": "^0.15.7",
     "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",

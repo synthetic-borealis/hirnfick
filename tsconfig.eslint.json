@@ -4,7 +4,7 @@
     "target": "es2016",
     "moduleDetection": "auto",
     "module": "commonjs",
-    "rootDirs": ["./src", "./__tests__"],
+    "rootDirs": ["./src", "./__tests__", "./scripts"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -16,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "Node"
   },
   "exclude": [
     "types"

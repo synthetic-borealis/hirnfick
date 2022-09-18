@@ -11,6 +11,13 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [
+    {
+      "files": "scripts/**/*.*",
+      "rules": {
+        "import/no-extraneous-dependencies": ["error", {"devDependencies":  true}],
+        "no-console": "off"
+      }
+    }
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
