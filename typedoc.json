@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./src/index.ts"
+  ],
+  "entryDocument": "API.md",
+  "readme": "none",
+  "githubPages": false,
+  "pretty": true,
+  "out": "docs"
+}

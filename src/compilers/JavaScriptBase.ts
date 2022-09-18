@@ -3,6 +3,18 @@ import isValidProgram from '../utils/isValidProgram';
 import genIndent from '../utils/genIndent';
 import cleanCode from '../utils/cleanCode';
 
+/**
+ * Converts a Brainfuck program to JavaScript.
+ * @description This function is used by {@link compileToJsWeb} and {@link compileToJsCli} to
+ * generate their output. You can use it to write functions that generate output for other
+ * JavaScript-based platforms.
+ * @param {string} source Brainfuck source to convert.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
+ * @param enableUserInput
+ * @param {number} indentSize Indentation size.
+ * @param {string} indentChar Indentation character.
+ * @returns {<{ declaration: string[], definition: string[] }>}
+ */
 export default function compileToJsBase(
   source: string,
   isMemoryDynamic: boolean,
