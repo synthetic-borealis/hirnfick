@@ -43,7 +43,6 @@
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean && yarn build",
     "test": "jest",
-    "test:c": "jest __tests__/test.transpilers.c.ts",
     "coverage": "jest --coverage"
   },
   "devDependencies": {
