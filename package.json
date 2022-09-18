@@ -2,8 +2,8 @@
   "name": "hirnfick-website",
   "private": true,
   "version": "0.0.0",
-  "license": "ISC",
-  "homepage": "https://synthetic-borealis.github.io/hirnfick.js/",
+  "license": "MIT",
+  "homepage": "https://synthetic-borealis.github.io/hirnfick/",
   "scripts": {
     "dev": "vite",
     "start": "vite --open",
