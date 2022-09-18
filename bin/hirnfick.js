@@ -80,28 +80,28 @@ const useDynamicMemory = argv['memory-size'] === 'dynamic';
 try {
   switch (argv.lang) {
     case 'js-web':
-      outputCode = hirnfick.transpileToJsWeb(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToJsWeb(inputCode, useDynamicMemory);
       break;
     case 'js-cli':
-      outputCode = hirnfick.transpileToJsCli(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToJsCli(inputCode, useDynamicMemory);
       break;
     case 'python':
-      outputCode = hirnfick.transpileToPython(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToPython(inputCode, useDynamicMemory);
       break;
     case 'c':
-      outputCode = hirnfick.transpileToC(inputCode);
+      outputCode = hirnfick.compileToC(inputCode);
       break;
     case 'cpp':
-      outputCode = hirnfick.transpileToCpp(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToCpp(inputCode, useDynamicMemory);
       break;
     case 'qbasic':
-      outputCode = hirnfick.transpileToQBasic(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToQBasic(inputCode, useDynamicMemory);
       break;
     case 'pascal':
-      outputCode = hirnfick.transpileToPascal(inputCode);
+      outputCode = hirnfick.compileToPascal(inputCode);
       break;
     case 'kotlin':
-      outputCode = hirnfick.transpileToKotlin(inputCode, useDynamicMemory);
+      outputCode = hirnfick.compileToKotlin(inputCode, useDynamicMemory);
       break;
 
     // skip default case

@@ -1,7 +1,16 @@
 # Changelog
 
-# 6.0.3
-- 06/09/2022 - Fix formatting issues in generated code.
+## 7.0.0
+
+- 19/09/2022 - Added `compileToJsBase`.
+- 19/09/2022 - Renamed compilation functions from `transpileTo[Target]`
+  to `compileTo[Target]`.
+- 18/09/2022 - Removed WrongInputTypeError.
+- 17/09/2022 - Ported the library to TypeScript.
+
+## 6.0.3
+
+- 06/09/2022 - Fixed formatting issues in generated code.
 
 ## 6.0.2
 

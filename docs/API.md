@@ -1,234 +1,339 @@
-## Classes
+hirnfick
 
-<dl>
-<dt><a href="#BracketMismatchError">BracketMismatchError</a></dt>
-<dd></dd>
-<dt><a href="#WrongInputTypeError">WrongInputTypeError</a></dt>
-<dd></dd>
-</dl>
+# hirnfick
 
-## Functions
+## Table of contents
 
-<dl>
-<dt><a href="#transpileToC">transpileToC(source, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to C.</p>
-</dd>
-<dt><a href="#transpileToCpp">transpileToCpp(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to C++.</p>
-</dd>
-<dt><a href="#transpileToJsCli">transpileToJsCli(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to JavaScript (CLI).</p>
-</dd>
-<dt><a href="#transpileToJsWeb">transpileToJsWeb(source, useDynamicMemory, funcName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to JavaScript (Web).</p>
-</dd>
-<dt><a href="#transpileToKotlin">transpileToKotlin(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to Kotlin.</p>
-</dd>
-<dt><a href="#transpileToPascal">transpileToPascal(source, programName, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to Pascal.</p>
-</dd>
-<dt><a href="#transpileToPython">transpileToPython(source, useDynamicMemory)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to a Python.</p>
-</dd>
-<dt><a href="#transpileToQBasic">transpileToQBasic(source, useDynamicMemory, indentSize, indentChar)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts a Brainfuck program to QBasic.</p>
-</dd>
-<dt><a href="#isValidProgram">isValidProgram(source)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Validates a Brainfuck program by looking for unmatched loop starts/ends.</p>
-</dd>
-</dl>
+### Classes
 
-<a name="BracketMismatchError"></a>
+- [BracketMismatchError](classes/BracketMismatchError.md)
 
-## BracketMismatchError
-**Kind**: global class  
-<a name="new_BracketMismatchError_new"></a>
+### Compilation Functions
 
-### new BracketMismatchError()
-BracketMismatch Error constructor.
+- [compileToC](API.md#compiletoc)
+- [compileToCpp](API.md#compiletocpp)
+- [compileToJsBase](API.md#compiletojsbase)
+- [compileToJsCli](API.md#compiletojscli)
+- [compileToJsWeb](API.md#compiletojsweb)
+- [compileToKotlin](API.md#compiletokotlin)
+- [compileToPascal](API.md#compiletopascal)
+- [compileToPython](API.md#compiletopython)
+- [compileToQBasic](API.md#compiletoqbasic)
 
-<a name="WrongInputTypeError"></a>
+### Validation Functions
 
-## WrongInputTypeError
-**Kind**: global class  
-<a name="new_WrongInputTypeError_new"></a>
+- [isValidProgram](API.md#isvalidprogram)
 
-### new WrongInputTypeError(message)
-WrongInputType Error constructor.
+## Compilation Functions
 
+### compileToC
 
-| Param | Type |
-| --- | --- |
-| message | <code>string</code> | 
+▸ **compileToC**(`source`, `indentSize?`, `indentChar?`): `string`
 
-<a name="transpileToC"></a>
-
-## transpileToC(source, indentSize, indentChar) ⇒ <code>string</code>
 Converts a Brainfuck program to C.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated C code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `indentSize` | `number` | `4` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToCpp"></a>
+#### Returns
 
-## transpileToCpp(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated C code.
+
+#### Defined in
+
+[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/C.ts#L15)
+
+___
+
+### compileToCpp
+
+▸ **compileToCpp**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to C++.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated C++ code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
-| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
+| `indentSize` | `number` | `4` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToJsCli"></a>
+#### Returns
 
-## transpileToJsCli(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated C++ code.
+
+#### Defined in
+
+[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/CPP.ts#L16)
+
+___
+
+### compileToJsBase
+
+▸ **compileToJsBase**(`source`, `isMemoryDynamic`, `enableUserInput`, `indentSize`, `indentChar`): `Object`
+
+Converts a Brainfuck program to JavaScript.
+
+**`Description`**
+
+This function is used by [compileToJsWeb](API.md#compiletojsweb) and [compileToJsCli](API.md#compiletojscli) to
+generate their output. You can use it to write functions that generate output for other
+JavaScript-based platforms.
+
+**`Throws`**
+
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `string` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | Enable dynamic memory array. |
+| `enableUserInput` | `boolean` | Enable user input handling. |
+| `indentSize` | `number` | Indentation size. |
+| `indentChar` | `string` | Indentation character. |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `declaration` | `string`[] |
+| `definition` | `string`[] |
+
+#### Defined in
+
+[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptBase.ts#L20)
+
+___
+
+### compileToJsCli
+
+▸ **compileToJsCli**(`source`, `isMemoryDynamic?`, `mainFunctionName?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to JavaScript (CLI).
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated JavaScript code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
+| `mainFunctionName` | `string` | `'main'` | Main function name. |
+| `indentSize` | `number` | `2` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToJsWeb"></a>
+#### Returns
 
-## transpileToJsWeb(source, useDynamicMemory, funcName, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated JavaScript code.
+
+#### Defined in
+
+[src/compilers/JavaScriptCLI.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptCLI.ts#L15)
+
+___
+
+### compileToJsWeb
+
+▸ **compileToJsWeb**(`source`, `isMemoryDynamic?`, `mainFunctionName?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to JavaScript (Web).
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated JavaScript function source.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
-| funcName | <code>string</code> | <code>&quot;main&quot;</code> | Output function name. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
+| `mainFunctionName` | `string` | `'main'` | Output function name. |
+| `indentSize` | `number` | `2` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToKotlin"></a>
+#### Returns
 
-## transpileToKotlin(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated JavaScript function source.
+
+#### Defined in
+
+[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptWeb.ts#L15)
+
+___
+
+### compileToKotlin
+
+▸ **compileToKotlin**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to Kotlin.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated Kotlin code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
-| indentSize | <code>number</code> | <code>4</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
+| `indentSize` | `number` | `4` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToPascal"></a>
+#### Returns
 
-## transpileToPascal(source, programName, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated Kotlin code.
+
+#### Defined in
+
+[src/compilers/Kotlin.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Kotlin.ts#L16)
+
+___
+
+### compileToPascal
+
+▸ **compileToPascal**(`source`, `programName?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to Pascal.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated Pascal code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| programName | <code>string</code> | <code>&quot;Hirnfick&quot;</code> | Name of the generate program (i.e. 'program programName;'). |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `programName` | `string` | `'Hirnfick'` | Name of the generate program (i.e. 'program programName;'). |
+| `indentSize` | `number` | `2` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="transpileToPython"></a>
+#### Returns
 
-## transpileToPython(source, useDynamicMemory) ⇒ <code>string</code>
+`string`
+
+Generated Pascal code.
+
+#### Defined in
+
+[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Pascal.ts#L16)
+
+___
+
+### compileToPython
+
+▸ **compileToPython**(`source`, `isMemoryDynamic?`): `string`
+
 Converts a Brainfuck program to a Python.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated Python code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>true</code> | Enable dynamic memory array. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
 
-<a name="transpileToQBasic"></a>
+#### Returns
 
-## transpileToQBasic(source, useDynamicMemory, indentSize, indentChar) ⇒ <code>string</code>
+`string`
+
+Generated Python code.
+
+#### Defined in
+
+[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Python.ts#L14)
+
+___
+
+### compileToQBasic
+
+▸ **compileToQBasic**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
+
 Converts a Brainfuck program to QBasic.
 
-**Kind**: global function  
-**Returns**: <code>string</code> - Generated QBasic code.  
-**Throws**:
+**`Throws`**
 
-- [<code>WrongInputTypeError</code>](#WrongInputTypeError) Input must be a string.
-- [<code>BracketMismatchError</code>](#BracketMismatchError) Loop starts must have matching loop ends and vice versa.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
+#### Parameters
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| source | <code>string</code> |  | Brainfuck source to convert. |
-| useDynamicMemory | <code>boolean</code> | <code>false</code> | Enable dynamic memory array. |
-| indentSize | <code>number</code> | <code>2</code> | Indentation size. |
-| indentChar | <code>string</code> | <code>&quot; &quot;</code> | Indentation character. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `false` | Enable dynamic memory array. |
+| `indentSize` | `number` | `2` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
 
-<a name="isValidProgram"></a>
+#### Returns
 
-## isValidProgram(source) ⇒ <code>boolean</code>
+`string`
+
+Generated QBasic code.
+
+#### Defined in
+
+[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/QBasic.ts#L16)
+
+___
+
+## Validation Functions
+
+### isValidProgram
+
+▸ **isValidProgram**(`source`): `boolean`
+
 Validates a Brainfuck program by looking for unmatched loop starts/ends.
 
-**Kind**: global function  
-**Returns**: <code>boolean</code> - True if the program is valid, false if it's not.  
+#### Parameters
 
-| Param | Type | Description |
-| --- | --- | --- |
-| source | <code>string</code> | Brainfuck source-code to validate. |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `string` | Brainfuck source-code to validate. |
 
+#### Returns
+
+`boolean`
+
+True if the program is valid, false if it's not.
+
+#### Defined in
+
+[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/utils/isValidProgram.ts#L7)

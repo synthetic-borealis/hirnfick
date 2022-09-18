@@ -3,8 +3,8 @@ name: Unit Tests
 on:
   push:
     paths:
-      - 'lib/**/*.js'
-      - '__tests__/**/*.js'
+      - 'src/**/*.ts'
+      - '__tests__/**/*.ts'
       - 'package.json'
       - '.github/workflows/test.yml'
     branches: [ main, develop ]

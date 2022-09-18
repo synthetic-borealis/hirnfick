@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "es2016",
+    "moduleDetection": "auto",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./lib",
+    "newLine": "lf",
+    "preserveConstEnums": true,
+    "declarationDir": "./types",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "jest.config.ts",
+    "__tests__",
+    "node_modules",
+    ".idea",
+    "scripts",
+    "types"
+  ]
+}

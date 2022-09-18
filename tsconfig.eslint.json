@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    "target": "es2016",
+    "moduleDetection": "auto",
+    "module": "commonjs",
+    "rootDirs": ["./src", "./__tests__", "./scripts"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./lib",
+    "newLine": "lf",
+    "preserveConstEnums": true,
+    "declarationDir": "./types",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node"
+  },
+  "exclude": [
+    "types"
+  ]
+}
