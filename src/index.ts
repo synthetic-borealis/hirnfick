@@ -4,7 +4,8 @@ import BracketMismatchError from './errors/bracketMismatch';
 // Validation & Utilities
 import isValidProgram from './utils/isValidProgram';
 
-// Transpilers
+// Compilation
+import compileToJsBase from './compilers/JavaScriptBase';
 import compileToJsWeb from './compilers/JavaScriptWeb';
 import compileToJsCli from './compilers/JavaScriptCLI';
 import compileToPython from './compilers/Python';
@@ -17,6 +18,7 @@ import compileToKotlin from './compilers/Kotlin';
 export {
   BracketMismatchError,
   isValidProgram,
+  compileToJsBase,
   compileToJsWeb,
   compileToJsCli,
   compileToPython,
