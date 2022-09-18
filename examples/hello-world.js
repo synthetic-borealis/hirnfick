@@ -1,11 +1,13 @@
 const hirnfick = require('hirnfick');
 
-const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
+  + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
-} catch (err) {
+}
+catch (err) {
   console.error(`Error: ${err.message}`);
 }

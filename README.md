@@ -76,13 +76,15 @@ Options:
 ```javascript
 const hirnfick = require('hirnfick');
 
-const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
+  + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
-} catch (err) {
+}
+catch (err) {
   console.error(`Error: ${err.message}`);
 }
 ```
@@ -92,13 +94,15 @@ try {
 ```javascript
 import * as hirnfick from 'hirnfick';
 
-const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
+  + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.transpileToJsCli(helloWorldBF);
+  const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
-} catch (err) {
+}
+catch (err) {
   console.error(`Error: ${err.message}`);
 }
 ```
@@ -108,39 +112,38 @@ try {
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/hirnfick@7.0.0/dist/hirnfick.js"></script>
+  </head>
+  <body>
+    <p>
+      <textarea id="output-box" readonly rows="14" cols="24"
+                style="width: 90%;resize: none;"></textarea>
+    </p>
+    <button id="run-button">Run</button>
+    <script>
+      const runButton = document.getElementById('run-button');
+      const outputBox = document.getElementById('output-box');
+      const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
+        + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello Hirnfick</title>
-  <script src="https://unpkg.com/hirnfick@6.0.3/dist/hirnfick.js"></script>
-</head>
+      outputBox.value = '';
+      runButton.addEventListener('click', () => {
+        try {
+          const helloWorldProgram = hirnfick.compileToJsWeb(helloWorldCode);
+          const helloWorld = new Function(`${helloWorldProgram} return main().output;`);
 
-<body>
-<p>
-  <textarea id="output-box" readonly rows="8" style="width: 90%;"></textarea>
-</p>
-<button id="run-button">Run</button>
-
-<script>
-  const runButton = document.getElementById('run-button');
-  const outputBox = document.getElementById('output-box');
-  const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
-
-  outputBox.value = '';
-  runButton.addEventListener('click', () => {
-    try {
-      const helloWorldProgram = hirnfick.transpileToJsWeb(helloWorldCode);
-      const helloWorld = new Function(`${helloWorldProgram} return main().output;`);
-
-      outputBox.value += helloWorld();
-    } catch (err) {
-      outputBox.value += `Error: ${err.message}`;
-    }
-  });
-</script>
-</body>
-
+          outputBox.value += helloWorld();
+        }
+        catch (err) {
+          outputBox.value = `Error: ${err.message}`;
+        }
+      });
+    </script>
+  </body>
 </html>
 ```
