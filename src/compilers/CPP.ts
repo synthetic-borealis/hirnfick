@@ -5,16 +5,17 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to C++.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
- * @param {boolean} useDynamicMemory Enable dynamic memory array.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated C++ code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToCpp(
   source: string,
-  useDynamicMemory = true,
+  isMemoryDynamic = true,
   indentSize = 4,
   indentChar = ' ',
 ): string {
@@ -37,7 +38,7 @@ export default function compileToCpp(
     `${indent}int position = 0;`,
   ];
 
-  if (useDynamicMemory) {
+  if (isMemoryDynamic) {
     outputCodeArray.push(`${indent}std::vector<char> cells { 0 };\n`);
   } else {
     outputCodeArray.push(`${indent}std::vector<char> cells { std::vector<char>(30000) };\n`);
@@ -49,7 +50,7 @@ export default function compileToCpp(
     indent = genIndent(currentDepth + 1, indentSize, indentChar);
     switch (command) {
       case '>':
-        if (useDynamicMemory) {
+        if (isMemoryDynamic) {
           outputCodeArray.push(`${indent}if (position + 1 == cells.size())`);
           outputCodeArray.push(`${indent}{`);
           indent += genIndent(1, indentSize, indentChar);

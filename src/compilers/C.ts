@@ -5,11 +5,12 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to C.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated C code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToC(
   source: string,

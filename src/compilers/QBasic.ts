@@ -5,16 +5,17 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to QBasic.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
- * @param {boolean} useDynamicMemory Enable dynamic memory array.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated QBasic code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToQBasic(
   source: string,
-  useDynamicMemory = false,
+  isMemoryDynamic = false,
   indentSize = 2,
   indentChar = ' ',
 ): string {
@@ -26,7 +27,7 @@ export default function compileToQBasic(
   }
 
   let outputCodeArray;
-  if (useDynamicMemory) {
+  if (isMemoryDynamic) {
     outputCodeArray = [
       '\'$LANG: "qb"',
       '\'$DYNAMIC',
@@ -49,7 +50,7 @@ export default function compileToQBasic(
 
     switch (command) {
       case '>':
-        if (useDynamicMemory) {
+        if (isMemoryDynamic) {
           outputCodeArray.push(`${indent}curPos = curPos + 1`);
           outputCodeArray.push(`${indent}IF curPos > UBOUND(cells) THEN REDIM PRESERVE cells(curPos) AS INTEGER`);
         } else {

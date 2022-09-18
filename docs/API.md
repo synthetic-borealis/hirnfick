@@ -8,7 +8,7 @@ hirnfick
 
 - [BracketMismatchError](classes/BracketMismatchError.md)
 
-### Functions
+### Compilation Functions
 
 - [compileToC](API.md#compiletoc)
 - [compileToCpp](API.md#compiletocpp)
@@ -19,9 +19,12 @@ hirnfick
 - [compileToPascal](API.md#compiletopascal)
 - [compileToPython](API.md#compiletopython)
 - [compileToQBasic](API.md#compiletoqbasic)
+
+### Validation Functions
+
 - [isValidProgram](API.md#isvalidprogram)
 
-## Functions
+## Compilation Functions
 
 ### compileToC
 
@@ -31,7 +34,7 @@ Converts a Brainfuck program to C.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
@@ -49,26 +52,26 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/C.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/C.ts#L14)
+[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/C.ts#L15)
 
 ___
 
 ### compileToCpp
 
-▸ **compileToCpp**(`source`, `useDynamicMemory?`, `indentSize?`, `indentChar?`): `string`
+▸ **compileToCpp**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
 
 Converts a Brainfuck program to C++.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `source` | `string` | `undefined` | Brainfuck source to convert. |
-| `useDynamicMemory` | `boolean` | `true` | Enable dynamic memory array. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
 | `indentSize` | `number` | `4` | Indentation size. |
 | `indentChar` | `string` | `' '` | Indentation character. |
 
@@ -80,7 +83,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/CPP.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/CPP.ts#L15)
+[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/CPP.ts#L16)
 
 ___
 
@@ -96,13 +99,17 @@ This function is used by [compileToJsWeb](API.md#compiletojsweb) and [compileToJ
 generate their output. You can use it to write functions that generate output for other
 JavaScript-based platforms.
 
+**`Throws`**
+
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
+
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `source` | `string` | Brainfuck source to convert. |
 | `isMemoryDynamic` | `boolean` | Enable dynamic memory array. |
-| `enableUserInput` | `boolean` |  |
+| `enableUserInput` | `boolean` | Enable user input handling. |
 | `indentSize` | `number` | Indentation size. |
 | `indentChar` | `string` | Indentation character. |
 
@@ -117,7 +124,7 @@ JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/JavaScriptBase.ts:18](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/JavaScriptBase.ts#L18)
+[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptBase.ts#L20)
 
 ___
 
@@ -129,7 +136,7 @@ Converts a Brainfuck program to JavaScript (CLI).
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
@@ -149,7 +156,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptCLI.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/JavaScriptCLI.ts#L14)
+[src/compilers/JavaScriptCLI.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptCLI.ts#L15)
 
 ___
 
@@ -161,7 +168,7 @@ Converts a Brainfuck program to JavaScript (Web).
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
@@ -181,26 +188,26 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/JavaScriptWeb.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/JavaScriptWeb.ts#L14)
+[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptWeb.ts#L15)
 
 ___
 
 ### compileToKotlin
 
-▸ **compileToKotlin**(`source`, `useDynamicMemory?`, `indentSize?`, `indentChar?`): `string`
+▸ **compileToKotlin**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
 
 Converts a Brainfuck program to Kotlin.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `source` | `string` | `undefined` | Brainfuck source to convert. |
-| `useDynamicMemory` | `boolean` | `true` | Enable dynamic memory array. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
 | `indentSize` | `number` | `4` | Indentation size. |
 | `indentChar` | `string` | `' '` | Indentation character. |
 
@@ -212,7 +219,7 @@ Generated Kotlin code.
 
 #### Defined in
 
-[src/compilers/Kotlin.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/Kotlin.ts#L15)
+[src/compilers/Kotlin.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Kotlin.ts#L16)
 
 ___
 
@@ -224,7 +231,7 @@ Converts a Brainfuck program to Pascal.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
@@ -243,26 +250,26 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/Pascal.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/Pascal.ts#L15)
+[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Pascal.ts#L16)
 
 ___
 
 ### compileToPython
 
-▸ **compileToPython**(`source`, `useDynamicMemory?`): `string`
+▸ **compileToPython**(`source`, `isMemoryDynamic?`): `string`
 
 Converts a Brainfuck program to a Python.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `source` | `string` | `undefined` | Brainfuck source to convert. |
-| `useDynamicMemory` | `boolean` | `true` | Enable dynamic memory array. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
 
 #### Returns
 
@@ -272,26 +279,26 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/Python.ts:13](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/Python.ts#L13)
+[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Python.ts#L14)
 
 ___
 
 ### compileToQBasic
 
-▸ **compileToQBasic**(`source`, `useDynamicMemory?`, `indentSize?`, `indentChar?`): `string`
+▸ **compileToQBasic**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
 
 Converts a Brainfuck program to QBasic.
 
 **`Throws`**
 
-if mismatching brackets are detected.
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `source` | `string` | `undefined` | Brainfuck source to convert. |
-| `useDynamicMemory` | `boolean` | `false` | Enable dynamic memory array. |
+| `isMemoryDynamic` | `boolean` | `false` | Enable dynamic memory array. |
 | `indentSize` | `number` | `2` | Indentation size. |
 | `indentChar` | `string` | `' '` | Indentation character. |
 
@@ -303,9 +310,11 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/QBasic.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/compilers/QBasic.ts#L15)
+[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/QBasic.ts#L16)
 
 ___
+
+## Validation Functions
 
 ### isValidProgram
 
@@ -327,4 +336,4 @@ True if the program is valid, false if it's not.
 
 #### Defined in
 
-[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick.js/blob/8c6a9c1/src/utils/isValidProgram.ts#L7)
+[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/utils/isValidProgram.ts#L7)

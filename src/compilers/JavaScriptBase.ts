@@ -8,12 +8,14 @@ import cleanCode from '../utils/cleanCode';
  * @description This function is used by {@link compileToJsWeb} and {@link compileToJsCli} to
  * generate their output. You can use it to write functions that generate output for other
  * JavaScript-based platforms.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} isMemoryDynamic Enable dynamic memory array.
- * @param enableUserInput
+ * @param {boolean} enableUserInput Enable user input handling.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {<{ declaration: string[], definition: string[] }>}
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToJsBase(
   source: string,

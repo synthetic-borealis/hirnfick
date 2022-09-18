@@ -3,13 +3,14 @@ import compileToJsBase from './JavaScriptBase';
 
 /**
  * Converts a Brainfuck program to JavaScript (Web).
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @param {string} mainFunctionName Output function name.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated JavaScript function source.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToJsWeb(
   source: string,

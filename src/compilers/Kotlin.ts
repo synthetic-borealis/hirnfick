@@ -5,16 +5,17 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to Kotlin.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
- * @param {boolean} useDynamicMemory Enable dynamic memory array.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated Kotlin code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToKotlin(
   source: string,
-  useDynamicMemory = true,
+  isMemoryDynamic = true,
   indentSize = 4,
   indentChar = ' ',
 ): string {
@@ -33,7 +34,7 @@ export default function compileToKotlin(
     `${indent}var position = 0`,
   );
 
-  if (useDynamicMemory) {
+  if (isMemoryDynamic) {
     outputCodeArray.push(`${indent}val cells = MutableList<Int>(1) { 0 }`);
   } else {
     outputCodeArray.push(`${indent}val cells = Array<Int>(30000, { 0 })`);
@@ -47,7 +48,7 @@ export default function compileToKotlin(
     indent = genIndent(currentDepth + 1, indentSize, indentChar);
     switch (command) {
       case '>':
-        if (useDynamicMemory) {
+        if (isMemoryDynamic) {
           outputCodeArray.push(`${indent}if (position + 1 > cells.lastIndex) {`);
           indent += genIndent(1, indentSize, indentChar);
           outputCodeArray.push(`${indent}cells.add(0)`);

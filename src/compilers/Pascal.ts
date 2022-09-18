@@ -5,12 +5,13 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to Pascal.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {string} programName Name of the generate program (i.e. 'program programName;').
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated Pascal code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToPascal(
   source: string,

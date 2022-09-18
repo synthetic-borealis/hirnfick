@@ -5,14 +5,15 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to a Python.
+ * @category Compilation
  * @param {string} source Brainfuck source to convert.
- * @param {boolean} useDynamicMemory Enable dynamic memory array.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @returns {string} Generated Python code.
- * @throws {BracketMismatchError} if mismatching brackets are detected.
+ * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToPython(
   source: string,
-  useDynamicMemory = true,
+  isMemoryDynamic = true,
 ): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
@@ -30,7 +31,7 @@ export default function compileToPython(
     'position = 0',
   ];
 
-  if (useDynamicMemory) {
+  if (isMemoryDynamic) {
     outputCodeArray.push('cells = [0]');
     outputCodeArray.push('');
   } else {
@@ -45,7 +46,7 @@ export default function compileToPython(
 
     switch (command) {
       case '>':
-        if (useDynamicMemory) {
+        if (isMemoryDynamic) {
           outputCodeArray.push(`${indent}if position + 1 == len(cells):`);
           outputCodeArray.push(`${indent}${genIndent(1, indentSize, indentChar)}cells.append(0)`);
           outputCodeArray.push(`${indent}`);

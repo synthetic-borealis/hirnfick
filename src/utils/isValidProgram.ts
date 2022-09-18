@@ -1,6 +1,6 @@
 /**
  * Validates a Brainfuck program by looking for unmatched loop starts/ends.
- *
+ * @category Validation
  * @param {string} source Brainfuck source-code to validate.
  * @returns {boolean} True if the program is valid, false if it's not.
  */
