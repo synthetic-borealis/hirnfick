@@ -3,7 +3,7 @@ import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
 
-import { BracketMismatchError, transpileToKotlin } from '../src';
+import { BracketMismatchError, compileToKotlin } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -33,18 +33,18 @@ function checkGeneratedCode(codeToCheck: string) {
 describe('Kotlin transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToKotlin(bracketMismatchCode))
+      expect(() => compileToKotlin(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(transpileToKotlin(helloWorldCode));
+    checkGeneratedCode(compileToKotlin(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(transpileToKotlin(helloWorldCode, false));
+    checkGeneratedCode(compileToKotlin(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
-    beforeAll(() => fsPromises.writeFile(sourceFile, transpileToKotlin(userInputCode)));
+    beforeAll(() => fsPromises.writeFile(sourceFile, compileToKotlin(userInputCode)));
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
       fsPromises.unlink(jarFile),

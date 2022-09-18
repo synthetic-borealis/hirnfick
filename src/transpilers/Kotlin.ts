@@ -12,7 +12,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated Kotlin code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToKotlin(
+export default function compileToKotlin(
   source: string,
   useDynamicMemory = true,
   indentSize = 4,

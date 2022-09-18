@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, transpileToPascal } from '../src';
+import { BracketMismatchError, compileToPascal } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -20,12 +20,12 @@ const commandToRun = process.platform === 'win32' ? executableFile : `./${execut
 describe('Pascal transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToPascal(bracketMismatchCode))
+      expect(() => compileToPascal(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation', () => {
-    const outputCode = transpileToPascal(helloWorldCode, 'Test');
+    const outputCode = compileToPascal(helloWorldCode, 'Test');
     beforeAll(() => fsPromises.writeFile(sourceFile, outputCode));
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
@@ -51,7 +51,7 @@ describe('Pascal transpiler', () => {
       child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
-      const outputCode = transpileToPascal(userInputCode, 'Test');
+      const outputCode = compileToPascal(userInputCode, 'Test');
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => Promise.all([

@@ -12,7 +12,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated JavaScript code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToJsCli(
+export default function compileToJsCli(
   source: string,
   useDynamicMemory = true,
   indentSize = 2,

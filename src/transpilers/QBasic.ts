@@ -12,7 +12,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated QBasic code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToQBasic(
+export default function compileToQBasic(
   source: string,
   useDynamicMemory = false,
   indentSize = 2,

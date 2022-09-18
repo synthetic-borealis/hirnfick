@@ -10,7 +10,10 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated Python code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToPython(source: string, useDynamicMemory = true): string {
+export default function compileToPython(
+  source: string,
+  useDynamicMemory = true,
+): string {
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 

@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, transpileToCpp } from '../src';
+import { BracketMismatchError, compileToCpp } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -36,15 +36,15 @@ function checkGeneratedCode(codeToCheck: string) {
 describe('C++ transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToCpp(bracketMismatchCode))
+      expect(() => compileToCpp(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(transpileToCpp(helloWorldCode));
+    checkGeneratedCode(compileToCpp(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(transpileToCpp(helloWorldCode, false));
+    checkGeneratedCode(compileToCpp(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
     const inputChar = 'a';
@@ -58,7 +58,7 @@ describe('C++ transpiler', () => {
       child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
-      const outputCode = transpileToCpp(userInputCode);
+      const outputCode = compileToCpp(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     // noinspection DuplicatedCode

@@ -12,7 +12,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated C++ code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToCpp(
+export default function compileToCpp(
   source: string,
   useDynamicMemory = true,
   indentSize = 4,

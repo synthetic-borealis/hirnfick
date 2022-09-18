@@ -6,25 +6,25 @@ import WrongInputTypeError from './errors/wrongInputType';
 import isValidProgram from './utils/isValidProgram';
 
 // Transpilers
-import transpileToJsWeb from './transpilers/JavaScriptWeb';
-import transpileToJsCli from './transpilers/JavaScriptCLI';
-import transpileToPython from './transpilers/Python';
-import transpileToC from './transpilers/C';
-import transpileToCpp from './transpilers/CPP';
-import transpileToQBasic from './transpilers/QBasic';
-import transpileToPascal from './transpilers/Pascal';
-import transpileToKotlin from './transpilers/Kotlin';
+import compileToJsWeb from './transpilers/JavaScriptWeb';
+import compileToJsCli from './transpilers/JavaScriptCLI';
+import compileToPython from './transpilers/Python';
+import compileToC from './transpilers/C';
+import compileToCpp from './transpilers/CPP';
+import compileToQBasic from './transpilers/QBasic';
+import compileToPascal from './transpilers/Pascal';
+import compileToKotlin from './transpilers/Kotlin';
 
 export {
   BracketMismatchError,
   WrongInputTypeError,
   isValidProgram,
-  transpileToJsWeb,
-  transpileToJsCli,
-  transpileToPython,
-  transpileToC,
-  transpileToCpp,
-  transpileToQBasic,
-  transpileToPascal,
-  transpileToKotlin,
+  compileToJsWeb,
+  compileToJsCli,
+  compileToPython,
+  compileToC,
+  compileToCpp,
+  compileToQBasic,
+  compileToPascal,
+  compileToKotlin,
 };

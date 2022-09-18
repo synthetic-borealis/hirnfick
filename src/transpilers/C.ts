@@ -11,7 +11,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated C code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToC(
+export default function compileToC(
   source: string,
   indentSize = 4,
   indentChar = ' ',

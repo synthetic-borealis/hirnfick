@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, transpileToC } from '../src';
+import { BracketMismatchError, compileToC } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -19,13 +19,13 @@ const commandToRun = process.platform === 'win32' ? executableFile : `./${execut
 describe('C transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToC(bracketMismatchCode))
+      expect(() => compileToC(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation', () => {
     beforeAll(() => {
-      const outputCode = transpileToC(helloWorldCode);
+      const outputCode = compileToC(helloWorldCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => Promise.all([
@@ -54,7 +54,7 @@ describe('C transpiler', () => {
       child.stdin?.write(`${inputChar}\n`);
     });
     beforeAll(() => {
-      const outputCode = transpileToC(userInputCode);
+      const outputCode = compileToC(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     // noinspection DuplicatedCode

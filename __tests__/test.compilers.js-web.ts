@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { BracketMismatchError, transpileToJsWeb } from '../src';
+import { BracketMismatchError, compileToJsWeb } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
@@ -23,14 +23,14 @@ function checkGeneratedCode(codeToCheck: string) {
 describe('JavaScript (Web) transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToJsWeb(bracketMismatchCode))
+      expect(() => compileToJsWeb(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(transpileToJsWeb(helloWorldCode));
+    checkGeneratedCode(compileToJsWeb(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(transpileToJsWeb(helloWorldCode, false));
+    checkGeneratedCode(compileToJsWeb(helloWorldCode, false));
   });
 });

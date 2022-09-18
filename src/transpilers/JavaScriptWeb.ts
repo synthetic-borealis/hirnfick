@@ -13,7 +13,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated JavaScript function source.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToJsWeb(
+export default function compileToJsWeb(
   source: string,
   useDynamicMemory = true,
   funcName = 'main',

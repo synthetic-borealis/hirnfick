@@ -1,7 +1,7 @@
 import { PythonShell } from 'python-shell';
 import fsPromises from 'fs/promises';
 import fs from 'fs';
-import { BracketMismatchError, transpileToPython } from '../src';
+import { BracketMismatchError, compileToPython } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
@@ -28,19 +28,19 @@ function checkGeneratedCode(codeToCheck: string) {
 describe('Python transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => transpileToPython(bracketMismatchCode))
+      expect(() => compileToPython(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(transpileToPython(helloWorldCode));
+    checkGeneratedCode(compileToPython(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(transpileToPython(helloWorldCode, false));
+    checkGeneratedCode(compileToPython(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
-      const outputCode = transpileToPython(userInputCode);
+      const outputCode = compileToPython(userInputCode);
       return fsPromises.writeFile(pyFile, outputCode);
     });
     afterAll(() => fsPromises.unlink(pyFile));

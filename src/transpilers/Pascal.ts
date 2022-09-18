@@ -12,7 +12,7 @@ import cleanCode from '../utils/cleanCode';
  * @returns {string} Generated Pascal code.
  * @throws {BracketMismatchError} if mismatching brackets are detected.
  */
-export default function transpileToPascal(
+export default function compileToPascal(
   source: string,
   programName = 'Hirnfick',
   indentSize = 2,
