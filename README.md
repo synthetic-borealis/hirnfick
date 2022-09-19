@@ -39,7 +39,7 @@ Options:
 ### Library
 
 - Use ```compileTo[VARIANT]()``` where ```[VARIANT]``` is the output language/variant (e.g. ```compileToJsWeb()```).
-- Transpilation to JavaScript generates a function that returns an object containing two members:
+- ```compileToJsWeb()``` generates a function that returns an object with two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
 - QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile.
@@ -71,7 +71,7 @@ Options:
 
 ## Examples
 
-### Node.js/CommonJS
+### CommonJS
 
 ```javascript
 const hirnfick = require('hirnfick');
@@ -89,7 +89,7 @@ catch (err) {
 }
 ```
 
-### ES6
+### ESM
 
 ```javascript
 import * as hirnfick from 'hirnfick';
