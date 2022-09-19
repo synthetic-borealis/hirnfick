@@ -71,7 +71,7 @@ Options:
 
 ## Examples
 
-### Node.js/CommonJS
+### CommonJS
 
 ```javascript
 const hirnfick = require('hirnfick');
@@ -89,7 +89,7 @@ catch (err) {
 }
 ```
 
-### ES6
+### ESM
 
 ```javascript
 import * as hirnfick from 'hirnfick';
