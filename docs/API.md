@@ -4,6 +4,10 @@ hirnfick
 
 ## Table of contents
 
+### References
+
+- [compileToJsCli](API.md#compiletojscli)
+
 ### Classes
 
 - [BracketMismatchError](classes/BracketMismatchError.md)
@@ -13,7 +17,8 @@ hirnfick
 - [compileToC](API.md#compiletoc)
 - [compileToCpp](API.md#compiletocpp)
 - [compileToJsBase](API.md#compiletojsbase)
-- [compileToJsCli](API.md#compiletojscli)
+- [compileToJsDeno](API.md#compiletojsdeno)
+- [compileToJsNode](API.md#compiletojsnode)
 - [compileToJsWeb](API.md#compiletojsweb)
 - [compileToKotlin](API.md#compiletokotlin)
 - [compileToPascal](API.md#compiletopascal)
@@ -23,6 +28,12 @@ hirnfick
 ### Validation Functions
 
 - [isValidProgram](API.md#isvalidprogram)
+
+## References
+
+### compileToJsCli
+
+Renames and re-exports [compileToJsNode](API.md#compiletojsnode)
 
 ## Compilation Functions
 
@@ -52,7 +63,7 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/C.ts#L15)
+[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/C.ts#L15)
 
 ___
 
@@ -83,7 +94,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/CPP.ts#L16)
+[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/CPP.ts#L16)
 
 ___
 
@@ -124,15 +135,15 @@ JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptBase.ts#L20)
+[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/JavaScriptBase.ts#L20)
 
 ___
 
-### compileToJsCli
+### compileToJsDeno
 
-▸ **compileToJsCli**(`source`, `isMemoryDynamic?`, `mainFunctionName?`, `indentSize?`, `indentChar?`): `string`
+▸ **compileToJsDeno**(`source`, `isMemoryDynamic?`, `mainFunctionName?`, `indentSize?`, `indentChar?`): `string`
 
-Converts a Brainfuck program to JavaScript (CLI).
+Converts a Brainfuck program to JavaScript (Deno).
 
 **`Throws`**
 
@@ -156,7 +167,39 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptCLI.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptCLI.ts#L15)
+[src/compilers/JavaScriptDeno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/JavaScriptDeno.ts#L15)
+
+___
+
+### compileToJsNode
+
+▸ **compileToJsNode**(`source`, `isMemoryDynamic?`, `mainFunctionName?`, `indentSize?`, `indentChar?`): `string`
+
+Converts a Brainfuck program to JavaScript (Node.js).
+
+**`Throws`**
+
+[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
+| `mainFunctionName` | `string` | `'main'` | Main function name. |
+| `indentSize` | `number` | `2` | Indentation size. |
+| `indentChar` | `string` | `' '` | Indentation character. |
+
+#### Returns
+
+`string`
+
+Generated JavaScript code.
+
+#### Defined in
+
+[src/compilers/JavaScriptNode.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/JavaScriptNode.ts#L15)
 
 ___
 
@@ -188,7 +231,7 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/JavaScriptWeb.ts#L15)
+[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/JavaScriptWeb.ts#L15)
 
 ___
 
@@ -219,7 +262,7 @@ Generated Kotlin code.
 
 #### Defined in
 
-[src/compilers/Kotlin.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Kotlin.ts#L16)
+[src/compilers/Kotlin.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/Kotlin.ts#L16)
 
 ___
 
@@ -250,7 +293,7 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Pascal.ts#L16)
+[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/Pascal.ts#L16)
 
 ___
 
@@ -279,7 +322,7 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/Python.ts#L14)
+[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/Python.ts#L14)
 
 ___
 
@@ -310,7 +353,7 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/compilers/QBasic.ts#L16)
+[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/compilers/QBasic.ts#L16)
 
 ___
 
@@ -336,4 +379,4 @@ True if the program is valid, false if it's not.
 
 #### Defined in
 
-[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick.js/blob/c52c0c2/src/utils/isValidProgram.ts#L7)
+[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/0c90491/src/utils/isValidProgram.ts#L7)

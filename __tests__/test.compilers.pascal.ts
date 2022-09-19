@@ -17,7 +17,7 @@ const sourceFile = 'test_pas.pas';
 const objectFile = 'test_pas.o';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-describe('Pascal transpiler', () => {
+describe('Compilation to Pascal', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToPascal(bracketMismatchCode))

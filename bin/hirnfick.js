@@ -6,6 +6,8 @@ const packageConfig = require('../package.json');
 
 const supportedLanguages = [
   'js-web',
+  'js-node',
+  'js-deno',
   'js-cli',
   'python',
   'c',
@@ -81,6 +83,12 @@ try {
   switch (argv.lang) {
     case 'js-web':
       outputCode = hirnfick.compileToJsWeb(inputCode, useDynamicMemory);
+      break;
+    case 'js-node':
+      outputCode = hirnfick.compileToJsNode(inputCode, useDynamicMemory);
+      break;
+    case 'js-deno':
+      outputCode = hirnfick.compileToJsDeno(inputCode, useDynamicMemory);
       break;
     case 'js-cli':
       outputCode = hirnfick.compileToJsCli(inputCode, useDynamicMemory);

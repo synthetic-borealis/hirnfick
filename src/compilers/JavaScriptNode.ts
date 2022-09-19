@@ -2,7 +2,7 @@ import genIndent from '../utils/genIndent';
 import compileToJsBase from './JavaScriptBase';
 
 /**
- * Converts a Brainfuck program to JavaScript (CLI).
+ * Converts a Brainfuck program to JavaScript (Node.js).
  * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} isMemoryDynamic Enable dynamic memory array.
@@ -12,7 +12,7 @@ import compileToJsBase from './JavaScriptBase';
  * @returns {string} Generated JavaScript code.
  * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
-export default function compileToJsCli(
+export default function compileToJsNode(
   source: string,
   isMemoryDynamic = true,
   mainFunctionName = 'main',

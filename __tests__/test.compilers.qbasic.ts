@@ -29,7 +29,7 @@ function checkGeneratedCode(codeToCheck: string) {
     }));
 }
 
-describe('QBasic transpiler', () => {
+describe('Compilation to QBasic', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToQBasic(bracketMismatchCode))

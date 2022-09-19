@@ -2,19 +2,18 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, compileToJsCli } from '../src';
+import { compileToJsDeno } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = '>>+++[[<-->]';
 const userInputCode = ',.';
 const sourceFile = 'test_js.js';
 
 function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
-  it('Generates valid & correct code', () => exec(`node ${sourceFile}`)
+  it('Generates valid & correct code', () => exec(`deno run ${sourceFile}`)
     .then(({ stdout }) => {
       expect(stdout.trim())
         .toBe('Hello World!');
@@ -22,34 +21,31 @@ function checkGeneratedCode(codeToCheck: string) {
   afterAll(() => fsPromises.unlink(sourceFile));
 }
 
-describe('JavaScript (cli) transpiler', () => {
-  describe('Error handling', () => {
-    it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => compileToJsCli(bracketMismatchCode))
-        .toThrow(BracketMismatchError);
-    });
-  });
+describe('Compilation to JavaScript (Deno)', () => {
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(compileToJsCli(helloWorldCode));
+    checkGeneratedCode(compileToJsDeno(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(compileToJsCli(helloWorldCode, false));
+    checkGeneratedCode(compileToJsDeno(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
-      const outputCode = compileToJsCli(userInputCode);
+      const outputCode = compileToJsDeno(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => fsPromises.unlink(sourceFile));
     it('Generates valid & correct code', () => {
       const inputChar = 'a';
       const wrapper = () => new Promise((resolve, reject) => {
-        const child = childProcess.exec(`node ${sourceFile}`, (error, stdout) => {
-          if (error) {
-            reject(error);
-          }
-          resolve(stdout);
-        });
+        const child = childProcess.exec(
+          `deno run ${sourceFile}`,
+          (error, stdout) => {
+            if (error) {
+              reject(error);
+            }
+            resolve(stdout);
+          },
+        );
         child.stdin?.write(`${inputChar}\n`);
       });
       return wrapper()
