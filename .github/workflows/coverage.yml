@@ -23,6 +23,10 @@ jobs:
         uses: mskelton/setup-yarn@v1
         with:
           node-version: 'v16.x'
+      - name: Set up Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
       - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
