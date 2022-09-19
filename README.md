@@ -33,7 +33,7 @@ C++ style single-line comments (i.e. ```// I'm a comment```) are supported.
 Options:
 
 - `--lang [language]` - Output language (default=js-cli).
-  - Supported options: js-web, js-cli, python, c, cpp, qbasic, pascal, kotlin.
+  - Supported options: js-web, js-node, js-cli (an alias of js-node), js-deno, python, c, cpp, qbasic, pascal, kotlin.
 - `--memory-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library

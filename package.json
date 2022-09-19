@@ -42,7 +42,7 @@
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
-    "postpublish": "yarn clean && yarn build",
+    "postpublish": "yarn clean",
     "test": "jest",
     "coverage": "jest --coverage"
   },
