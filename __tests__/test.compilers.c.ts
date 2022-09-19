@@ -16,7 +16,7 @@ const executableFile = `test_c${exeExtension}`;
 const sourceFile = 'test_c.c';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
-describe('C transpiler', () => {
+describe('Compilation to C', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToC(bracketMismatchCode))

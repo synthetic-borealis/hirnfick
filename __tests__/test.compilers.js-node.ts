@@ -21,7 +21,7 @@ function checkGeneratedCode(codeToCheck: string) {
   afterAll(() => fsPromises.unlink(sourceFile));
 }
 
-describe('JavaScript (Node.js) transpiler', () => {
+describe('Compilation to JavaScript (Node.js)', () => {
   describe('Code generation (dynamic array)', () => {
     checkGeneratedCode(compileToJsNode(helloWorldCode));
   });

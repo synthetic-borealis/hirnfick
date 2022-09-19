@@ -58,16 +58,17 @@ Options:
 
 ### Table 1: Supported Commands by Output Language
 
-| Language         |   \>    |   \<    |    +    |    -    |    .    |    ,    |   \[    |   \]    |  Memory Size   |
-|:-----------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:--------------:|
-| JavaScript (Web) | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | 30,000/Dynamic |
-| JavaScript (CLI) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
-| Python           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
-| C                | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
-| C++              | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
-| QBasic           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
-| Pascal           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
-| Kotlin           | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Language             |   \>    |   \<    |    +    |    -    |    .    |    ,    |   \[    |   \]    |  Memory Size   |
+|:---------------------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:--------------:|
+| JavaScript (Web)     | &check; | &check; | &check; | &check; | &check; | &cross; | &check; | &check; | 30,000/Dynamic |
+| JavaScript (Node.js) | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| JavaScript (Deno)    | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Python               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| C                    | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
+| C++                  | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| QBasic               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Pascal               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
+| Kotlin               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 
 ## Examples
 
@@ -117,7 +118,7 @@ catch (err) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@7.0.0/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@7.1.0/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>

@@ -33,7 +33,7 @@ function checkGeneratedCode(codeToCheck: string) {
   );
 }
 
-describe('C++ transpiler', () => {
+describe('Compilation to C++', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToCpp(bracketMismatchCode))

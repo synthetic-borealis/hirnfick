@@ -30,7 +30,7 @@ function checkGeneratedCode(codeToCheck: string) {
     }), 35000);
 }
 
-describe('Kotlin transpiler', () => {
+describe('Compilation to Kotlin', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToKotlin(bracketMismatchCode))

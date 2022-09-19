@@ -19,7 +19,7 @@ function checkGeneratedCode(codeToCheck: string) {
   });
 }
 
-describe('JavaScript (Web) transpiler', () => {
+describe('Compilation to JavaScript (Web)', () => {
   describe('Code generation (dynamic array)', () => {
     checkGeneratedCode(compileToJsWeb(helloWorldCode));
   });

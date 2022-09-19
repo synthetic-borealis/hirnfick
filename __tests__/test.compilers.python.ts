@@ -25,7 +25,7 @@ function checkGeneratedCode(codeToCheck: string) {
     }));
 }
 
-describe('Python transpiler', () => {
+describe('Compilation to Python', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(() => compileToPython(bracketMismatchCode))

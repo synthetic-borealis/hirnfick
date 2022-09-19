@@ -21,7 +21,7 @@ function checkGeneratedCode(codeToCheck: string) {
   afterAll(() => fsPromises.unlink(sourceFile));
 }
 
-describe('JavaScript (Deno) compiler', () => {
+describe('Compilation to JavaScript (Deno)', () => {
   describe('Code generation (dynamic array)', () => {
     checkGeneratedCode(compileToJsDeno(helloWorldCode));
   });

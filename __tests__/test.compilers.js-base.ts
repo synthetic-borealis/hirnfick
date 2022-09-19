@@ -2,7 +2,7 @@ import { BracketMismatchError, compileToJsBase } from '../src';
 
 const bracketMismatchCode = '>>+++[[<-->]';
 
-describe('JavaScript base compiler', () => {
+describe('Compilation to JavaScript (Base)', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
       expect(
