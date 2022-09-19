@@ -1,9 +1,8 @@
 import fs from 'fs';
-import { BracketMismatchError, compileToJsWeb } from '../src';
+import { compileToJsWeb } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = '>>+++[[<-->]';
 
 function checkGeneratedCode(codeToCheck: string) {
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
@@ -21,12 +20,6 @@ function checkGeneratedCode(codeToCheck: string) {
 }
 
 describe('JavaScript (Web) transpiler', () => {
-  describe('Error handling', () => {
-    it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => compileToJsWeb(bracketMismatchCode))
-        .toThrow(BracketMismatchError);
-    });
-  });
   describe('Code generation (dynamic array)', () => {
     checkGeneratedCode(compileToJsWeb(helloWorldCode));
   });
