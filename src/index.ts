@@ -8,6 +8,7 @@ import isValidProgram from './utils/isValidProgram';
 import compileToJsBase from './compilers/JavaScriptBase';
 import compileToJsWeb from './compilers/JavaScriptWeb';
 import compileToJsNode from './compilers/JavaScriptNode';
+import compileToJsDeno from './compilers/JavaScriptDeno';
 import compileToPython from './compilers/Python';
 import compileToC from './compilers/C';
 import compileToCpp from './compilers/CPP';
@@ -21,6 +22,7 @@ export {
   compileToJsBase,
   compileToJsWeb,
   compileToJsNode,
+  compileToJsDeno,
   compileToJsNode as compileToJsCli, // for backward compatibility
   compileToPython,
   compileToC,
