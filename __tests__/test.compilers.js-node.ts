@@ -2,7 +2,7 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, compileToJsCli } from '../src';
+import { BracketMismatchError, compileToJsNode } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -22,22 +22,22 @@ function checkGeneratedCode(codeToCheck: string) {
   afterAll(() => fsPromises.unlink(sourceFile));
 }
 
-describe('JavaScript (cli) transpiler', () => {
+describe('JavaScript (Node.js) transpiler', () => {
   describe('Error handling', () => {
     it('Throws BracketMismatchError when there\'s a bracket mismatch', () => {
-      expect(() => compileToJsCli(bracketMismatchCode))
+      expect(() => compileToJsNode(bracketMismatchCode))
         .toThrow(BracketMismatchError);
     });
   });
   describe('Code generation (dynamic array)', () => {
-    checkGeneratedCode(compileToJsCli(helloWorldCode));
+    checkGeneratedCode(compileToJsNode(helloWorldCode));
   });
   describe('Code generation (fixed array)', () => {
-    checkGeneratedCode(compileToJsCli(helloWorldCode, false));
+    checkGeneratedCode(compileToJsNode(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
     beforeAll(() => {
-      const outputCode = compileToJsCli(userInputCode);
+      const outputCode = compileToJsNode(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => fsPromises.unlink(sourceFile));
