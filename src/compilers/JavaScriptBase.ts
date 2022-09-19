@@ -38,7 +38,7 @@ export default function compileToJsBase(
   if (isMemoryDynamic) {
     outputDeclarationLines.push('const cells = [0];');
   } else {
-    outputDeclarationLines.push('const cells = Array(30000).fill(0);');
+    outputDeclarationLines.push('const cells = new Uint8Array(30000);');
   }
 
   const outputDefinitionLines: string[] = [];
