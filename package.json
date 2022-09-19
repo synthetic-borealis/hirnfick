@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "A Brainfuck source to source compiler",
   "homepage": "https://synthetic-borealis.github.io/hirnfick/",
   "repository": {
@@ -14,6 +14,8 @@
   },
   "keywords": [
     "brainfuck",
+    "bf",
+    "esolang",
     "language",
     "compiler"
   ],
