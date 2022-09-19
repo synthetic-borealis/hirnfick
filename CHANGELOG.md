@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.0.1
+- 19/09/2022 - Added `compileToJsDeno`.
+
 ## 7.0.0
 
 - 19/09/2022 - Added `compileToJsBase`.
