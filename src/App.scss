@@ -7,7 +7,7 @@
   height: 100vh;
 
   &__subtitle {
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1em;
@@ -15,8 +15,14 @@
     text-align: center;
   }
 
+  &__logo {
+    aspect-ratio: attr(width) / attr(height);
+    margin: 0 0 16px 0;
+    object-position: center;
+  }
+
   &__title {
-    margin: 0 0 64px 0;
+    margin: 0 0 48px 0;
     font-size: 4rem;
     font-weight: 900;
     line-height: 1em;
@@ -34,7 +40,9 @@
   }
 
   &__link-icon {
+    display: block;
     width: 48px;
     height: 48px;
+    margin: 0;
   }
 }
