@@ -9,7 +9,7 @@ const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const userInputCode = ',.';
-const sourceFile = 'test_js.js';
+const sourceFile = 'test_js_node.js';
 
 function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
