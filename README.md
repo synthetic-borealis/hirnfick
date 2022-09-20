@@ -118,7 +118,7 @@ catch (err) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@7.1.0/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@7.1.1/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>
