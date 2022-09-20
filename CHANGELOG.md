@@ -1,10 +1,16 @@
 # Changelog
 
-# 7.1.1
+## 7.1.2
+
+- 21/09/2022 - Fix: prevent potential leak in generated C & C++ programs.
+
+## 7.1.1
+
 - 20/09/2022 - Change cells array type to byte array in Python output.
 - 19/09/2022 - Change array type to Uin8Array for fixed array JavaScript output.
 
 ## 7.0.1
+
 - 19/09/2022 - Added `compileToJsDeno`.
 
 ## 7.0.0
