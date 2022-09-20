@@ -32,7 +32,7 @@ export default function compileToC(
     '',
     'int main()',
     '{',
-    `${indent}char cells[30000] = {0};`,
+    `${indent}unsigned char cells[30000] = {0};`,
     `${indent}int position = 0;`,
     '',
   ];
@@ -84,7 +84,7 @@ export default function compileToC(
         break;
 
       case ',':
-        outputCodeArray.push(`${indent}cells[position] = (char)getchar();`);
+        outputCodeArray.push(`${indent}cells[position] = (unsigned char)getchar();`);
         break;
 
       case '[':

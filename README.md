@@ -1,9 +1,9 @@
 # Hirnfick
 
-[![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick.js)](https://github.com/synthetic-borealis/hirnfick.js/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/synthetic-borealis/hirnfick)](https://github.com/synthetic-borealis/hirnfick/blob/main/LICENSE)
 [![npm version](https://badge.fury.io/js/hirnfick.svg)](https://badge.fury.io/js/hirnfick)
-![Tests](https://github.com/synthetic-borealis/hirnfick.js/actions/workflows/test.yml/badge.svg)
-[![codecov](https://codecov.io/gh/synthetic-borealis/hirnfick.js/branch/main/graph/badge.svg?token=9JF2KN7ZLZ)](https://codecov.io/gh/synthetic-borealis/hirnfick.js)
+![Tests](https://github.com/synthetic-borealis/hirnfick/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/synthetic-borealis/hirnfick/branch/main/graph/badge.svg?token=9JF2KN7ZLZ)](https://codecov.io/gh/synthetic-borealis/hirnfick)
 [![npm downloads](https://img.shields.io/npm/dt/hirnfick)](https://www.npmjs.com/package/hirnfick)
 
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler.
@@ -118,7 +118,7 @@ catch (err) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@7.1.1/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@7.1.2/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>

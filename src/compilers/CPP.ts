@@ -39,9 +39,9 @@ export default function compileToCpp(
   ];
 
   if (isMemoryDynamic) {
-    outputCodeArray.push(`${indent}std::vector<char> cells { 0 };\n`);
+    outputCodeArray.push(`${indent}std::vector<unsigned char> cells { 0 };\n`);
   } else {
-    outputCodeArray.push(`${indent}std::vector<char> cells { std::vector<char>(30000) };\n`);
+    outputCodeArray.push(`${indent}std::vector<unsigned char> cells { std::vector<unsigned char>(30000) };\n`);
   }
 
   let currentDepth = 0;
