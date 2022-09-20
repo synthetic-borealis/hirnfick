@@ -1,5 +1,9 @@
 # Changelog
 
+# 7.1.1
+- 20/09/2022 - Change cells array type to byte array in Python output.
+- 19/09/2022 - Change array type to Uin8Array for fixed array JavaScript output.
+
 ## 7.0.1
 - 19/09/2022 - Added `compileToJsDeno`.
 

@@ -32,10 +32,10 @@ export default function compileToPython(
   ];
 
   if (isMemoryDynamic) {
-    outputCodeArray.push('cells = [0]');
+    outputCodeArray.push('cells = bytearray([0])');
     outputCodeArray.push('');
   } else {
-    outputCodeArray.push('cells = [0] * 30000');
+    outputCodeArray.push('cells = bytearray([0] * 30000)');
     outputCodeArray.push('');
   }
 
