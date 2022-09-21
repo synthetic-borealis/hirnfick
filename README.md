@@ -12,8 +12,8 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler
 
 1. [Installation](#installation)
 2. [Usage](#usage)
-   1. [Compiler](#compiler)
-   2. [Library](#library)
+  1. [Compiler](#compiler)
+  2. [Library](#library)
 3. [Supported Output Languages](#supported-output-languages)
 4. [Examples](#examples)
 
@@ -33,16 +33,19 @@ C++ style single-line comments (i.e. ```// I'm a comment```) are supported.
 Options:
 
 - `--lang [language]` - Output language (default=js-cli).
-  - Supported options: js-web, js-node, js-cli (an alias of js-node), js-deno, python, c, cpp, qbasic, pascal, kotlin.
+  - Supported options: js-web, js-node, js-cli (an alias of js-node), js-deno, python, c, cpp,
+    qbasic, pascal, kotlin, rust.
 - `--memory-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library
 
-- Use ```compileTo[VARIANT]()``` where ```[VARIANT]``` is the output language/variant (e.g. ```compileToJsWeb()```).
+- Use ```compileTo[VARIANT]()``` where ```[VARIANT]``` is the output language/variant (
+  e.g. ```compileToJsWeb()```).
 - ```compileToJsWeb()``` generates a function that returns an object with two members:
   1. ```output``` - The output of the program.
   2. ```cells``` - The array of cells that were used by the program.
-- QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to compile.
+- QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to
+  compile.
 - Single-line C/C++/JS style comments are supported.
 - For more information see the [documentation](docs/API.md).
 
@@ -52,9 +55,11 @@ Options:
 - Python.
 - C.
 - C++.
-- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0, QuickBASIC 4.5 and PDS 7.1).
+- QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0, QuickBASIC 4.5 and
+  PDS 7.1).
 - Pascal (tested with Free Pascal 3.2.2 and Borland Pascal 7.0).
 - Kotlin.
+- Rust.
 
 ### Table 1: Supported Commands by Output Language
 
@@ -69,6 +74,7 @@ Options:
 | QBasic               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | Pascal               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
 | Kotlin               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
+| Rust                 | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
 
 ## Examples
 

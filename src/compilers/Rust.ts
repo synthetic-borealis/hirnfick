@@ -9,7 +9,7 @@ import cleanCode from '../utils/cleanCode';
  * @param {string} source Brainfuck source to convert.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
- * @returns {string} Generated C code.
+ * @returns {string} Generated Rust code.
  * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
 export default function compileToRust(

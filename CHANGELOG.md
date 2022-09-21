@@ -2,7 +2,8 @@
 
 ## 7.2.0
 
-- 21/09/2022 - Add Deno friendly TypeScript file generator.
+- 21/09/2022 - Added `compileToRust`.
+- 21/09/2022 - Added Deno friendly TypeScript file generator.
 
 ## 7.1.2
 
