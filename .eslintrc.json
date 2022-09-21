@@ -7,10 +7,22 @@
     "airbnb-base",
     "airbnb-typescript/base",
     "eslint:recommended",
-    "plugin:jest/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [
+    {
+      "files": "__tests__/*.{ts,tsx,js,jsx}",
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest/style"
+      ]
+    },
+    {
+      "files": "deno/**/*.*",
+      "rules": {
+        "import/extensions": "off"
+      }
+    },
     {
       "files": "scripts/**/*.*",
       "rules": {

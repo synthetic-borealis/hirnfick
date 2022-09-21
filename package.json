@@ -40,13 +40,16 @@
     "docs": "typedoc",
     "build:node": "tsc",
     "build:browser": "ts-node scripts/bundle.ts",
+    "deno:clean": "rimraf deno/",
+    "deno:build": "ts-node scripts/deno.ts",
     "build": "run-p build:*",
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "run-cli": "node bin/hirnfick.js -i assets/bf/hello-world.bf -o hello_world.rs --lang rust"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",
