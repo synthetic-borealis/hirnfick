@@ -43,8 +43,8 @@ export default function compileToRust(
     'use std::io::{Read, stdin, stdout, Write};',
     '',
     'fn main() {',
-    `${indent}let mut arr: [u8; 30000] = [0; 30000];`,
-    `${indent}let mut pos: i32 = 0;`,
+    `${indent}let mut cells: [u8; 30000] = [0; 30000];`,
+    `${indent}let mut pos: usize = 0;`,
     '',
   ];
 
