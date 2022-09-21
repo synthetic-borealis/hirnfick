@@ -16,6 +16,24 @@ import compileToQBasic from './compilers/QBasic.ts';
 import compileToPascal from './compilers/Pascal.ts';
 import compileToKotlin from './compilers/Kotlin.ts';
 
+const compileToJsCli = compileToJsNode; // for backward compatibility
+
+export default {
+  BracketMismatchError,
+  isValidProgram,
+  compileToJsBase,
+  compileToJsWeb,
+  compileToJsNode,
+  compileToJsDeno,
+  compileToJsCli,
+  compileToPython,
+  compileToC,
+  compileToCpp,
+  compileToQBasic,
+  compileToPascal,
+  compileToKotlin,
+};
+
 export {
   BracketMismatchError,
   isValidProgram,
@@ -23,7 +41,7 @@ export {
   compileToJsWeb,
   compileToJsNode,
   compileToJsDeno,
-  compileToJsNode as compileToJsCli, // for backward compatibility
+  compileToJsCli,
   compileToPython,
   compileToC,
   compileToCpp,
