@@ -7,7 +7,6 @@ coverage.lcov
 lib
 dist
 types
-*.d.ts
 *.tgz
 *.tar.gz
 *.exe
@@ -16,7 +15,7 @@ types
 *.cpp
 *.bas
 *.pas
-*.py
+./*.py
 *.kt
 *.java
 *.jar
