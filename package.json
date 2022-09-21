@@ -48,8 +48,7 @@
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
     "postpublish": "yarn clean",
     "test": "jest",
-    "coverage": "jest --coverage",
-    "run-cli": "node bin/hirnfick.js -i assets/bf/hello-world.bf -o hello_world.rs --lang rust"
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",
