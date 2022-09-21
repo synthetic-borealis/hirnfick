@@ -6,7 +6,8 @@
 [![codecov](https://codecov.io/gh/synthetic-borealis/hirnfick/branch/main/graph/badge.svg?token=9JF2KN7ZLZ)](https://codecov.io/gh/synthetic-borealis/hirnfick)
 [![npm downloads](https://img.shields.io/npm/dt/hirnfick)](https://www.npmjs.com/package/hirnfick)
 
-A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler.
+A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler that runs in
+Node.js, Deno and web-browsers.
 
 ## Contents
 
