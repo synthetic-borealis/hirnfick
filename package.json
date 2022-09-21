@@ -40,6 +40,8 @@
     "docs": "typedoc",
     "build:node": "tsc",
     "build:browser": "ts-node scripts/bundle.ts",
+    "deno:clean": "rimraf deno/",
+    "deno:build": "ts-node scripts/deno.ts",
     "build": "run-p build:*",
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
