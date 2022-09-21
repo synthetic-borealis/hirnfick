@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.2.0
+
+- 21/09/2022 - Add Deno friendly TypeScript file generator.
+
 ## 7.1.2
 
 - 21/09/2022 - Fix: prevent potential leak in generated C & C++ programs.
