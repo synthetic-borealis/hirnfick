@@ -12,8 +12,8 @@ A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) source-to-source compiler
 
 1. [Installation](#installation)
 2. [Usage](#usage)
-  1. [Compiler](#compiler)
-  2. [Library](#library)
+1. [Compiler](#compiler)
+2. [Library](#library)
 3. [Supported Output Languages](#supported-output-languages)
 4. [Examples](#examples)
 
@@ -78,7 +78,7 @@ Options:
 
 ## Examples
 
-### CommonJS
+### CommonJS (Node)
 
 ```javascript
 const hirnfick = require('hirnfick');
@@ -90,13 +90,12 @@ try {
   const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
-}
-catch (err) {
+} catch (err) {
   console.error(`Error: ${err.message}`);
 }
 ```
 
-### ESM
+### ESM (Node)
 
 ```javascript
 import * as hirnfick from 'hirnfick';
@@ -108,9 +107,43 @@ try {
   const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
-}
-catch (err) {
+} catch (err) {
   console.error(`Error: ${err.message}`);
+}
+```
+
+### ESM (Deno)
+
+```javascript
+import hirnfick from "https://jspm.dev/hirnfick";
+
+const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
+  + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
+
+try {
+  const helloJs = hirnfick.compileToJsWeb(helloWorldBF);
+  const runHello = new Function(`${helloJs} return main().output.trim();`);
+  console.log(runHello());
+} catch (err) {
+  console.error(`Error: ${err.message}`);
+}
+```
+
+### TypeScript (Deno)
+
+```typescript
+import * as hirnfick from "https://cdn.jsdelivr.net/gh/synthetic-borealis/hirnfick/deno/index.ts";
+
+const helloWorldBF =
+  "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---." +
+  "+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+
+try {
+  const helloJs = hirnfick.compileToJsWeb(helloWorldBF);
+  const runHello = new Function(`${helloJs} return main().output.trim();`);
+  console.log(runHello());
+} catch (err) {
+  console.error(`Error: ${err.message}`)
 }
 ```
 
@@ -124,7 +157,7 @@ catch (err) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@7.1.2/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@7.2.0/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>
@@ -145,8 +178,7 @@ catch (err) {
           const helloWorld = new Function(`${helloWorldProgram} return main().output;`);
 
           outputBox.value += helloWorld();
-        }
-        catch (err) {
+        } catch (err) {
           outputBox.value = `Error: ${err.message}`;
         }
       });
