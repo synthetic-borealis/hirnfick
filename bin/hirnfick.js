@@ -15,6 +15,7 @@ const supportedLanguages = [
   'qbasic',
   'pascal',
   'kotlin',
+  'rust',
 ];
 
 function printWelcome() {
@@ -110,6 +111,9 @@ try {
       break;
     case 'kotlin':
       outputCode = hirnfick.compileToKotlin(inputCode, useDynamicMemory);
+      break;
+    case 'rust':
+      outputCode = hirnfick.compileToRust(inputCode);
       break;
 
     // skip default case
