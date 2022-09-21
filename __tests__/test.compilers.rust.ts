@@ -40,6 +40,7 @@ describe('Compilation to Rust', () => {
           expect(stdout.trim())
             .toBe('Hello World!');
         }),
+      17000,
     );
   });
   describe('Code generation (with user input)', () => {
@@ -68,6 +69,7 @@ describe('Compilation to Rust', () => {
         .then(() => wrapper())
         .then((out) => expect(out)
           .toBe(inputChar)),
+      17000,
     );
   });
 });

@@ -44,6 +44,7 @@ export default function compileToRust(
     '',
     'fn main() {',
     `${indent}let mut cells: [u8; 30000] = [0; 30000];`,
+    `${indent}#[allow(unused_mut)]`,
     `${indent}let mut pos: usize = 0;`,
     '',
   ];
