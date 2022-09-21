@@ -15,6 +15,7 @@ import compileToCpp from './compilers/CPP.ts';
 import compileToQBasic from './compilers/QBasic.ts';
 import compileToPascal from './compilers/Pascal.ts';
 import compileToKotlin from './compilers/Kotlin.ts';
+import compileToRust from './compilers/Rust.ts';
 
 export {
   BracketMismatchError,
@@ -30,4 +31,5 @@ export {
   compileToQBasic,
   compileToPascal,
   compileToKotlin,
+  compileToRust,
 };
