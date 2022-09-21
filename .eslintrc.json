@@ -12,6 +12,12 @@
   ],
   "overrides": [
     {
+      "files": "deno/**/*.*",
+      "rules": {
+        "import/extensions": "off"
+      }
+    },
+    {
       "files": "scripts/**/*.*",
       "rules": {
         "import/no-extraneous-dependencies": ["error", {"devDependencies":  true}],
