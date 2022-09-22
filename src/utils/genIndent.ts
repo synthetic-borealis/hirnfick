@@ -1,6 +1,6 @@
 /**
  * Generates an indentation string.
- * @category Utilities
+ * @category Utility
  * @param {number} depth Indentation depth.
  * @param {number} size Indentation size.
  * @param {string} char Indentation character.
