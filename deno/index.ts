@@ -4,6 +4,7 @@ import BracketMismatchError from './errors/bracketMismatch.ts';
 // Validation & Utilities
 import isValidProgram from './utils/isValidProgram.ts';
 import cleanCode from './utils/cleanCode.ts';
+import genIndent from './utils/genIndent.ts';
 
 // Compilation
 import compileToJsBase from './compilers/JavaScriptBase.ts';
@@ -21,6 +22,7 @@ export {
   BracketMismatchError,
   isValidProgram,
   cleanCode,
+  genIndent,
   compileToJsBase,
   compileToJsWeb,
   compileToJsNode,
