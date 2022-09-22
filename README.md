@@ -13,8 +13,8 @@ Node.js, Deno and web-browsers.
 
 1. [Installation](#installation)
 2. [Usage](#usage)
-1. [Compiler](#compiler)
-2. [Library](#library)
+   1. [Compiler](#compiler)
+   2. [Library](#library)
 3. [Supported Output Languages](#supported-output-languages)
 4. [Examples](#examples)
 
