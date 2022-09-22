@@ -3,6 +3,7 @@ import BracketMismatchError from './errors/bracketMismatch';
 
 // Validation & Utilities
 import isValidProgram from './utils/isValidProgram';
+import cleanCode from './utils/cleanCode';
 
 // Compilation
 import compileToJsBase from './compilers/JavaScriptBase';
@@ -14,12 +15,12 @@ import compileToC from './compilers/C';
 import compileToCpp from './compilers/CPP';
 import compileToQBasic from './compilers/QBasic';
 import compileToPascal from './compilers/Pascal';
-import compileToKotlin from './compilers/Kotlin';
 import compileToRust from './compilers/Rust';
 
 export {
   BracketMismatchError,
   isValidProgram,
+  cleanCode,
   compileToJsBase,
   compileToJsWeb,
   compileToJsNode,
@@ -30,6 +31,5 @@ export {
   compileToCpp,
   compileToQBasic,
   compileToPascal,
-  compileToKotlin,
   compileToRust,
 };

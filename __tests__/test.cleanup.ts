@@ -1,5 +1,5 @@
 import fs from 'fs';
-import cleanCode from '../src/utils/cleanCode';
+import { cleanCode } from '../src';
 
 describe('Cleanup tests', () => {
   const helloWorldFile = 'assets/bf/hello-world.bf';
