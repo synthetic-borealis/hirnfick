@@ -34,8 +34,8 @@ C++ style single-line comments (i.e. ```// I'm a comment```) are supported.
 Options:
 
 - `--lang [language]` - Output language (default=js-cli).
-  - Supported options: js-web, js-node, js-cli (an alias of js-node), js-deno, python, c, cpp,
-    qbasic, pascal, kotlin, rust.
+  - Supported options: js-web, js-node, js-deno, python, c, cpp,
+    qbasic, pascal, rust.
 - `--memory-size [fixed|dynamic]` - Type of cells array (default=fixed).
 
 ### Library
@@ -59,7 +59,6 @@ Options:
 - QBasic (manually tested with [FreeBASIC](https://www.freebasic.net/) 1.09.0, QuickBASIC 4.5 and
   PDS 7.1).
 - Pascal (tested with Free Pascal 3.2.2 and Borland Pascal 7.0).
-- Kotlin.
 - Rust.
 
 ### Table 1: Supported Commands by Output Language
@@ -74,7 +73,6 @@ Options:
 | C++                  | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | QBasic               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | Pascal               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
-| Kotlin               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | Rust                 | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
 
 ## Examples
@@ -158,7 +156,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@7.2.0/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@8.0.0/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>
