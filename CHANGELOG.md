@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.0
+
+- 22/09/2022 - Renamed `compileToJsCli` to `compileToJsNode`.
+- 22/09/2022 - Removed `compileToKotlin`.
+
 ## 7.2.0
 
 - 21/09/2022 - Added `compileToRust`.

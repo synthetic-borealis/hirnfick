@@ -4,13 +4,13 @@ hirnfick
 
 ## Table of contents
 
-### References
-
-- [compileToJsCli](API.md#compiletojscli)
-
 ### Classes
 
 - [BracketMismatchError](classes/BracketMismatchError.md)
+
+### Code Cleanup Functions
+
+- [cleanCode](API.md#cleancode)
 
 ### Compilation Functions
 
@@ -20,21 +20,45 @@ hirnfick
 - [compileToJsDeno](API.md#compiletojsdeno)
 - [compileToJsNode](API.md#compiletojsnode)
 - [compileToJsWeb](API.md#compiletojsweb)
-- [compileToKotlin](API.md#compiletokotlin)
 - [compileToPascal](API.md#compiletopascal)
 - [compileToPython](API.md#compiletopython)
 - [compileToQBasic](API.md#compiletoqbasic)
 - [compileToRust](API.md#compiletorust)
 
+### Utility Functions
+
+- [genIndent](API.md#genindent)
+
 ### Validation Functions
 
 - [isValidProgram](API.md#isvalidprogram)
 
-## References
+## Code Cleanup Functions
 
-### compileToJsCli
+### cleanCode
 
-Renames and re-exports [compileToJsNode](API.md#compiletojsnode)
+▸ **cleanCode**(`source`): `string`
+
+Strips comments from Brainfuck source and then cleans the code from
+anything that's not a Brainfuck command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `string` | Brainfuck code to clean up. |
+
+#### Returns
+
+`string`
+
+Cleaned up Brainfuck code.
+
+#### Defined in
+
+[src/utils/cleanCode.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/cleanCode.ts#L19)
+
+___
 
 ## Compilation Functions
 
@@ -64,7 +88,7 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/C.ts#L15)
+[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/C.ts#L15)
 
 ___
 
@@ -95,7 +119,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/CPP.ts#L16)
+[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/CPP.ts#L16)
 
 ___
 
@@ -107,9 +131,9 @@ Converts a Brainfuck program to JavaScript.
 
 **`Description`**
 
-This function is used by [compileToJsWeb](API.md#compiletojsweb) and [compileToJsCli](API.md#compiletojscli) to
-generate their output. You can use it to write functions that generate output for other
-JavaScript-based platforms.
+This function is used by [compileToJsWeb](API.md#compiletojsweb), [compileToJsNode](API.md#compiletojsnode)
+and [compileToJsDeno](API.md#compiletojsdeno) to generate their output. You can use it to write functions
+that generate output for other JavaScript-based platforms.
 
 **`Throws`**
 
@@ -136,7 +160,7 @@ JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/JavaScriptBase.ts#L20)
+[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptBase.ts#L20)
 
 ___
 
@@ -168,7 +192,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptDeno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/JavaScriptDeno.ts#L15)
+[src/compilers/JavaScriptDeno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptDeno.ts#L15)
 
 ___
 
@@ -200,7 +224,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptNode.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/JavaScriptNode.ts#L15)
+[src/compilers/JavaScriptNode.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptNode.ts#L15)
 
 ___
 
@@ -232,38 +256,7 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/JavaScriptWeb.ts#L15)
-
-___
-
-### compileToKotlin
-
-▸ **compileToKotlin**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
-
-Converts a Brainfuck program to Kotlin.
-
-**`Throws`**
-
-[BracketMismatchError](classes/BracketMismatchError.md) if mismatching brackets are detected.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `source` | `string` | `undefined` | Brainfuck source to convert. |
-| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
-| `indentSize` | `number` | `4` | Indentation size. |
-| `indentChar` | `string` | `' '` | Indentation character. |
-
-#### Returns
-
-`string`
-
-Generated Kotlin code.
-
-#### Defined in
-
-[src/compilers/Kotlin.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/Kotlin.ts#L16)
+[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptWeb.ts#L15)
 
 ___
 
@@ -294,7 +287,7 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/Pascal.ts#L16)
+[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Pascal.ts#L16)
 
 ___
 
@@ -323,7 +316,7 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/Python.ts#L14)
+[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Python.ts#L14)
 
 ___
 
@@ -354,7 +347,7 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/QBasic.ts#L16)
+[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/QBasic.ts#L16)
 
 ___
 
@@ -384,7 +377,33 @@ Generated Rust code.
 
 #### Defined in
 
-[src/compilers/Rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/compilers/Rust.ts#L15)
+[src/compilers/Rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Rust.ts#L15)
+
+___
+
+## Utility Functions
+
+### genIndent
+
+▸ **genIndent**(`depth`, `size`, `char`): `string`
+
+Generates an indentation string.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `depth` | `number` | Indentation depth. |
+| `size` | `number` | Indentation size. |
+| `char` | `string` | Indentation character. |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[src/utils/genIndent.ts:9](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/genIndent.ts#L9)
 
 ___
 
@@ -410,4 +429,4 @@ True if the program is valid, false if it's not.
 
 #### Defined in
 
-[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/f43e223/src/utils/isValidProgram.ts#L7)
+[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/isValidProgram.ts#L7)

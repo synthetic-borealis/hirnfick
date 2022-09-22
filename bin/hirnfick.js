@@ -8,13 +8,11 @@ const supportedLanguages = [
   'js-web',
   'js-node',
   'js-deno',
-  'js-cli',
   'python',
   'c',
   'cpp',
   'qbasic',
   'pascal',
-  'kotlin',
   'rust',
 ];
 
@@ -26,7 +24,7 @@ function showHelp() {
   console.log('Usage:');
   console.log('hirnfick -i [input file] -o [output file] options');
   console.log('Options:');
-  console.log(' --lang [language] - Output language (default=js-cli).');
+  console.log(' --lang [language] - Output language (default=js-node).');
   console.log(`    Supported Options: ${supportedLanguages.join(', ')}.`);
   console.log(' --memory-size [fixed|dynamic] - Type of cells array (default=fixed).');
   console.log(' --help - Show help.');
@@ -34,7 +32,7 @@ function showHelp() {
 
 const argv = parseArgs(process.argv.slice(2), {
   default: {
-    lang: 'js-cli',
+    lang: 'js-node',
     'memory-size': 'fixed',
   },
 });
@@ -91,9 +89,6 @@ try {
     case 'js-deno':
       outputCode = hirnfick.compileToJsDeno(inputCode, useDynamicMemory);
       break;
-    case 'js-cli':
-      outputCode = hirnfick.compileToJsCli(inputCode, useDynamicMemory);
-      break;
     case 'python':
       outputCode = hirnfick.compileToPython(inputCode, useDynamicMemory);
       break;
@@ -108,9 +103,6 @@ try {
       break;
     case 'pascal':
       outputCode = hirnfick.compileToPascal(inputCode);
-      break;
-    case 'kotlin':
-      outputCode = hirnfick.compileToKotlin(inputCode, useDynamicMemory);
       break;
     case 'rust':
       outputCode = hirnfick.compileToRust(inputCode);

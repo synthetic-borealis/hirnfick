@@ -5,9 +5,9 @@ import cleanCode from '../utils/cleanCode';
 
 /**
  * Converts a Brainfuck program to JavaScript.
- * @description This function is used by {@link compileToJsWeb} and {@link compileToJsCli} to
- * generate their output. You can use it to write functions that generate output for other
- * JavaScript-based platforms.
+ * @description This function is used by {@link compileToJsWeb}, {@link compileToJsNode}
+ * and {@link compileToJsDeno} to generate their output. You can use it to write functions
+ * that generate output for other JavaScript-based platforms.
  * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} isMemoryDynamic Enable dynamic memory array.

@@ -3,6 +3,8 @@ import BracketMismatchError from './errors/bracketMismatch';
 
 // Validation & Utilities
 import isValidProgram from './utils/isValidProgram';
+import cleanCode from './utils/cleanCode';
+import genIndent from './utils/genIndent';
 
 // Compilation
 import compileToJsBase from './compilers/JavaScriptBase';
@@ -14,22 +16,21 @@ import compileToC from './compilers/C';
 import compileToCpp from './compilers/CPP';
 import compileToQBasic from './compilers/QBasic';
 import compileToPascal from './compilers/Pascal';
-import compileToKotlin from './compilers/Kotlin';
 import compileToRust from './compilers/Rust';
 
 export {
   BracketMismatchError,
   isValidProgram,
+  cleanCode,
+  genIndent,
   compileToJsBase,
   compileToJsWeb,
   compileToJsNode,
   compileToJsDeno,
-  compileToJsNode as compileToJsCli, // for backward compatibility
   compileToPython,
   compileToC,
   compileToCpp,
   compileToQBasic,
   compileToPascal,
-  compileToKotlin,
   compileToRust,
 };
