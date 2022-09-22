@@ -25,7 +25,6 @@ export {
   compileToJsWeb,
   compileToJsNode,
   compileToJsDeno,
-  compileToJsNode as compileToJsCli, // for backward compatibility
   compileToPython,
   compileToC,
   compileToCpp,

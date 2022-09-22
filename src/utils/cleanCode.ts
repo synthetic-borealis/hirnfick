@@ -12,6 +12,7 @@ function filterCode(source: string) {
 /**
  * Strips comments from Brainfuck source and then cleans the code from
  * anything that's not a Brainfuck command.
+ * @category Code Cleanup
  * @param {string} source Brainfuck code to clean up.
  * @returns {string} Cleaned up Brainfuck code.
  */

@@ -94,6 +94,23 @@ try {
 }
 ```
 
+### Program Validation - CommonJS (Node)
+
+```javascript
+const hirnfick = require('hirnfick');
+
+// This code prints 'Hello World!' to the screen
+const validCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.'
+  + '<-.<.+++.------.--------.>>+.>++.';
+
+// This code has a mismatching numbers of opening brackets and closing brackets
+const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>'
+  + '.<-.<.]]].------.--------.>>+.>++.';
+
+console.log(hirnfick.isValidProgram(validCode)); // true
+console.log(hirnfick.isValidProgram(invalidCode)); // false
+```
+
 ### ESM (Node)
 
 ```javascript
