@@ -28,13 +28,13 @@ export default function compileToRust(
   const putChar = [
     'fn put_char(c: char) {',
     `${indent}let buf: [u8; 1] = [c as u8; 1];`,
-    `${indent}stdout().write(&buf).expect("Oh no :\\'(");`,
+    `${indent}stdout().write(&buf).unwrap();`,
     '}',
   ];
   const getChar = [
     'fn get_char() -> char {',
     `${indent}let mut buf: [u8; 1] = [0; 1];`,
-    `${indent}stdin().read_exact(&mut buf).expect("Oops :(");`,
+    `${indent}stdin().read_exact(&mut buf).unwrap();`,
     `${indent}buf[0] as char`,
     '}',
   ];
