@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "A Brainfuck source to source compiler",
   "homepage": "https://synthetic-borealis.github.io/hirnfick/",
   "repository": {
