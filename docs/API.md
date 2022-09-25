@@ -56,7 +56,7 @@ Cleaned up Brainfuck code.
 
 #### Defined in
 
-[src/utils/cleanCode.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/cleanCode.ts#L19)
+[src/utils/cleanCode.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/utils/cleanCode.ts#L19)
 
 ___
 
@@ -88,7 +88,7 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/C.ts#L15)
+[src/compilers/C.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/C.ts#L15)
 
 ___
 
@@ -119,7 +119,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/CPP.ts#L16)
+[src/compilers/CPP.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/CPP.ts#L16)
 
 ___
 
@@ -160,7 +160,7 @@ that generate output for other JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptBase.ts#L20)
+[src/compilers/JavaScriptBase.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/JavaScriptBase.ts#L20)
 
 ___
 
@@ -192,7 +192,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptDeno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptDeno.ts#L15)
+[src/compilers/JavaScriptDeno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/JavaScriptDeno.ts#L15)
 
 ___
 
@@ -224,7 +224,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/JavaScriptNode.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptNode.ts#L15)
+[src/compilers/JavaScriptNode.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/JavaScriptNode.ts#L15)
 
 ___
 
@@ -256,7 +256,7 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/JavaScriptWeb.ts#L15)
+[src/compilers/JavaScriptWeb.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/JavaScriptWeb.ts#L15)
 
 ___
 
@@ -287,7 +287,7 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Pascal.ts#L16)
+[src/compilers/Pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/Pascal.ts#L16)
 
 ___
 
@@ -316,7 +316,7 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Python.ts#L14)
+[src/compilers/Python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/Python.ts#L14)
 
 ___
 
@@ -347,7 +347,7 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/QBasic.ts#L16)
+[src/compilers/QBasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/QBasic.ts#L16)
 
 ___
 
@@ -377,7 +377,7 @@ Generated Rust code.
 
 #### Defined in
 
-[src/compilers/Rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/compilers/Rust.ts#L15)
+[src/compilers/Rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/compilers/Rust.ts#L15)
 
 ___
 
@@ -403,7 +403,7 @@ Generates an indentation string.
 
 #### Defined in
 
-[src/utils/genIndent.ts:9](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/genIndent.ts#L9)
+[src/utils/genIndent.ts:9](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/utils/genIndent.ts#L9)
 
 ___
 
@@ -429,4 +429,4 @@ True if the program is valid, false if it's not.
 
 #### Defined in
 
-[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/a00cbfb/src/utils/isValidProgram.ts#L7)
+[src/utils/isValidProgram.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/663eac0/src/utils/isValidProgram.ts#L7)
