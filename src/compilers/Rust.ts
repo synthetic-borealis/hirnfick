@@ -28,7 +28,7 @@ export default function compileToRust(
   const putChar = [
     'fn put_char(c: char) {',
     `${indent}let buf: [u8; 1] = [c as u8; 1];`,
-    `${indent}stdout().write(&buf).unwrap();`,
+    `${indent}stdout().write_all(&buf).unwrap();`,
     '}',
   ];
   const getChar = [
