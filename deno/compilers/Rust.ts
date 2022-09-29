@@ -27,19 +27,20 @@ export default function compileToRust(
   let indent = genIndent(1, indentSize, indentChar);
   const putChar = [
     'fn put_char(c: char) {',
-    `${indent}let buf: [u8; 1] = [c as u8; 1];`,
-    `${indent}stdout().write(&buf).unwrap();`,
+    `${indent}let buf: [u8; 1] = [c as u8];`,
+    `${indent}stdout().write_all(&buf).unwrap();`,
     '}',
   ];
   const getChar = [
     'fn get_char() -> char {',
-    `${indent}let mut buf: [u8; 1] = [0; 1];`,
+    `${indent}let mut buf: [u8; 1] = [0];`,
     `${indent}stdin().read_exact(&mut buf).unwrap();`,
     `${indent}buf[0] as char`,
     '}',
   ];
 
   const outputCodeArray = [
+    '#[allow(unused_imports)]',
     'use std::io::{Read, stdin, stdout, Write};',
     '',
     'fn main() {',
@@ -56,23 +57,11 @@ export default function compileToRust(
 
     switch (command) {
       case '>':
-        outputCodeArray.push(`${indent}pos = if pos < 30000 {`);
-        indent += genIndent(1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}pos + 1`);
-        indent = genIndent(currentDepth + 1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}} else {`);
-        indent += genIndent(1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}pos`);
-        indent = genIndent(currentDepth + 1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}};`);
+        outputCodeArray.push(`${indent}pos = if pos < 30000 { pos + 1 } else { pos };`);
         break;
 
       case '<':
-        outputCodeArray.push(`${indent}pos = if pos > 0 {`);
-        indent += genIndent(1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}pos - 1`);
-        indent = genIndent(currentDepth + 1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}} else { pos };`);
+        outputCodeArray.push(`${indent}pos = if pos > 0 { pos - 1 } else { pos };`);
         break;
 
       case '+':
@@ -80,7 +69,11 @@ export default function compileToRust(
         indent += genIndent(1, indentSize, indentChar);
         outputCodeArray.push(`${indent}cells[pos] + 1`);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}} else { cells[pos] };`);
+        outputCodeArray.push(`${indent}} else {`);
+        indent += genIndent(1, indentSize, indentChar);
+        outputCodeArray.push(`${indent}cells[pos]`);
+        indent = genIndent(currentDepth + 1, indentSize, indentChar);
+        outputCodeArray.push(`${indent}};`);
         break;
 
       case '-':
@@ -88,7 +81,11 @@ export default function compileToRust(
         indent += genIndent(1, indentSize, indentChar);
         outputCodeArray.push(`${indent}cells[pos] - 1`);
         indent = genIndent(currentDepth + 1, indentSize, indentChar);
-        outputCodeArray.push(`${indent}} else { cells[pos] };`);
+        outputCodeArray.push(`${indent}} else {`);
+        indent += genIndent(1, indentSize, indentChar);
+        outputCodeArray.push(`${indent}cells[pos]`);
+        indent = genIndent(currentDepth + 1, indentSize, indentChar);
+        outputCodeArray.push(`${indent}};`);
         break;
 
       case '.':
