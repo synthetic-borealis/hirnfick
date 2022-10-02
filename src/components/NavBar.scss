@@ -34,11 +34,10 @@
       opacity: 60%;
     }
 
-    &_active:before {
+    &_active:after {
       position: absolute;
-      height: 72px;
+      height: calc(1em + 24px);
       width: 100%;
-      top: -22px;
       left: 0;
       content: "";
       border-bottom: 2px solid #fafafd;
