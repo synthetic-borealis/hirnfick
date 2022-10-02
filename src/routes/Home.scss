@@ -1,0 +1,35 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(578 / 1440 * 100%);
+  max-width: 578px;
+  margin: 0 auto;
+
+  &__logo {
+    aspect-ratio: attr(width) / attr(height);
+    margin: 128px 0 16px 0;
+    object-position: center;
+  }
+
+  &__title {
+    margin: 0 0 16px 0;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1em;
+    letter-spacing: 0.025em;
+    text-align: center;
+  }
+
+  &__subtitle {
+    min-width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1em;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+}

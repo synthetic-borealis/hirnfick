@@ -1,0 +1,24 @@
+.Footer {
+  position: absolute;
+  bottom: 0;
+  height: 64px;
+  width: 100%;
+  padding: 0;
+  background-color: #001111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    width: calc(1344 / 1440 * 100%);
+    max-width: 1344px;
+    margin: 0 auto;
+  }
+
+  &__copyright {
+    font-size: 1rem;
+    line-height: 1.5em;
+    letter-spacing: 0.025em;
+    font-weight: 500;
+  }
+}
