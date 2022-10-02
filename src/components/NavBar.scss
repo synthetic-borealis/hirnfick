@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  max-height: 72px;
   height: 72px;
   background-color: #001111;
   display: flex;
@@ -11,8 +12,36 @@
   border-bottom: 1px solid #445544;
   box-sizing: content-box;
 
-  &__placeholder-header-text {
+  &__link-container {
+    display: flex;
+    gap: 24px;
+    width: calc(1344 / 1440 * 100%);
+    max-width: 1344px;
+  }
+
+  &__link {
+    position: relative;
     padding: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1em;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+    color: #fafafd;
+    text-decoration: none;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 60%;
+    }
+
+    &_active:before {
+      position: absolute;
+      height: 72px;
+      width: 100%;
+      top: -22px;
+      left: 0;
+      content: "";
+      border-bottom: 2px solid #fafafd;
+    }
   }
 }
