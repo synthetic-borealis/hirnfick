@@ -1,0 +1,31 @@
+.Play {
+  width: calc(1184 / 1440 * 100%);
+  max-width: 1184px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  --col-gap: calc(128 / 1184 * 100%);
+
+  &__container {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 1rem calc(128 / 1184 * 100%);
+    column-gap: var(--col-gap);
+    row-gap: 16px;
+    margin: 144px auto 0;
+  }
+
+  &__controls {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  &__language-dropdown {
+    width: 192px;
+  }
+}
