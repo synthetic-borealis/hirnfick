@@ -9,7 +9,7 @@ function NavBar() {
   return (
     <header className="NavBar">
       <nav className="NavBar__link-container">
-        <NavLink className={navLinkClass} to="/">Home</NavLink>
+        <NavLink className={navLinkClass} to="/" end>Home</NavLink>
         <NavLink className={navLinkClass} to="/features">Features</NavLink>
         <NavLink className={navLinkClass} to="/play">Play</NavLink>
         <a

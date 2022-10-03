@@ -1,0 +1,25 @@
+.Features {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(1184 / 1440 * 100%);
+  max-width: 1184px;
+  margin: 0 auto;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.25em;
+    margin: 128px 0 24px;
+    letter-spacing: 0.025em;
+  }
+
+  &__features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 0 0 16px;
+    margin: 0;
+  }
+}
