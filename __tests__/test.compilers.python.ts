@@ -5,8 +5,8 @@ import { BracketMismatchError, compileToPython } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = '>>+++[[<-->]';
-const userInputCode = ',.';
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
 const pyFile = 'test_py.py';
 
 function checkGeneratedCode(codeToCheck: string) {

@@ -1,6 +1,7 @@
+import fs from 'fs';
 import { BracketMismatchError, compileToJsBase } from '../src';
 
-const bracketMismatchCode = '>>+++[[<-->]';
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
 
 describe('Compilation to JavaScript (Base)', () => {
   describe('Error handling', () => {

@@ -1,11 +1,12 @@
+import fs from 'fs';
 import { isValidProgram } from '../src';
 
-const helloWorldCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.'
-  + '<-.<.+++.------.--------.>>+.>++.';
-const invalidCode1 = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<<-]>>.>---.+++++++..+++.>>.<-.<'
-  + '.+++.------.--------.>>+.>++.';
-const invalidCode2 = '++++++++]>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-[>>.>---.+++++++..+++.>>.'
-  + '<-.<.+++.------.--------.>>+.>++.';
+const helloWorldSourceFile = 'assets/bf/hello-world.bf';
+const invalidSourceFile1 = 'assets/bf/invalid1.bf';
+const invalidSourceFile2 = 'assets/bf/invalid2.bf';
+const helloWorldCode = fs.readFileSync(helloWorldSourceFile).toString();
+const invalidCode1 = fs.readFileSync(invalidSourceFile1).toString();
+const invalidCode2 = fs.readFileSync(invalidSourceFile2).toString();
 
 describe('Utility function tests', () => {
   describe('isValidProgram tests', () => {

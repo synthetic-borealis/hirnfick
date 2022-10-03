@@ -6,11 +6,10 @@ import childProcess from 'child_process';
 import { BracketMismatchError, compileToC } from '../src';
 
 const exec = util.promisify(childProcess.exec);
-
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = '>>+++[[<-->]';
-const userInputCode = ',.';
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
 const exeExtension = process.platform === 'win32' ? '.exe' : '';
 const executableFile = `test_c${exeExtension}`;
 const sourceFile = 'test_c.c';
