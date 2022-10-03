@@ -5,10 +5,9 @@ import childProcess from 'child_process';
 import { compileToJsNode } from '../src';
 
 const exec = util.promisify(childProcess.exec);
-
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const userInputCode = ',.';
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
 const sourceFile = 'test_js_node.js';
 
 function checkGeneratedCode(codeToCheck: string) {
