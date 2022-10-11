@@ -1,10 +1,10 @@
 /**
- * Validates a Brainfuck program by looking for unmatched loop starts/ends.
- * @category Validation
+ * Checks whether a program contains mismatching loop boundaries.
+ * @category Syntax Checking
  * @param {string} source Brainfuck source-code to validate.
  * @returns {boolean} True if the program is valid, false if it's not.
  */
-export default function isValidProgram(source: string): boolean {
+export default function hasMismatchingLoopBoundaries(source: string): boolean {
   const sourceArray = Array.from(source);
   let numOfLoops = 0;
   for (let i = 0; i < sourceArray.length; i += 1) {
@@ -14,8 +14,8 @@ export default function isValidProgram(source: string): boolean {
       numOfLoops -= 1;
     }
     if (numOfLoops < 0) {
-      return false;
+      return true;
     }
   }
-  return numOfLoops === 0;
+  return numOfLoops !== 0;
 }

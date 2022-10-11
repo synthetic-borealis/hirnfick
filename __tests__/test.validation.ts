@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { isValidProgram } from '../src';
+import { hasMismatchingLoopBoundaries } from '../src';
 
 const helloWorldSourceFile = 'assets/bf/hello-world.bf';
 const invalidSourceFile1 = 'assets/bf/invalid1.bf';
@@ -9,16 +9,16 @@ const invalidCode1 = fs.readFileSync(invalidSourceFile1).toString();
 const invalidCode2 = fs.readFileSync(invalidSourceFile2).toString();
 
 describe('Utility function tests', () => {
-  describe('isValidProgram tests', () => {
-    it('Accepts valid programs', () => {
-      expect(isValidProgram(helloWorldCode))
-        .toBeTruthy();
+  describe('hasMismatchingLoopBoundaries tests', () => {
+    it('Returns false for valid programs', () => {
+      expect(hasMismatchingLoopBoundaries(helloWorldCode))
+        .toBeFalsy();
     });
-    it('Rejects invalid programs', () => {
-      expect(isValidProgram(invalidCode1))
-        .toBeFalsy();
-      expect(isValidProgram(invalidCode2))
-        .toBeFalsy();
+    it('Returns true for invalid programs', () => {
+      expect(hasMismatchingLoopBoundaries(invalidCode1))
+        .toBeTruthy();
+      expect(hasMismatchingLoopBoundaries(invalidCode2))
+        .toBeTruthy();
     });
   });
 });

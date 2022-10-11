@@ -2,7 +2,7 @@
 import BracketMismatchError from './errors/bracketMismatch';
 
 // Validation & Utilities
-import isValidProgram from './utils/isValidProgram';
+import hasMismatchingLoopBoundaries from './utils/hasMismatchingLoopBoundaries';
 import cleanCode from './utils/cleanCode';
 import genIndent from './utils/genIndent';
 
@@ -20,7 +20,7 @@ import compileToRust from './compilers/Rust';
 
 export {
   BracketMismatchError,
-  isValidProgram,
+  hasMismatchingLoopBoundaries,
   cleanCode,
   genIndent,
   compileToJsBase,

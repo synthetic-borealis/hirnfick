@@ -1,5 +1,5 @@
 import BracketMismatchError from '../errors/bracketMismatch';
-import isValidProgram from '../utils/isValidProgram';
+import hasMismatchingLoopBoundaries from '../utils/hasMismatchingLoopBoundaries';
 import genIndent from '../utils/genIndent';
 import cleanCode from '../utils/cleanCode';
 
@@ -22,7 +22,7 @@ export default function compileToPascal(
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
-  if (!isValidProgram(cleanSource)) {
+  if (hasMismatchingLoopBoundaries(cleanSource)) {
     throw new BracketMismatchError();
   }
 
