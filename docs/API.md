@@ -8,10 +8,6 @@ hirnfick
 
 - [BracketMismatchError](classes/BracketMismatchError.md)
 
-### Code Cleanup Functions
-
-- [cleanCode](API.md#cleancode)
-
 ### Compilation Functions
 
 - [compileToC](API.md#compiletoc)
@@ -32,34 +28,8 @@ hirnfick
 
 ### Utility Functions
 
+- [cleanCode](API.md#cleancode)
 - [genIndent](API.md#genindent)
-
-## Code Cleanup Functions
-
-### cleanCode
-
-▸ **cleanCode**(`source`): `string`
-
-Strips comments from Brainfuck source and then cleans the code from
-anything that's not a Brainfuck command.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `source` | `string` | Brainfuck code to clean up. |
-
-#### Returns
-
-`string`
-
-Cleaned up Brainfuck code.
-
-#### Defined in
-
-[src/utils/utils.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/utils.ts#L19)
-
-___
 
 ## Compilation Functions
 
@@ -89,7 +59,7 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/c.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/c.ts#L14)
+[src/compilers/c.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/c.ts#L14)
 
 ___
 
@@ -120,7 +90,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/cpp.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/cpp.ts#L15)
+[src/compilers/cpp.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/cpp.ts#L15)
 
 ___
 
@@ -161,7 +131,7 @@ that generate output for other JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/javascript-base.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-base.ts#L19)
+[src/compilers/javascript-base.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/javascript-base.ts#L19)
 
 ___
 
@@ -193,7 +163,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/javascript-deno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-deno.ts#L15)
+[src/compilers/javascript-deno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/javascript-deno.ts#L15)
 
 ___
 
@@ -225,7 +195,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/javascript-node.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-node.ts#L15)
+[src/compilers/javascript-node.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/javascript-node.ts#L15)
 
 ___
 
@@ -257,7 +227,7 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/javascript-web.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-web.ts#L15)
+[src/compilers/javascript-web.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/javascript-web.ts#L15)
 
 ___
 
@@ -288,7 +258,7 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/pascal.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/pascal.ts#L15)
+[src/compilers/pascal.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/pascal.ts#L15)
 
 ___
 
@@ -317,7 +287,7 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/python.ts:13](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/python.ts#L13)
+[src/compilers/python.ts:13](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/python.ts#L13)
 
 ___
 
@@ -348,13 +318,13 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/qbasic.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/qbasic.ts#L15)
+[src/compilers/qbasic.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/qbasic.ts#L15)
 
 ___
 
 ### compileToRust
 
-▸ **compileToRust**(`source`, `indentSize?`, `indentChar?`): `string`
+▸ **compileToRust**(`source`, `isMemoryDynamic?`, `indentSize?`, `indentChar?`): `string`
 
 Converts a Brainfuck program to Rust.
 
@@ -367,6 +337,7 @@ Converts a Brainfuck program to Rust.
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `source` | `string` | `undefined` | Brainfuck source to convert. |
+| `isMemoryDynamic` | `boolean` | `true` | Enable dynamic memory array. |
 | `indentSize` | `number` | `4` | Indentation size. |
 | `indentChar` | `string` | `' '` | Indentation character. |
 
@@ -378,7 +349,7 @@ Generated Rust code.
 
 #### Defined in
 
-[src/compilers/rust.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/rust.ts#L14)
+[src/compilers/rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/compilers/rust.ts#L15)
 
 ___
 
@@ -404,7 +375,7 @@ True if the program is contains an infinite loop, false if it doesn't.
 
 #### Defined in
 
-[src/utils/syntax-checking.ts:30](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/syntax-checking.ts#L30)
+[src/utils/syntax-checking.ts:30](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/utils/syntax-checking.ts#L30)
 
 ___
 
@@ -429,11 +400,36 @@ false if it doesn't.
 
 #### Defined in
 
-[src/utils/syntax-checking.ts:8](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/syntax-checking.ts#L8)
+[src/utils/syntax-checking.ts:8](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/utils/syntax-checking.ts#L8)
 
 ___
 
 ## Utility Functions
+
+### cleanCode
+
+▸ **cleanCode**(`source`): `string`
+
+Strips comments from Brainfuck source and then cleans the code from
+anything that's not a Brainfuck command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `string` | Brainfuck code to clean up. |
+
+#### Returns
+
+`string`
+
+Cleaned up Brainfuck code.
+
+#### Defined in
+
+[src/utils/utils.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/utils/utils.ts#L19)
+
+___
 
 ### genIndent
 
@@ -455,4 +451,4 @@ Generates an indentation string.
 
 #### Defined in
 
-[src/utils/utils.ts:31](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/utils.ts#L31)
+[src/utils/utils.ts:31](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/utils/utils.ts#L31)

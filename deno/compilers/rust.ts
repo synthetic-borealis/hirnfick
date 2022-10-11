@@ -6,6 +6,7 @@ import { genIndent, cleanCode } from '../utils/utils.ts';
  * Converts a Brainfuck program to Rust.
  * @category Compilation
  * @param {string} source Brainfuck source to convert.
+ * @param {boolean} isMemoryDynamic Enable dynamic memory array.
  * @param {number} indentSize Indentation size.
  * @param {string} indentChar Indentation character.
  * @returns {string} Generated Rust code.
@@ -13,6 +14,7 @@ import { genIndent, cleanCode } from '../utils/utils.ts';
  */
 export default function compileToRust(
   source: string,
+  isMemoryDynamic = true,
   indentSize = 4,
   indentChar = ' ',
 ): string {
@@ -43,11 +45,14 @@ export default function compileToRust(
     'use std::io::{Read, stdin, stdout, Write};',
     '',
     'fn main() {',
-    `${indent}let mut cells: [u8; 30000] = [0; 30000];`,
     `${indent}#[allow(unused_mut)]`,
     `${indent}let mut pos: usize = 0;`,
-    '',
   ];
+  if (isMemoryDynamic) {
+    outputCodeArray.push(`${indent}let mut cells: Vec<u8> = vec![0u8];\n`);
+  } else {
+    outputCodeArray.push(`${indent}let mut cells: [u8; 30000] = [0; 30000];\n`);
+  }
 
   let currentDepth = 0;
 
@@ -56,7 +61,12 @@ export default function compileToRust(
 
     switch (command) {
       case '>':
-        outputCodeArray.push(`${indent}pos = if pos < 30000 { pos + 1 } else { pos };`);
+        if (isMemoryDynamic) {
+          outputCodeArray.push(`${indent}if pos + 1 == cells.len() { cells.push(0); }`);
+          outputCodeArray.push(`${indent}pos += 1;`);
+        } else {
+          outputCodeArray.push(`${indent}pos = if pos + 1 < 30000 { pos + 1 } else { pos };`);
+        }
         break;
 
       case '<':
