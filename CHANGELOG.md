@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.0.0
+
+- 11/10/2022 - Added optional infinite loop detection.
+- 11/10/2022 - Replaced `isValidProgram` with `hasMismatchingLoopBoundaries`.
+
 ## 8.0.0
 
 - 22/09/2022 - Renamed `compileToJsCli` to `compileToJsNode`.
