@@ -212,7 +212,7 @@ export default function Dropdown({
       const { clientHeight: headerHeight } = headerRef.current;
       const itemHeight = headerHeight + 2;
       const actualDisplayedItems = Math.min(displayedItems as number, options.length);
-      const maxHeight = itemHeight * actualDisplayedItems;
+      const maxHeight = itemHeight * actualDisplayedItems - 1;
       contentRef.current.style.maxHeight = `${maxHeight}px`;
 
       // Scroll until the selected option is in view

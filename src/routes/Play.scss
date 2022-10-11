@@ -28,4 +28,26 @@
   &__language-dropdown {
     width: 192px;
   }
+
+  &__compile-button {
+    display: flex;
+    outline: none;
+    background-color: #0D4848;
+    border: 1px solid #77cbcb;
+    border-radius: 128px;
+    margin: 0;
+    height: 36px;
+    padding: 7px 23px;
+    cursor: pointer;
+
+    &-caption {
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.25em;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+      color: #FAFAFF;
+    }
+  }
 }
