@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Dropdown from '../components/Dropdown';
+import ScrollbarTextArea from '../components/ScrollbarTextArea';
 import OutputLanguage from '../enums/output-language';
 import './Play.scss';
+
+import helloBrainfuck from '../assets/placeholders/hello-world.bf?raw';
 
 function Play() {
   const [
@@ -27,8 +30,8 @@ function Play() {
             </span>
           </button>
         </div>
-        <div className="Play__controls" />
-        <div className="Play__controls" />
+        <ScrollbarTextArea className="Play__scroll-container" value={helloBrainfuck} />
+        <ScrollbarTextArea className="Play__scroll-container" value={helloBrainfuck} />
       </div>
     </div>
   );

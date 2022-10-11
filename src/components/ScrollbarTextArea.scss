@@ -1,0 +1,70 @@
+.ScrollbarTextArea {
+  position: relative;
+  display: grid;
+  grid-template: auto / 1fr auto;
+  gap: 0.5rem;
+  width: 100%;
+  height: 60vh;
+  border-radius: 10px;
+  margin: 0 auto;
+
+  &__wrapper {
+    box-sizing: border-box;
+    display: flex;
+    max-height: 100%;
+    padding: 8px;
+    overflow: hidden;
+    background-color: #2B2B2B;
+    border: 1px solid #77CBCB;
+    border-radius: 10px;
+  }
+
+  &__input-area {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: #FAFAFA;
+    background-color: #2B2B2B;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    resize: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin: 0;
+    scollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__scrollbar {
+    position: relative;
+    border-radius: 10px;
+    display: grid;
+    height: 100%;
+    width: 1rem;
+
+    &-track {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      width: 1rem;
+      background-color: #fcfcfc;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    &-thumb {
+      position: absolute;
+      width: 1rem;
+      border-radius: 10px;
+      background-color: #0D4848;
+      border: 1px solid #77CB77;
+    }
+  }
+}

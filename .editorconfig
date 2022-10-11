@@ -43,3 +43,6 @@ trim_trailing_whitespace = true
 # Possible values - true, false
 
 insert_final_newline = true
+
+[*.bf]
+insert_final_newline = false

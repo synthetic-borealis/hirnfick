@@ -1,0 +1,63 @@
+.ScrollbarArea {
+  position: relative;
+  display: grid;
+  grid-template: auto / 1fr auto;
+  gap: 0.5rem;
+  width: 100%;
+  height: 60vh;
+  border-radius: 10px;
+  margin: 0 auto;
+
+  &__wrapper {
+    max-height: 100%;
+    padding: 0.5rem;
+    overflow: hidden;
+    background-color: #2B2B2B;
+    border: 1px solid gray;
+    border-radius: 10px;
+  }
+
+  &__viewport {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: auto;
+    -ms-overflow-style: none;
+
+    // Only supported by Mozilla browsers at the moment
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__scrollbar {
+    position: relative;
+    border-radius: 10px;
+    display: grid;
+    height: 100%;
+    width: 1rem;
+
+    &-track {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      width: 100%;
+      background-color: lightgrey;
+      border-radius: 10px;
+      cursor: pointer;
+      outline: 1px solid darkgrey;
+    }
+
+    &-thumb {
+      position: absolute;
+      width: 100%;
+      border-radius: 10px;
+      background-color: darkcyan;
+      outline: 1px solid darkgreen;
+    }
+  }
+}
