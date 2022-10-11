@@ -9,11 +9,28 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
 const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
-const exeExtension = process.platform === 'win32' ? '.exe' : '';
-const executableFile = `test_rs${exeExtension}`;
+const executableFile = 'test_rs.exe';
 const sourceFile = 'test_rs.rs';
 const compileCommand = `rustc -o ${executableFile} ${sourceFile}`;
 const runCommand = process.platform === 'win32' ? executableFile : `./${executableFile}`;
+
+function checkGeneratedCode(codeToCheck: string) {
+  beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
+  afterAll(() => Promise.all([
+    fsPromises.unlink(sourceFile),
+    fsPromises.unlink(executableFile),
+  ]));
+  it(
+    'Generates valid & correct code',
+    () => exec(compileCommand)
+      .then(() => exec(runCommand))
+      .then(({ stdout }) => {
+        expect(stdout.trim())
+          .toBe('Hello World!');
+      }),
+    17000,
+  );
+}
 
 describe('Compilation to Rust', () => {
   describe('Error handling', () => {
@@ -22,25 +39,11 @@ describe('Compilation to Rust', () => {
         .toThrow(BracketMismatchError);
     });
   });
-  describe('Code generation', () => {
-    beforeAll(() => {
-      const outputCode = compileToRust(helloWorldCode);
-      return fsPromises.writeFile(sourceFile, outputCode);
-    });
-    afterAll(() => Promise.all([
-      fsPromises.unlink(sourceFile),
-      fsPromises.unlink(executableFile),
-    ]));
-    it(
-      'Generates valid & correct code',
-      () => exec(compileCommand)
-        .then(() => exec(runCommand))
-        .then(({ stdout }) => {
-          expect(stdout.trim())
-            .toBe('Hello World!');
-        }),
-      17000,
-    );
+  describe('Code generation (dynamic array)', () => {
+    checkGeneratedCode(compileToRust(helloWorldCode));
+  });
+  describe('Code generation (fixed array)', () => {
+    checkGeneratedCode(compileToRust(helloWorldCode, false));
   });
   describe('Code generation (with user input)', () => {
     const inputChar = 'a';

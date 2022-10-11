@@ -1,26 +1,26 @@
 // Error Types
-import BracketMismatchError from './errors/bracketMismatch.ts';
+import BracketMismatchError from './errors/bracket-mismatch-error.ts';
 
-// Validation & Utilities
-import isValidProgram from './utils/isValidProgram.ts';
-import cleanCode from './utils/cleanCode.ts';
-import genIndent from './utils/genIndent.ts';
+// Syntax checking & Utilities
+import { hasMismatchingLoopBoundaries, hasInfiniteLoops } from './utils/syntax-checking.ts';
+import { cleanCode, genIndent } from './utils/utils.ts';
 
 // Compilation
-import compileToJsBase from './compilers/JavaScriptBase.ts';
-import compileToJsWeb from './compilers/JavaScriptWeb.ts';
-import compileToJsNode from './compilers/JavaScriptNode.ts';
-import compileToJsDeno from './compilers/JavaScriptDeno.ts';
-import compileToPython from './compilers/Python.ts';
-import compileToC from './compilers/C.ts';
-import compileToCpp from './compilers/CPP.ts';
-import compileToQBasic from './compilers/QBasic.ts';
-import compileToPascal from './compilers/Pascal.ts';
-import compileToRust from './compilers/Rust.ts';
+import compileToJsBase from './compilers/javascript-base.ts';
+import compileToJsWeb from './compilers/javascript-web.ts';
+import compileToJsNode from './compilers/javascript-node.ts';
+import compileToJsDeno from './compilers/javascript-deno.ts';
+import compileToPython from './compilers/python.ts';
+import compileToC from './compilers/c.ts';
+import compileToCpp from './compilers/cpp.ts';
+import compileToQBasic from './compilers/qbasic.ts';
+import compileToPascal from './compilers/pascal.ts';
+import compileToRust from './compilers/rust.ts';
 
 export {
   BracketMismatchError,
-  isValidProgram,
+  hasMismatchingLoopBoundaries,
+  hasInfiniteLoops,
   cleanCode,
   genIndent,
   compileToJsBase,

@@ -1,7 +1,6 @@
-import BracketMismatchError from '../errors/bracketMismatch';
-import isValidProgram from '../utils/isValidProgram';
-import genIndent from '../utils/genIndent';
-import cleanCode from '../utils/cleanCode';
+import BracketMismatchError from '../errors/bracket-mismatch-error';
+import { hasMismatchingLoopBoundaries } from '../utils/syntax-checking';
+import { genIndent, cleanCode } from '../utils/utils';
 
 /**
  * Converts a Brainfuck program to a Python.
@@ -18,7 +17,7 @@ export default function compileToPython(
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
-  if (!isValidProgram(cleanSource)) {
+  if (hasMismatchingLoopBoundaries(cleanSource)) {
     throw new BracketMismatchError();
   }
 

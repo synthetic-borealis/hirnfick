@@ -1,26 +1,26 @@
 // Error Types
-import BracketMismatchError from './errors/bracketMismatch';
+import BracketMismatchError from './errors/bracket-mismatch-error';
 
-// Validation & Utilities
-import isValidProgram from './utils/isValidProgram';
-import cleanCode from './utils/cleanCode';
-import genIndent from './utils/genIndent';
+// Syntax checking & Utilities
+import { hasMismatchingLoopBoundaries, hasInfiniteLoops } from './utils/syntax-checking';
+import { cleanCode, genIndent } from './utils/utils';
 
 // Compilation
-import compileToJsBase from './compilers/JavaScriptBase';
-import compileToJsWeb from './compilers/JavaScriptWeb';
-import compileToJsNode from './compilers/JavaScriptNode';
-import compileToJsDeno from './compilers/JavaScriptDeno';
-import compileToPython from './compilers/Python';
-import compileToC from './compilers/C';
-import compileToCpp from './compilers/CPP';
-import compileToQBasic from './compilers/QBasic';
-import compileToPascal from './compilers/Pascal';
-import compileToRust from './compilers/Rust';
+import compileToJsBase from './compilers/javascript-base';
+import compileToJsWeb from './compilers/javascript-web';
+import compileToJsNode from './compilers/javascript-node';
+import compileToJsDeno from './compilers/javascript-deno';
+import compileToPython from './compilers/python';
+import compileToC from './compilers/c';
+import compileToCpp from './compilers/cpp';
+import compileToQBasic from './compilers/qbasic';
+import compileToPascal from './compilers/pascal';
+import compileToRust from './compilers/rust';
 
 export {
   BracketMismatchError,
-  isValidProgram,
+  hasMismatchingLoopBoundaries,
+  hasInfiniteLoops,
   cleanCode,
   genIndent,
   compileToJsBase,

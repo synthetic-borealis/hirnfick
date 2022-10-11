@@ -1,5 +1,5 @@
-import genIndent from '../utils/genIndent.ts';
-import compileToJsBase from './JavaScriptBase.ts';
+import { genIndent } from '../utils/utils';
+import compileToJsBase from './javascript-base';
 
 /**
  * Converts a Brainfuck program to JavaScript (Deno).

@@ -1,7 +1,6 @@
-import BracketMismatchError from '../errors/bracketMismatch.ts';
-import isValidProgram from '../utils/isValidProgram.ts';
-import genIndent from '../utils/genIndent.ts';
-import cleanCode from '../utils/cleanCode.ts';
+import BracketMismatchError from '../errors/bracket-mismatch-error';
+import { hasMismatchingLoopBoundaries } from '../utils/syntax-checking';
+import { genIndent, cleanCode } from '../utils/utils';
 
 /**
  * Converts a Brainfuck program to C.
@@ -20,7 +19,7 @@ export default function compileToC(
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
-  if (!isValidProgram(cleanSource)) {
+  if (hasMismatchingLoopBoundaries(cleanSource)) {
     throw new BracketMismatchError();
   }
 

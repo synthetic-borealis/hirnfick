@@ -1,7 +1,6 @@
-import BracketMismatchError from '../errors/bracketMismatch';
-import isValidProgram from '../utils/isValidProgram';
-import genIndent from '../utils/genIndent';
-import cleanCode from '../utils/cleanCode';
+import BracketMismatchError from '../errors/bracket-mismatch-error.ts';
+import { hasMismatchingLoopBoundaries } from '../utils/syntax-checking.ts';
+import { genIndent, cleanCode } from '../utils/utils.ts';
 
 /**
  * Converts a Brainfuck program to C++.
@@ -22,7 +21,7 @@ export default function compileToCpp(
   const cleanSource = cleanCode(source);
   const sourceArray = Array.from(cleanSource);
 
-  if (!isValidProgram(cleanSource)) {
+  if (hasMismatchingLoopBoundaries(cleanSource)) {
     throw new BracketMismatchError();
   }
 

@@ -73,7 +73,7 @@ Options:
 | C++                  | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | QBasic               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 | Pascal               | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
-| Rust                 | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; |     30,000     |
+| Rust                 | &check; | &check; | &check; | &check; | &check; | &check; | &check; | &check; | 30,000/Dynamic |
 
 ## Examples
 
@@ -86,7 +86,7 @@ const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
   + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
+  const helloWorldJS = hirnfick.compileToJsNode(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
 } catch (err) {
@@ -94,7 +94,7 @@ try {
 }
 ```
 
-### Program Validation - CommonJS (Node)
+### Syntax Checking - CommonJS (Node)
 
 ```javascript
 const hirnfick = require('hirnfick');
@@ -107,8 +107,8 @@ const validCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.++++
 const invalidCode = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>'
   + '.<-.<.]]].------.--------.>>+.>++.';
 
-console.log(hirnfick.isValidProgram(validCode)); // true
-console.log(hirnfick.isValidProgram(invalidCode)); // false
+console.log(hirnfick.hasMismatchingLoopBoundaries(validCode)); // false
+console.log(hirnfick.hasMismatchingLoopBoundaries(invalidCode)); // true
 ```
 
 ### ESM (Node)
@@ -120,7 +120,7 @@ const helloWorldBF = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.'
   + '+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
 try {
-  const helloWorldJS = hirnfick.compileToJsCli(helloWorldBF);
+  const helloWorldJS = hirnfick.compileToJsNode(helloWorldBF);
   const helloWorld = new Function(`${helloWorldJS}`);
   helloWorld();
 } catch (err) {
@@ -173,7 +173,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/hirnfick@8.0.3/dist/hirnfick.js"></script>
+    <script src="https://unpkg.com/hirnfick@9.0.0/dist/hirnfick.js"></script>
   </head>
   <body>
     <p>
