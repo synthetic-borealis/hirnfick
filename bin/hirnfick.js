@@ -105,7 +105,7 @@ try {
       outputCode = hirnfick.compileToPascal(inputCode);
       break;
     case 'rust':
-      outputCode = hirnfick.compileToRust(inputCode);
+      outputCode = hirnfick.compileToRust(inputCode, useDynamicMemory);
       break;
 
     // skip default case

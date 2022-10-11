@@ -29,6 +29,5 @@ export function cleanCode(source: string): string {
  * @returns {string}
  */
 export function genIndent(depth: number, size: number, char: string): string {
-  return Array(depth * size + 1)
-    .join(char);
+  return Array(depth * size).fill(char).join('');
 }
