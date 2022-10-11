@@ -4,8 +4,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Helvetica Neue'), local('Ubuntu');
-  src: url('./Inter-Regular.woff2') format('woff2'), url('./Inter-Regular.woff') format('woff'),
-  url('./Inter-Regular.ttf') format('truetype');
+  src: url('Inter-Regular.woff2') format('woff2'), url('Inter-Regular.woff') format('woff'),
+  url('Inter-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -14,8 +14,8 @@
   font-weight: 500;
   font-display: swap;
   src: local('Helvetica Neue'), local('Ubuntu');
-  src: url('./Inter-Medium.woff2') format('woff2'), url('./Inter-Medium.woff') format('woff'),
-  url('./Inter-Medium.ttf') format('truetype');
+  src: url('Inter-Medium.woff2') format('woff2'), url('Inter-Medium.woff') format('woff'),
+  url('Inter-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -24,8 +24,8 @@
   font-weight: 700;
   font-display: swap;
   src: local('Helvetica Neue'), local('Ubuntu');
-  src: url('./Inter-Bold.woff2') format('woff2'), url('./Inter-Bold.woff') format('woff'),
-  url('./Inter-Bold.ttf') format('truetype');
+  src: url('Inter-Bold.woff2') format('woff2'), url('Inter-Bold.woff') format('woff'),
+  url('Inter-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -34,6 +34,6 @@
   font-weight: 900;
   font-display: swap;
   src: local('Helvetica Neue'), local('Ubuntu');
-  src: url('./Inter-Black.woff2') format('woff2'), url('./Inter-Black.woff') format('woff'),
-  url('./Inter-Black.ttf') format('truetype');
+  src: url('Inter-Black.woff2') format('woff2'), url('Inter-Black.woff') format('woff'),
+  url('Inter-Black.ttf') format('truetype');
 }

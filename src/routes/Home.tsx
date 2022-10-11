@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.scss';
-import hirnfickLogo from '../images/Hirnfick-logo.webp';
+import hirnfickLogo from '../assets/images/Hirnfick-logo.webp';
 
 function Home() {
   return (

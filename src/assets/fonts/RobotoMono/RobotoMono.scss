@@ -4,8 +4,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url(./RobotoMono-Regular.woff) format('woff'),
-    url(./RobotoMono-Regular.ttf) format('truetype');
+  src: url(RobotoMono-Regular.woff) format('woff'),
+    url(RobotoMono-Regular.ttf) format('truetype');
 }
 
 @font-face {
@@ -14,8 +14,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url(./RobotoMono-Italic.woff) format('woff'),
-    url(./RobotoMono-Italic.ttf) format('truetype');
+  src: url(RobotoMono-Italic.woff) format('woff'),
+    url(RobotoMono-Italic.ttf) format('truetype');
 }
 
 @font-face {
@@ -24,8 +24,8 @@
   font-weight: 500;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url('./RobotoMono-Medium.woff') format('woff'),
-    url('./RobotoMono-Medium.ttf') format('truetype');
+  src: url('RobotoMono-Medium.woff') format('woff'),
+    url('RobotoMono-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -34,8 +34,8 @@
   font-weight: 500;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url('./RobotoMono-MediumItalic.woff') format('woff'),
-    url('./RobotoMono-MediumItalic.ttf') format('truetype');
+  src: url('RobotoMono-MediumItalic.woff') format('woff'),
+    url('RobotoMono-MediumItalic.ttf') format('truetype');
 }
 
 @font-face {
@@ -44,8 +44,8 @@
   font-weight: 700;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url('./RobotoMono-Bold.woff') format('woff'),
-    url('./RobotoMono-Bold.ttf') format('truetype');
+  src: url('RobotoMono-Bold.woff') format('woff'),
+    url('RobotoMono-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -54,6 +54,6 @@
   font-weight: 700;
   font-display: swap;
   src: local('Consolas'), local('Ubuntu Mono');
-  src: url('./RobotoMono-BoldItalic.woff') format('woff'),
-    url('./RobotoMono-BoldItalic.ttf') format('truetype');
+  src: url('RobotoMono-BoldItalic.woff') format('woff'),
+    url('RobotoMono-BoldItalic.ttf') format('truetype');
 }
