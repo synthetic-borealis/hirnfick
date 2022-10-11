@@ -25,12 +25,9 @@ hirnfick
 - [compileToQBasic](API.md#compiletoqbasic)
 - [compileToRust](API.md#compiletorust)
 
-### Other Functions
-
-- [hasInfiniteLoops](API.md#hasinfiniteloops)
-
 ### Syntax Checking Functions
 
+- [hasInfiniteLoops](API.md#hasinfiniteloops)
 - [hasMismatchingLoopBoundaries](API.md#hasmismatchingloopboundaries)
 
 ### Utility Functions
@@ -60,7 +57,7 @@ Cleaned up Brainfuck code.
 
 #### Defined in
 
-[src/utils/clean-code.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/utils/clean-code.ts#L19)
+[src/utils/utils.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/utils.ts#L19)
 
 ___
 
@@ -92,7 +89,7 @@ Generated C code.
 
 #### Defined in
 
-[src/compilers/c.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/c.ts#L15)
+[src/compilers/c.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/c.ts#L14)
 
 ___
 
@@ -123,7 +120,7 @@ Generated C++ code.
 
 #### Defined in
 
-[src/compilers/cpp.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/cpp.ts#L16)
+[src/compilers/cpp.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/cpp.ts#L15)
 
 ___
 
@@ -164,7 +161,7 @@ that generate output for other JavaScript-based platforms.
 
 #### Defined in
 
-[src/compilers/javascript-base.ts:20](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/javascript-base.ts#L20)
+[src/compilers/javascript-base.ts:19](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-base.ts#L19)
 
 ___
 
@@ -196,7 +193,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/javascript-deno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/javascript-deno.ts#L15)
+[src/compilers/javascript-deno.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-deno.ts#L15)
 
 ___
 
@@ -228,7 +225,7 @@ Generated JavaScript code.
 
 #### Defined in
 
-[src/compilers/javascript-node.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/javascript-node.ts#L15)
+[src/compilers/javascript-node.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-node.ts#L15)
 
 ___
 
@@ -260,7 +257,7 @@ Generated JavaScript function source.
 
 #### Defined in
 
-[src/compilers/javascript-web.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/javascript-web.ts#L15)
+[src/compilers/javascript-web.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/javascript-web.ts#L15)
 
 ___
 
@@ -291,7 +288,7 @@ Generated Pascal code.
 
 #### Defined in
 
-[src/compilers/pascal.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/pascal.ts#L16)
+[src/compilers/pascal.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/pascal.ts#L15)
 
 ___
 
@@ -320,7 +317,7 @@ Generated Python code.
 
 #### Defined in
 
-[src/compilers/python.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/python.ts#L14)
+[src/compilers/python.ts:13](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/python.ts#L13)
 
 ___
 
@@ -351,7 +348,7 @@ Generated QBasic code.
 
 #### Defined in
 
-[src/compilers/qbasic.ts:16](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/qbasic.ts#L16)
+[src/compilers/qbasic.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/qbasic.ts#L15)
 
 ___
 
@@ -381,33 +378,35 @@ Generated Rust code.
 
 #### Defined in
 
-[src/compilers/rust.ts:15](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/compilers/rust.ts#L15)
+[src/compilers/rust.ts:14](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/compilers/rust.ts#L14)
 
 ___
 
-## Other Functions
+## Syntax Checking Functions
 
 ### hasInfiniteLoops
 
 ▸ **hasInfiniteLoops**(`source`): `boolean`
 
+Checks whether a program contains infinite loops.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `source` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `string` | Brainfuck source to check. |
 
 #### Returns
 
 `boolean`
 
+True if the program is contains an infinite loop, false if it doesn't.
+
 #### Defined in
 
-[src/utils/syntax-checking.ts:23](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/utils/syntax-checking.ts#L23)
+[src/utils/syntax-checking.ts:30](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/syntax-checking.ts#L30)
 
 ___
-
-## Syntax Checking Functions
 
 ### hasMismatchingLoopBoundaries
 
@@ -419,17 +418,18 @@ Checks whether a program contains mismatching loop boundaries.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `source` | `string` | Brainfuck source-code to validate. |
+| `source` | `string` | Brainfuck source to check. |
 
 #### Returns
 
 `boolean`
 
-True if the program is valid, false if it's not.
+True if the program contains mismatching loop boundaries,
+false if it doesn't.
 
 #### Defined in
 
-[src/utils/syntax-checking.ts:7](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/utils/syntax-checking.ts#L7)
+[src/utils/syntax-checking.ts:8](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/syntax-checking.ts#L8)
 
 ___
 
@@ -455,4 +455,4 @@ Generates an indentation string.
 
 #### Defined in
 
-[src/utils/gen-indent.ts:9](https://github.com/synthetic-borealis/hirnfick/blob/d2814c0/src/utils/gen-indent.ts#L9)
+[src/utils/utils.ts:31](https://github.com/synthetic-borealis/hirnfick/blob/e7498de/src/utils/utils.ts#L31)
