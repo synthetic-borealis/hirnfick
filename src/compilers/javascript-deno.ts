@@ -1,4 +1,4 @@
-import genIndent from '../utils/gen-indent';
+import { genIndent } from '../utils/utils';
 import compileToJsBase from './javascript-base';
 
 /**

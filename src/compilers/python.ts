@@ -1,7 +1,6 @@
 import BracketMismatchError from '../errors/bracket-mismatch-error';
 import { hasMismatchingLoopBoundaries } from '../utils/syntax-checking';
-import genIndent from '../utils/gen-indent';
-import cleanCode from '../utils/clean-code';
+import { genIndent, cleanCode } from '../utils/utils';
 
 /**
  * Converts a Brainfuck program to a Python.

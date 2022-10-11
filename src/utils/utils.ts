@@ -16,6 +16,19 @@ function filterCode(source: string) {
  * @param {string} source Brainfuck code to clean up.
  * @returns {string} Cleaned up Brainfuck code.
  */
-export default function cleanCode(source: string): string {
+export function cleanCode(source: string): string {
   return filterCode(stripComments(source));
+}
+
+/**
+ * Generates an indentation string.
+ * @category Utility
+ * @param {number} depth Indentation depth.
+ * @param {number} size Indentation size.
+ * @param {string} char Indentation character.
+ * @returns {string}
+ */
+export function genIndent(depth: number, size: number, char: string): string {
+  return Array(depth * size + 1)
+    .join(char);
 }

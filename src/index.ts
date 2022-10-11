@@ -3,8 +3,7 @@ import BracketMismatchError from './errors/bracket-mismatch-error';
 
 // Syntax checking & Utilities
 import { hasMismatchingLoopBoundaries, hasInfiniteLoops } from './utils/syntax-checking';
-import cleanCode from './utils/clean-code';
-import genIndent from './utils/gen-indent';
+import { cleanCode, genIndent } from './utils/utils';
 
 // Compilation
 import compileToJsBase from './compilers/javascript-base';
