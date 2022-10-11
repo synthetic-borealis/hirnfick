@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Dropdown from '../components/Dropdown';
-import ScrollbarTextArea from '../components/ScrollbarTextArea';
+import CustomTextArea from '../components/CustomTextArea';
 import OutputLanguage from '../enums/output-language';
 import './Play.scss';
 
@@ -11,8 +11,12 @@ function Play() {
     selectedOutput,
     setSelectedOutput,
   ] = useState<OutputLanguage>(OutputLanguage.JavaScriptNode);
+  const [inputAreaValue, setInputAreaValue] = useState<string>(helloBrainfuck);
   const handleLanguageChange = (index: number) => {
     setSelectedOutput(Object.values(OutputLanguage)[index]);
+  };
+  const handleInputChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setInputAreaValue(evt.target.value);
   };
   return (
     <div className="Play">
@@ -30,8 +34,11 @@ function Play() {
             </span>
           </button>
         </div>
-        <ScrollbarTextArea className="Play__scroll-container" value={helloBrainfuck} />
-        <ScrollbarTextArea className="Play__scroll-container" value={helloBrainfuck} />
+        <CustomTextArea
+          className="Play__scroll-container"
+          value={inputAreaValue}
+          onChange={handleInputChange}
+        />
       </div>
     </div>
   );

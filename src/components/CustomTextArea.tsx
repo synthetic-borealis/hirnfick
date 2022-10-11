@@ -1,18 +1,21 @@
 import React, {
+  ChangeEvent,
+  ChangeEventHandler,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import { nanoid } from 'nanoid';
-import './ScrollbarTextArea.scss';
+import './CustomTextArea.scss';
 
-interface IScrollbarTextAreaProps {
+interface ICustomTextAreaProps {
   className?: string;
   value?: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-export default function ScrollbarTextArea({ className, value }: IScrollbarTextAreaProps) {
+export default function CustomTextArea({ className, value, onChange }: ICustomTextAreaProps) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const scrollTrackRef = useRef<HTMLDivElement>(null);
   const scrollThumbRef = useRef<HTMLDivElement>(null);
@@ -140,6 +143,13 @@ export default function ScrollbarTextArea({ className, value }: IScrollbarTextAr
     },
     [isDragging, scrollStartPosition, thumbHeight, initialScrollTop],
   );
+  const handleInputChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    handleResize(evt.target, (scrollTrackRef.current as HTMLDivElement).clientHeight);
+    handleThumbPosition();
+    if (onChange) {
+      onChange(evt);
+    }
+  };
 
   useEffect(() => {
     if (textAreaRef.current && scrollTrackRef.current) {
@@ -156,7 +166,7 @@ export default function ScrollbarTextArea({ className, value }: IScrollbarTextAr
     return () => {
     };
   });
-  const classList = `ScrollbarTextArea${className ? ` ${className}` : ''}`;
+  const classList = `CustomTextArea${className ? ` ${className}` : ''}`;
 
   return (
     <div
@@ -166,31 +176,31 @@ export default function ScrollbarTextArea({ className, value }: IScrollbarTextAr
       onPointerMove={handleThumbPointerMove}
       onPointerUp={handleThumbPointerUpOrLeave}
     >
-      <div className="ScrollbarTextArea__wrapper">
+      <div className="CustomTextArea__wrapper">
         <textarea
-          className="ScrollbarTextArea__input-area"
+          className="CustomTextArea__input-area"
           ref={textAreaRef}
           id={viewportID}
           onScroll={handleThumbPosition}
-        >
-          {value}
-        </textarea>
+          onChange={handleInputChange}
+          value={value}
+        />
       </div>
       <div
-        className="ScrollbarTextArea__scrollbar"
+        className="CustomTextArea__scrollbar"
         role="scrollbar"
         aria-controls={viewportID}
         aria-valuenow={scrollPosition}
         aria-orientation="vertical"
       >
         <div
-          className="ScrollbarTextArea__scrollbar-track"
+          className="CustomTextArea__scrollbar-track"
           ref={scrollTrackRef}
           onClick={handleTrackClick}
           role="none"
         />
         <div
-          className="ScrollbarTextArea__scrollbar-thumb"
+          className="CustomTextArea__scrollbar-thumb"
           onPointerDown={handleThumbPointerDown}
           ref={scrollThumbRef}
           style={{
@@ -203,7 +213,7 @@ export default function ScrollbarTextArea({ className, value }: IScrollbarTextAr
   );
 }
 
-ScrollbarTextArea.defaultProps = {
+CustomTextArea.defaultProps = {
   className: '',
   value: '',
 };
