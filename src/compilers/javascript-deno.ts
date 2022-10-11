@@ -1,8 +1,8 @@
-import genIndent from '../utils/genIndent';
-import compileToJsBase from './JavaScriptBase';
+import genIndent from '../utils/gen-indent';
+import compileToJsBase from './javascript-base';
 
 /**
- * Converts a Brainfuck program to JavaScript (Node.js).
+ * Converts a Brainfuck program to JavaScript (Deno).
  * @category Compilation
  * @param {string} source Brainfuck source to convert.
  * @param {boolean} isMemoryDynamic Enable dynamic memory array.
@@ -12,7 +12,7 @@ import compileToJsBase from './JavaScriptBase';
  * @returns {string} Generated JavaScript code.
  * @throws {@link BracketMismatchError} if mismatching brackets are detected.
  */
-export default function compileToJsNode(
+export default function compileToJsDeno(
   source: string,
   isMemoryDynamic = true,
   mainFunctionName = 'main',
@@ -32,21 +32,18 @@ export default function compileToJsNode(
   const indent = genIndent(1, indentSize, indentChar);
   const putchar = [
     'function putchar() {',
-    `${indent}process.stdout.write(String.fromCharCode(cells[position]));`,
+    `${indent}Deno.stdout.write(new TextEncoder().encode(String.fromCharCode(cells[position])));`,
     '}\n',
   ];
   const getchar = [
     'function getchar() {',
-    `${indent}const buffer = Buffer.alloc(1);`,
-    `${indent}fs.readSync(process.stdin.fd, buffer, 0, 1);`,
+    `${indent}const buffer = new Uint8Array(1);`,
+    `${indent}const n = Deno.stdin.readSync(buffer);`,
     `${indent}return buffer[0];`,
     '}\n',
   ];
   const hasUserInput = source.indexOf(',') > -1;
   const outputCodeArray: string[] = [];
-  if (hasUserInput) {
-    outputCodeArray.push('const fs = require(\'fs\');\n');
-  }
   outputCodeArray.push(...declarationLines);
   outputCodeArray.push(...putchar);
   if (hasUserInput) {

@@ -4,7 +4,7 @@
  * @param {string} source Brainfuck source-code to validate.
  * @returns {boolean} True if the program is valid, false if it's not.
  */
-export default function hasMismatchingLoopBoundaries(source: string): boolean {
+export function hasMismatchingLoopBoundaries(source: string): boolean {
   const sourceArray = Array.from(source);
   let numOfLoops = 0;
   for (let i = 0; i < sourceArray.length; i += 1) {
@@ -18,4 +18,9 @@ export default function hasMismatchingLoopBoundaries(source: string): boolean {
     }
   }
   return numOfLoops !== 0;
+}
+
+export function hasInfiniteLoops(source: string): boolean {
+  const infiniteLoopRegex = /\[[+.]*]/gm;
+  return source.search(infiniteLoopRegex) > -1;
 }

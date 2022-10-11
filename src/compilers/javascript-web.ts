@@ -1,5 +1,5 @@
-import genIndent from '../utils/genIndent';
-import compileToJsBase from './JavaScriptBase';
+import genIndent from '../utils/gen-indent';
+import compileToJsBase from './javascript-base';
 
 /**
  * Converts a Brainfuck program to JavaScript (Web).
