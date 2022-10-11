@@ -2,6 +2,7 @@
 
 ## 9.0.0
 
+- 11/10/2022 - Implemented dynamic cells array in `compileToRust`.
 - 11/10/2022 - Added optional infinite loop detection.
 - 11/10/2022 - Replaced `isValidProgram` with `hasMismatchingLoopBoundaries`.
 

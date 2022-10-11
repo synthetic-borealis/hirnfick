@@ -10,8 +10,7 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
 const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
-const exeExtension = process.platform === 'win32' ? '.exe' : '';
-const executableFile = `test_cpp${exeExtension}`;
+const executableFile = 'test_cpp.exe';
 const sourceFile = 'test_cpp.cpp';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
 
