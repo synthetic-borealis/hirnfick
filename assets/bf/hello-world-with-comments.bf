@@ -12,10 +12,14 @@ LMFAO
   ]
   >+>+>->>+
   [
-    <
+    < /* Here's a comment */
   ]
   <-
 ]
+/*
+ * Here is a multi-line comment ++++++++++++
+*/
+// */
 
 // Print Hello World!
 >>. // H
