@@ -21,9 +21,7 @@
   ],
   "main": "lib/index.js",
   "types": "types/index.d.ts",
-  "bin": {
-    "hirnfick": "bin/hirnfick.js"
-  },
+  "bin": "bin/hirnfick.js",
   "files": [
     "lib/",
     "types/",
@@ -76,5 +74,6 @@
   },
   "dependencies": {
     "minimist": "^1.2.7"
-  }
+  },
+  "packageManager": "yarn@3.2.4"
 }
