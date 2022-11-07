@@ -22,7 +22,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: mskelton/setup-yarn@v1
         with:
-          node-version: 'v16.x'
+          node-version: 'v18.x'
       - name: Set up Deno
         uses: denoland/setup-deno@v1
         with:
