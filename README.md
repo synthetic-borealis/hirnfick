@@ -24,7 +24,7 @@ Run `npm i -g hirnfick` to install globally or `npm i hirnfick` to install for a
 
 ## Usage
 
-C++ style single-line comments (i.e. ```// I'm a comment```) are supported.
+C++ style comments (i.e. ```// I'm a comment``` and ```/* I'm a comment too */```) are supported.
 
 ### Compiler
 
@@ -47,7 +47,7 @@ Options:
   2. ```cells``` - The array of cells that were used by the program.
 - QBasic programs with dynamic arrays require PDS 7.1 or [FreeBASIC](https://www.freebasic.net/) to
   compile.
-- Single-line C/C++/JS style comments are supported.
+- C++/JS style comments are supported.
 - For more information see the [documentation](docs/API.md).
 
 ## Supported Output Languages
