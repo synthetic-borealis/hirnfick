@@ -1,8 +1,10 @@
-const commentRegex = /\/{2,}[^\r^\n]*/gm;
+const singleLineCommentRegex = /\/{2,}[^\r^\n]*/gm;
+const multiLineCommentRegex = /\/[*]([^*]|([*][^/]))*[*]\//gm;
 const notBrainfuckRegex = /[^><+\-[\],.]*/gm;
 
 function stripComments(source: string) {
-  return source.replace(commentRegex, '');
+  return source.replace(multiLineCommentRegex, '')
+    .replace(singleLineCommentRegex, '');
 }
 
 function filterCode(source: string) {
