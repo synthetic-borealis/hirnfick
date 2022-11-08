@@ -40,7 +40,7 @@ Error.constructor
 
 #### Defined in
 
-[src/errors/bracket-mismatch-error.ts:5](https://github.com/synthetic-borealis/hirnfick/blob/742efe0/src/errors/bracket-mismatch-error.ts#L5)
+[src/errors/bracket-mismatch-error.ts:5](https://github.com/synthetic-borealis/hirnfick/blob/9d6c724/src/errors/bracket-mismatch-error.ts#L5)
 
 ## Properties
 

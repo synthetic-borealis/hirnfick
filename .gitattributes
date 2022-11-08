@@ -1,4 +1,16 @@
-* text=auto
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto eol=lf
 
-*.*js text eol=lf
-*.ts text eol=lf
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.c text
+*.h text
+*.rs text
+*.toml text
+*.md text
+*.ts text
+*.js text
+*.json text
+*.lock text
+.gitignore text
+.gitattributes text

@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.1.0
+
+- 20/10/2022 - Added
+
 ## 9.0.0
 
 - 11/10/2022 - Implemented dynamic cells array in `compileToRust`.
