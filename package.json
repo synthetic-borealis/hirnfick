@@ -2,7 +2,7 @@
   "name": "hirnfick",
   "author": "Elhanan Flesch",
   "license": "MIT",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "A Brainfuck source to source compiler",
   "homepage": "https://synthetic-borealis.github.io/hirnfick/",
   "repository": {
@@ -39,7 +39,7 @@
     "build:browser": "ts-node scripts/bundle.ts",
     "deno:clean": "rimraf deno/",
     "deno:build": "ts-node scripts/deno.ts",
-    "build": "run-p build:*",
+    "build": "yarn build:node && yarn build:browser",
     "prepack": "yarn clean && yarn build",
     "postpack": "yarn clean",
     "prepublish": "in-publish && yarn clean && yarn build || not-in-publish",
