@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import Dropdown from '../components/Dropdown';
 import CustomTextArea from '../components/CustomTextArea';
 import OutputLanguage from '../enums/output-language';
@@ -6,7 +7,7 @@ import './Play.scss';
 
 import helloBrainfuck from '../assets/placeholders/hello-world.bf?raw';
 
-function Play() {
+const Play = observer(() => {
   const [
     selectedOutput,
     setSelectedOutput,
@@ -42,6 +43,6 @@ function Play() {
       </div>
     </div>
   );
-}
+});
 
 export default Play;
