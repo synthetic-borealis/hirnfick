@@ -6,21 +6,11 @@ import childProcess from 'child_process';
 import { BracketMismatchError, compileToPascal } from '../src';
 
 const exec = util.promisify(childProcess.exec);
-// function exec(command: string): Promise<{ stdout: string }> {
-//   return new Promise((resolve, reject) => {
-//     childProcess.exec(command, (error, stdout) => {
-//       if (error) {
-//         reject(error);
-//       }
-//       resolve({ stdout: stdout.toString('utf8') });
-//     });
-//   });
-// }
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
 const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
-const executableFile = 'test_pas.exe';
+const executableFile = `test_pas${process.platform === 'win32' ? '.exe' : ''}`;
 const sourceFile = 'test_pas.pas';
 const objectFile = 'test_pas.o';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
