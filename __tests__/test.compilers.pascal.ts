@@ -6,6 +6,16 @@ import childProcess from 'child_process';
 import { BracketMismatchError, compileToPascal } from '../src';
 
 const exec = util.promisify(childProcess.exec);
+// function exec(command: string): Promise<{ stdout: string }> {
+//   return new Promise((resolve, reject) => {
+//     childProcess.exec(command, (error, stdout) => {
+//       if (error) {
+//         reject(error);
+//       }
+//       resolve({ stdout: stdout.toString('utf8') });
+//     });
+//   });
+// }
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
@@ -30,16 +40,15 @@ describe('Compilation to Pascal', () => {
       fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
-      .then(() => exec(commandToRun))
-      .then(({ stdout }) => {
-        expect(stdout.trim())
-          .toBe('Hello World!');
-      }));
+    it('Generates valid & correct code', async () => {
+      await pascalUtils.compile(sourceFile, executableFile);
+      const { stdout } = await exec(commandToRun);
+      expect(stdout.trim()).toBe('Hello World!');
+    });
   });
   describe('Code generation (with user input)', () => {
     const inputChar = 'a';
-    const wrapper = () => new Promise((resolve, reject) => {
+    const runGeneratedApp = () => new Promise((resolve, reject) => {
       const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
         if (error) {
           reject(error);
@@ -57,9 +66,9 @@ describe('Compilation to Pascal', () => {
       fsPromises.unlink(objectFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid & correct code', () => pascalUtils.compile(sourceFile, executableFile)
-      .then(() => wrapper())
-      .then((out) => expect(out)
-        .toBe(inputChar)));
+    it('Generates valid & correct code', async () => {
+      const output = await runGeneratedApp();
+      expect(output).toBe(inputChar);
+    });
   });
 });
