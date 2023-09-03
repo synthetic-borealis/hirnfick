@@ -20,15 +20,11 @@ function checkGeneratedCode(codeToCheck: string) {
     fsPromises.unlink(executableFile),
     fsPromises.unlink(sourceFile),
   ]));
-  it(
-    'Generates valid & correct code',
-    () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
-      .then(() => exec(commandToRun))
-      .then(({ stdout }) => {
-        expect(stdout.trim())
-          .toBe('Hello World!');
-      }),
-  );
+  it('Generates valid & correct code', async () => {
+    await cppUtils.compileWithGPlus(sourceFile, executableFile, true);
+    const { stdout } = await exec(commandToRun);
+    expect(stdout.trim()).toBe('Hello World!');
+  });
 }
 
 describe('Compilation to C++', () => {
@@ -46,7 +42,7 @@ describe('Compilation to C++', () => {
   });
   describe('Code generation (with user input)', () => {
     const inputChar = 'a';
-    const wrapper = () => new Promise((resolve, reject) => {
+    const runGeneratedApp = () => new Promise((resolve, reject) => {
       const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
         if (error) {
           reject(error);
@@ -59,14 +55,14 @@ describe('Compilation to C++', () => {
       const outputCode = compileToCpp(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
-    // noinspection DuplicatedCode
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
       fsPromises.unlink(executableFile),
     ]));
-    it('Generates valid code', () => cppUtils.compileWithGPlus(sourceFile, executableFile, true)
-      .then(() => wrapper())
-      .then((out) => expect(out)
-        .toBe(inputChar)));
+    it('Generates valid code', async () => {
+      await cppUtils.compileWithGPlus(sourceFile, executableFile, true);
+      const output = await runGeneratedApp();
+      expect(output).toBe(inputChar);
+    });
   });
 });
