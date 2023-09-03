@@ -30,19 +30,15 @@ describe('Compilation to C', () => {
       fsPromises.unlink(sourceFile),
       fsPromises.unlink(executableFile),
     ]));
-    it(
-      'Generates valid & correct code',
-      () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
-        .then(() => exec(commandToRun))
-        .then(({ stdout }) => {
-          expect(stdout.trim())
-            .toBe('Hello World!');
-        }),
-    );
+    it('Generates valid & correct code', async () => {
+      await cppUtils.compileWithGcc(sourceFile, executableFile, true);
+      const { stdout } = await exec(commandToRun);
+      expect(stdout.trim()).toBe('Hello World!');
+    });
   });
   describe('Code generation (with user input)', () => {
     const inputChar = 'a';
-    const wrapper = () => new Promise((resolve, reject) => {
+    const runGeneratedApp = () => new Promise((resolve, reject) => {
       const child = childProcess.exec(`${commandToRun}`, (error, stdout) => {
         if (error) {
           reject(error);
@@ -55,17 +51,14 @@ describe('Compilation to C', () => {
       const outputCode = compileToC(userInputCode);
       return fsPromises.writeFile(sourceFile, outputCode);
     });
-    // noinspection DuplicatedCode
     afterAll(() => Promise.all([
       fsPromises.unlink(sourceFile),
       fsPromises.unlink(executableFile),
     ]));
-    it(
-      'Generates valid & correct code',
-      () => cppUtils.compileWithGcc(sourceFile, executableFile, true)
-        .then(() => wrapper())
-        .then((out) => expect(out)
-          .toBe(inputChar)),
-    );
+    it('Generates valid & correct code', async () => {
+      await cppUtils.compileWithGcc(sourceFile, executableFile, true);
+      const output = await runGeneratedApp();
+      expect(output).toBe(inputChar);
+    });
   });
 });
