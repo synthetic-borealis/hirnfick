@@ -15,7 +15,7 @@ on:
 jobs:
   test:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-lts
 
     strategy:
       matrix:
