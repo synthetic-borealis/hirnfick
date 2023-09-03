@@ -12,11 +12,10 @@ const sourceFile = 'test_js_node.js';
 
 function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
-  it('Generates valid & correct code', () => exec(`node ${sourceFile}`)
-    .then(({ stdout }) => {
-      expect(stdout.trim())
-        .toBe('Hello World!');
-    }));
+  it('Generates valid & correct code', async () => {
+    const { stdout } = await exec(`node ${sourceFile}`);
+    expect(stdout.trim()).toBe('Hello World!');
+  });
   afterAll(() => fsPromises.unlink(sourceFile));
 }
 
@@ -33,9 +32,9 @@ describe('Compilation to JavaScript (Node.js)', () => {
       return fsPromises.writeFile(sourceFile, outputCode);
     });
     afterAll(() => fsPromises.unlink(sourceFile));
-    it('Generates valid & correct code', () => {
+    it('Generates valid & correct code', async () => {
       const inputChar = 'a';
-      const wrapper = () => new Promise((resolve, reject) => {
+      const runGeneratedApp = () => new Promise((resolve, reject) => {
         const child = childProcess.exec(`node ${sourceFile}`, (error, stdout) => {
           if (error) {
             reject(error);
@@ -44,11 +43,8 @@ describe('Compilation to JavaScript (Node.js)', () => {
         });
         child.stdin?.write(`${inputChar}\n`);
       });
-      return wrapper()
-        .then((out) => {
-          expect(out)
-            .toBe(inputChar);
-        });
+      const output = await runGeneratedApp();
+      expect(output).toBe(inputChar);
     });
   });
 });
