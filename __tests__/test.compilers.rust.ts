@@ -2,13 +2,15 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import { BracketMismatchError, compileToRust } from '../src';
+import {BracketMismatchError, compileToRust} from '../src';
 
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const executableFile = 'test_rs.exe';
 const sourceFile = 'test_rs.rs';
 const compileCommand = `rustc -o ${executableFile} ${sourceFile}`;
@@ -20,16 +22,12 @@ function checkGeneratedCode(codeToCheck: string) {
     fsPromises.unlink(sourceFile),
     fsPromises.unlink(executableFile),
   ]));
-  it(
-    'Generates valid & correct code',
-    () => exec(compileCommand)
-      .then(() => exec(runCommand))
-      .then(({ stdout }) => {
-        expect(stdout.trim())
-          .toBe('Hello World!');
-      }),
-    17000,
-  );
+  it('Generates valid & correct code', async () => {
+    await exec(compileCommand);
+    const {stdout} = await exec(runCommand);
+    expect(stdout.trim())
+      .toBe('Hello World!');
+  });
 }
 
 describe('Compilation to Rust', () => {
@@ -65,13 +63,11 @@ describe('Compilation to Rust', () => {
       fsPromises.unlink(sourceFile),
       fsPromises.unlink(executableFile),
     ]));
-    it(
-      'Generates valid & correct code',
-      () => exec(compileCommand)
-        .then(() => wrapper())
-        .then((out) => expect(out)
-          .toBe(inputChar)),
-      17000,
-    );
+    it('Generates valid & correct code', async () => {
+      await exec(compileCommand);
+      const output = await wrapper();
+      expect(output)
+        .toBe(inputChar);
+    });
   });
 });
