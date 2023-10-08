@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "target": "es2016",
+    "target": "es2022",
     "moduleDetection": "auto",
-    "module": "commonjs",
+    "module": "esnext",
     "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
@@ -16,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   },
   "exclude": [
     "jest.config.ts",

@@ -19,6 +19,7 @@
     "language",
     "compiler"
   ],
+  "type": "module",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "bin": "bin/hirnfick.js",
@@ -38,7 +39,7 @@
     "build:node": "tsc",
     "build:browser": "ts-node scripts/bundle.ts",
     "deno:clean": "rimraf deno/",
-    "deno:build": "ts-node scripts/deno.ts",
+    "deno:build": "ts-node-esm scripts/deno.ts",
     "build": "npm run build:node && npm run build:browser",
     "prepack": "npm run clean && npm run build",
     "postpack": "npm run clean",

@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "target": "es2016",
+    "target": "es2022",
     "moduleDetection": "auto",
-    "module": "commonjs",
+    "module": "esnext",
     "rootDirs": ["./src", "./__tests__", "./scripts"],
     "declaration": true,
     "declarationMap": true,
