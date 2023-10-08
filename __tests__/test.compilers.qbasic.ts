@@ -19,12 +19,11 @@ function checkGeneratedCode(codeToCheck: string) {
     fsPromises.unlink(executableFile),
     fsPromises.unlink(sourceFile),
   ]));
-  it('Generates valid & correct code', () => exec(`fbc ${sourceFile} -x ${executableFile}`)
-    .then(() => exec(commandToRun))
-    .then(({ stdout }) => {
-      expect(stdout.trim())
-        .toBe('Hello World!');
-    }));
+  it('Generates valid & correct code', async () => {
+    await exec(`fbc ${sourceFile} -x ${executableFile}`);
+    const { stdout } = await exec(commandToRun);
+    expect(stdout.trim()).toBe('Hello World!');
+  });
 }
 
 describe('Compilation to QBasic', () => {
@@ -59,9 +58,10 @@ describe('Compilation to QBasic', () => {
       fsPromises.unlink(executableFile),
       fsPromises.unlink(sourceFile),
     ]));
-    it('Generates valid & correct code', () => exec(`fbc ${sourceFile} -x ${executableFile}`)
-      .then(() => wrapper())
-      .then((out) => expect(out)
-        .toBe(inputChar)));
+    it('Generates valid & correct code', async () => {
+      await exec(`fbc ${sourceFile} -x ${executableFile}`);
+      const output = await wrapper();
+      expect(output).toBe(inputChar);
+    });
   });
 });
