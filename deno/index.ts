@@ -14,7 +14,6 @@ import compileToPython from './compilers/python.ts';
 import compileToC from './compilers/c.ts';
 import compileToCpp from './compilers/cpp.ts';
 import compileToQBasic from './compilers/qbasic.ts';
-import compileToPascal from './compilers/pascal.ts';
 import compileToRust from './compilers/rust.ts';
 
 export {
@@ -31,6 +30,5 @@ export {
   compileToC,
   compileToCpp,
   compileToQBasic,
-  compileToPascal,
   compileToRust,
 };
