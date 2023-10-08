@@ -5,10 +5,14 @@ const helloWorldSourceFile = 'assets/bf/hello-world.bf';
 const invalidSourceFile1 = 'assets/bf/invalid1.bf';
 const invalidSourceFile2 = 'assets/bf/invalid2.bf';
 const infiniteLoopSourceFile = 'assets/bf/infinite-loop.bf';
-const helloWorldCode = fs.readFileSync(helloWorldSourceFile).toString();
-const invalidCode1 = fs.readFileSync(invalidSourceFile1).toString();
-const invalidCode2 = fs.readFileSync(invalidSourceFile2).toString();
-const infiniteLoopCode = fs.readFileSync(infiniteLoopSourceFile).toString();
+const helloWorldCode = fs.readFileSync(helloWorldSourceFile)
+  .toString();
+const invalidCode1 = fs.readFileSync(invalidSourceFile1)
+  .toString();
+const invalidCode2 = fs.readFileSync(invalidSourceFile2)
+  .toString();
+const infiniteLoopCode = fs.readFileSync(infiniteLoopSourceFile)
+  .toString();
 
 describe('Syntax checking tests', () => {
   describe('hasMismatchingLoopBoundaries tests', () => {
@@ -25,10 +29,12 @@ describe('Syntax checking tests', () => {
   });
   describe('hasInfiniteLoops', () => {
     it('Returns true when code contains an infinite loop', () => {
-      expect(hasInfiniteLoops(infiniteLoopCode)).toBeTruthy();
+      expect(hasInfiniteLoops(infiniteLoopCode))
+        .toBeTruthy();
     });
     it('Returns false when code does not contain an infinite loop', () => {
-      expect(hasInfiniteLoops(helloWorldCode)).toBeFalsy();
+      expect(hasInfiniteLoops(helloWorldCode))
+        .toBeFalsy();
     });
   });
 });

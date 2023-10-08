@@ -1,7 +1,8 @@
 import fs from 'fs';
 import { BracketMismatchError, compileToJsBase } from '../src';
 
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
 
 describe('Compilation to JavaScript (Base)', () => {
   describe('Error handling', () => {
@@ -14,7 +15,8 @@ describe('Compilation to JavaScript (Base)', () => {
           2,
           ' ',
         ),
-      ).toThrow(BracketMismatchError);
+      )
+        .toThrow(BracketMismatchError);
     });
   });
 });

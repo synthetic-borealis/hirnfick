@@ -7,14 +7,16 @@ import { compileToJsNode } from '../src';
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const sourceFile = 'test_js_node.js';
 
 function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
   it('Generates valid & correct code', async () => {
     const { stdout } = await exec(`node ${sourceFile}`);
-    expect(stdout.trim()).toBe('Hello World!');
+    expect(stdout.trim())
+      .toBe('Hello World!');
   });
   afterAll(() => fsPromises.unlink(sourceFile));
 }
@@ -44,7 +46,8 @@ describe('Compilation to JavaScript (Node.js)', () => {
         child.stdin?.write(`${inputChar}\n`);
       });
       const output = await runGeneratedApp();
-      expect(output).toBe(inputChar);
+      expect(output)
+        .toBe(inputChar);
     });
   });
 });

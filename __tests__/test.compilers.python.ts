@@ -1,7 +1,7 @@
-import {PythonShell} from 'python-shell';
+import { PythonShell } from 'python-shell';
 import fsPromises from 'fs/promises';
 import fs from 'fs';
-import {BracketMismatchError, compileToPython} from '../src';
+import { BracketMismatchError, compileToPython } from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();

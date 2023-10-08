@@ -7,8 +7,10 @@ import { BracketMismatchError, compileToQBasic } from '../src';
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const executableFile = 'test_bas.exe';
 const sourceFile = 'test_bas.bas';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
@@ -22,7 +24,8 @@ function checkGeneratedCode(codeToCheck: string) {
   it('Generates valid & correct code', async () => {
     await exec(`fbc ${sourceFile} -x ${executableFile}`);
     const { stdout } = await exec(commandToRun);
-    expect(stdout.trim()).toBe('Hello World!');
+    expect(stdout.trim())
+      .toBe('Hello World!');
   });
 }
 
@@ -61,7 +64,8 @@ describe('Compilation to QBasic', () => {
     it('Generates valid & correct code', async () => {
       await exec(`fbc ${sourceFile} -x ${executableFile}`);
       const output = await wrapper();
-      expect(output).toBe(inputChar);
+      expect(output)
+        .toBe(inputChar);
     });
   });
 });

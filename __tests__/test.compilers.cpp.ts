@@ -8,8 +8,10 @@ import { BracketMismatchError, compileToCpp } from '../src';
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const executableFile = 'test_cpp.exe';
 const sourceFile = 'test_cpp.cpp';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
@@ -23,7 +25,8 @@ function checkGeneratedCode(codeToCheck: string) {
   it('Generates valid & correct code', async () => {
     await cppUtils.compileWithGPlus(sourceFile, executableFile, true);
     const { stdout } = await exec(commandToRun);
-    expect(stdout.trim()).toBe('Hello World!');
+    expect(stdout.trim())
+      .toBe('Hello World!');
   });
 }
 
@@ -62,7 +65,8 @@ describe('Compilation to C++', () => {
     it('Generates valid code', async () => {
       await cppUtils.compileWithGPlus(sourceFile, executableFile, true);
       const output = await runGeneratedApp();
-      expect(output).toBe(inputChar);
+      expect(output)
+        .toBe(inputChar);
     });
   });
 });

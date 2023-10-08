@@ -8,8 +8,10 @@ import { BracketMismatchError, compileToC } from '../src';
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const executableFile = 'test_c.exe';
 const sourceFile = 'test_c.c';
 const commandToRun = process.platform === 'win32' ? executableFile : `./${executableFile}`;
@@ -33,7 +35,8 @@ describe('Compilation to C', () => {
     it('Generates valid & correct code', async () => {
       await cppUtils.compileWithGcc(sourceFile, executableFile, true);
       const { stdout } = await exec(commandToRun);
-      expect(stdout.trim()).toBe('Hello World!');
+      expect(stdout.trim())
+        .toBe('Hello World!');
     });
   });
   describe('Code generation (with user input)', () => {
@@ -58,7 +61,8 @@ describe('Compilation to C', () => {
     it('Generates valid & correct code', async () => {
       await cppUtils.compileWithGcc(sourceFile, executableFile, true);
       const output = await runGeneratedApp();
-      expect(output).toBe(inputChar);
+      expect(output)
+        .toBe(inputChar);
     });
   });
 });

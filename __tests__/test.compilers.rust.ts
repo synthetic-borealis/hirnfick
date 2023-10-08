@@ -2,7 +2,7 @@ import fsPromises from 'fs/promises';
 import fs from 'fs';
 import util from 'util';
 import childProcess from 'child_process';
-import {BracketMismatchError, compileToRust} from '../src';
+import { BracketMismatchError, compileToRust } from '../src';
 
 const exec = util.promisify(childProcess.exec);
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
@@ -24,7 +24,7 @@ function checkGeneratedCode(codeToCheck: string) {
   ]));
   it('Generates valid & correct code', async () => {
     await exec(compileCommand);
-    const {stdout} = await exec(runCommand);
+    const { stdout } = await exec(runCommand);
     expect(stdout.trim())
       .toBe('Hello World!');
   });
