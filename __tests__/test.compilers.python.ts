@@ -1,12 +1,14 @@
-import { PythonShell } from 'python-shell';
+import {PythonShell} from 'python-shell';
 import fsPromises from 'fs/promises';
 import fs from 'fs';
-import { BracketMismatchError, compileToPython } from '../src';
+import {BracketMismatchError, compileToPython} from '../src';
 
 const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
-const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf').toString();
-const userInputCode = fs.readFileSync('assets/bf/user-input.bf').toString();
+const bracketMismatchCode = fs.readFileSync('assets/bf/invalid1.bf')
+  .toString();
+const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
+  .toString();
 const pyFile = 'test_py.py';
 
 function checkGeneratedCode(codeToCheck: string) {
@@ -18,11 +20,11 @@ function checkGeneratedCode(codeToCheck: string) {
       resolve((output as string[])[0]);
     });
   });
-  it('Generates  valid & correct code', () => wrapper()
-    .then((output) => {
-      expect(output)
-        .toBe('Hello World!');
-    }));
+  it('Generates  valid & correct code', async () => {
+    const output = await wrapper();
+    expect(output)
+      .toBe('Hello World!');
+  });
 }
 
 describe('Compilation to Python', () => {
@@ -44,7 +46,7 @@ describe('Compilation to Python', () => {
       return fsPromises.writeFile(pyFile, outputCode);
     });
     afterAll(() => fsPromises.unlink(pyFile));
-    it('Generates valid & correct code', () => {
+    it('Generates valid & correct code', async () => {
       const inputChar = 'a';
       const wrapper = () => new Promise((resolve, reject) => {
         const pyShell = new PythonShell(pyFile);
@@ -59,11 +61,9 @@ describe('Compilation to Python', () => {
         });
         pyShell.stdin.write(`${inputChar}\n`);
       });
-      return wrapper()
-        .then((out) => {
-          expect(out)
-            .toBe(inputChar);
-        });
+      const out = await wrapper();
+      expect(out)
+        .toBe(inputChar);
     });
   });
 });
