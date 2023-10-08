@@ -9,7 +9,7 @@ const helloWorldCode = fs.readFileSync('assets/bf/hello-world.bf')
   .toString();
 const userInputCode = fs.readFileSync('assets/bf/user-input.bf')
   .toString();
-const sourceFile = 'test_js_node.js';
+const sourceFile = 'test_js_node.cjs';
 
 function checkGeneratedCode(codeToCheck: string) {
   beforeAll(() => fsPromises.writeFile(sourceFile, codeToCheck));
